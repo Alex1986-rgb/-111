@@ -1,0 +1,8 @@
+{
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "name": "TextFlow - Копирайтинг и SEO-автоматизация",
+  "description": ""
+}
