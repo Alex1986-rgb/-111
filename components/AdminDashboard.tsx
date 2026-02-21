@@ -1,158 +1,183 @@
 
-import React, { useState } from 'react';
-import { Service, Order } from '../types';
-import { Save, Settings, DollarSign, List, CheckCircle, Clock, XCircle, ChevronRight, Download, FileJson, FileSpreadsheet, BarChart3, TrendingUp, Package, LayoutDashboard, MessageSquareText, Search, ShieldCheck, Wallet } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { useApp } from '../App';
+import { 
+  ShieldCheck, CheckCircle, Clock, 
+  Lock, KeyRound, ArrowRight, LogOut,
+  Terminal, Settings, Package, TrendingUp,
+  Wallet, Landmark, ArrowUpRight, BarChart3
+} from 'lucide-react';
 
-interface AdminDashboardProps {
-  services: Service[];
-  updatePrice: (id: string, newPrice: number) => void;
-  orders: Order[];
-  updateOrderStatus: (id: string, status: Order['status']) => void;
-  updateOrderAdminResponse?: (id: string, response: string) => void;
-}
+const AdminDashboard: React.FC = () => {
+  const { auth, setAuthStatus, services, orders, transactions, updateOrderStatus, updatePrice, logs } = useApp();
+  const [password, setPassword] = useState('');
+  const [activeTab, setActiveTab] = useState<'orders' | 'prices' | 'finance' | 'logs'>('orders');
 
-const AdminDashboard: React.FC<AdminDashboardProps> = ({ services, updatePrice, orders, updateOrderStatus, updateOrderAdminResponse }) => {
-  const [activeTab, setActiveTab] = useState<'prices' | 'orders'>('orders');
-  const [searchQuery, setSearchQuery] = useState('');
-  const [editingPrices, setEditingPrices] = useState<Record<string, number>>(
-    services.reduce((acc, s) => ({ ...acc, [s.id]: s.pricePer1k }), {})
-  );
+  const stats = useMemo(() => {
+    const revenue = transactions.reduce((sum, tx) => sum + tx.amount, 0);
+    const avgCheck = transactions.length > 0 ? Math.round(revenue / transactions.length) : 0;
+    return { revenue, avgCheck, txCount: transactions.length, orderCount: orders.length };
+  }, [transactions, orders]);
 
-  const filteredOrders = orders.filter(o => 
-    o.clientEmail.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    o.id.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  const handlePriceChange = (id: string, value: string) => {
-    const num = parseInt(value) || 0;
-    setEditingPrices(prev => ({ ...prev, [id]: num }));
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password === 'admin') {
+      setAuthStatus({ isAuthenticated: true, token: 'tf_session_' + Date.now(), role: 'admin' });
+    } else {
+      alert('Ошибка доступа');
+    }
   };
 
-  const savePrices = () => {
-    Object.entries(editingPrices).forEach(([id, price]) => {
-      updatePrice(id, price);
-    });
-    alert('Прайс обновлен');
-  };
-
-  const totalRevenue = orders.filter(o => o.paymentStatus === 'paid').reduce((sum, o) => sum + o.totalPrice, 0);
+  if (!auth.isAuthenticated) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white p-12 rounded-[3rem] shadow-2xl border border-slate-100 text-center animate-in zoom-in duration-500">
+           <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-8">
+              <Lock className="w-10 h-10" />
+           </div>
+           <h2 className="text-3xl font-black text-slate-900 mb-2">SaaS Entry</h2>
+           <p className="text-slate-400 font-medium mb-10">Авторизуйтесь для управления системой</p>
+           <form onSubmit={handleLogin} className="space-y-4">
+              <input 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Admin Key"
+                className="w-full bg-slate-50 border-2 border-slate-50 rounded-2xl py-5 px-6 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-center"
+              />
+              <button className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-indigo-600 transition-all shadow-xl">
+                 Войти <ArrowRight className="w-5 h-5" />
+              </button>
+           </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12 animate-in fade-in duration-500">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6 bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-3">
-             <ShieldCheck className="w-3 h-3" /> Root Access
-          </div>
-          <h1 className="text-4xl font-black text-slate-900">Управление TextFlow</h1>
-        </div>
-        <div className="flex flex-wrap gap-4">
-          <div className="bg-emerald-50 border border-emerald-100 p-5 rounded-3xl min-w-[180px]">
-            <div className="text-emerald-600 text-[10px] font-black uppercase tracking-widest mb-2 flex justify-between">
-              Выручка <Wallet className="w-3 h-3" />
-            </div>
-            <div className="text-2xl font-black text-emerald-700">{totalRevenue.toLocaleString()} ₽</div>
-          </div>
-          <div className="bg-indigo-50 border border-indigo-100 p-5 rounded-3xl min-w-[180px]">
-            <div className="text-indigo-600 text-[10px] font-black uppercase tracking-widest mb-2 flex justify-between">
-              Активных заказов <Package className="w-3 h-3" />
-            </div>
-            <div className="text-2xl font-black text-indigo-700">{orders.filter(o => o.status !== 'completed').length}</div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
-        <div className="flex bg-slate-100 p-1.5 rounded-2xl w-fit">
-          <button onClick={() => setActiveTab('orders')} className={`px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'orders' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-400'}`}>Заказы</button>
-          <button onClick={() => setActiveTab('prices')} className={`px-8 py-3 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeTab === 'prices' ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-400'}`}>Цены</button>
-        </div>
+    <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="grid lg:grid-cols-12 gap-8">
         
-        {activeTab === 'orders' && (
-          <div className="relative w-full md:w-80">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-300" />
-            <input 
-              type="text" 
-              placeholder="Поиск по Email или ID..." 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full bg-white border border-slate-100 rounded-xl py-3 pl-12 pr-4 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-indigo-500/10"
-            />
-          </div>
-        )}
-      </div>
-
-      {activeTab === 'orders' ? (
-        <div className="space-y-4">
-          {filteredOrders.map((order) => (
-            <div key={order.id} className="bg-white rounded-[2rem] border border-slate-100 p-8 shadow-sm hover:shadow-md transition-all">
-              <div className="flex flex-wrap justify-between items-start gap-6 mb-8">
-                <div className="flex items-center gap-6">
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-white ${order.paymentStatus === 'paid' ? 'bg-emerald-500' : 'bg-amber-500 animate-pulse'}`}>
-                    <DollarSign className="w-7 h-7" />
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="font-mono text-[10px] text-slate-400">#{order.id}</span>
-                      <span className={`text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${order.paymentStatus === 'paid' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'}`}>
-                        {order.paymentStatus === 'paid' ? 'Оплачено' : 'Ожидает оплаты'}
-                      </span>
-                    </div>
-                    <h3 className="text-xl font-black text-slate-900">{order.clientEmail}</h3>
-                    <p className="text-xs font-medium text-slate-500 mt-1">{services.find(s => s.id === order.serviceId)?.name} • {order.totalPrice.toLocaleString()} ₽</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-2">
-                  <button onClick={() => updateOrderStatus(order.id, 'in_progress')} className="px-5 py-2.5 bg-indigo-50 text-indigo-600 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-all">В работу</button>
-                  <button onClick={() => updateOrderStatus(order.id, 'completed')} className="px-5 py-2.5 bg-emerald-50 text-emerald-600 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-emerald-600 hover:text-white transition-all">Завершить</button>
-                </div>
+        {/* Sidebar */}
+        <div className="lg:col-span-3 space-y-6">
+           <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100">
+              <div className="flex items-center gap-4 mb-10">
+                 <div className="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-lg"><ShieldCheck /></div>
+                 <div className="text-sm font-black uppercase tracking-widest">Root Console</div>
               </div>
-
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="bg-slate-50 p-6 rounded-2xl">
-                  <div className="text-[10px] font-black uppercase text-slate-400 mb-3">Описание задачи</div>
-                  <p className="text-sm text-slate-700 font-medium leading-relaxed italic">"{order.description}"</p>
-                </div>
-                <div className="space-y-4">
-                  <div className="text-[10px] font-black uppercase text-slate-400 ml-2">Ответ администратора</div>
-                  <div className="relative group">
-                    <MessageSquareText className="absolute left-4 top-4 w-4 h-4 text-slate-300" />
-                    <textarea 
-                      placeholder="Ссылка на готовый документ или сообщение клиенту..."
-                      value={order.adminResponse || ''}
-                      onChange={(e) => updateOrderAdminResponse?.(order.id, e.target.value)}
-                      className="w-full bg-white border border-slate-100 rounded-xl py-3.5 pl-12 pr-4 text-xs font-bold focus:outline-none focus:border-indigo-600 min-h-[100px] transition-all"
-                    ></textarea>
-                  </div>
-                </div>
+              <div className="space-y-1">
+                 {[
+                   { id: 'orders', label: 'Потоки', icon: Package },
+                   { id: 'finance', label: 'Финансы', icon: Wallet },
+                   { id: 'prices', label: 'Прайс', icon: Settings },
+                   { id: 'logs', label: 'Ядро', icon: Terminal }
+                 ].map(tab => (
+                   <button 
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id as any)}
+                    className={`w-full flex items-center gap-4 px-6 py-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${activeTab === tab.id ? 'bg-indigo-600 text-white shadow-xl shadow-indigo-100' : 'text-slate-400 hover:bg-slate-50'}`}
+                   >
+                     <tab.icon className="w-4 h-4" /> {tab.label}
+                   </button>
+                 ))}
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="bg-white rounded-[3rem] p-10 border border-slate-100 shadow-sm">
-           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-             {services.map(s => (
-               <div key={s.id} className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                 <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">{s.name}</div>
-                 <div className="relative">
-                   <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-black">₽</span>
-                   <input 
-                     type="number"
-                     value={editingPrices[s.id]}
-                     onChange={(e) => handlePriceChange(s.id, e.target.value)}
-                     className="w-full bg-white border border-slate-100 rounded-xl py-4 pl-10 pr-4 font-black text-xl"
-                   />
-                 </div>
-               </div>
-             ))}
+              <button 
+                onClick={() => setAuthStatus({ isAuthenticated: false, token: null, role: null })}
+                className="w-full mt-12 flex items-center gap-4 px-6 py-4 text-red-400 hover:text-red-600 text-[10px] font-black uppercase tracking-widest transition-colors"
+              >
+                <LogOut className="w-4 h-4" /> Выход
+              </button>
            </div>
-           <button onClick={savePrices} className="mt-10 w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100">
-             Сохранить изменения прайса
-           </button>
         </div>
-      )}
+
+        {/* Main */}
+        <div className="lg:col-span-9 space-y-8">
+           {/* Stats Row */}
+           <div className="grid md:grid-cols-3 gap-6">
+              <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white">
+                 <div className="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-1">Выручка (Total)</div>
+                 <div className="text-3xl font-black">{stats.revenue.toLocaleString()} ₽</div>
+              </div>
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                 <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Средний чек</div>
+                 <div className="text-3xl font-black text-slate-900">{stats.avgCheck.toLocaleString()} ₽</div>
+              </div>
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                 <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Оплат (SaaS)</div>
+                 <div className="text-3xl font-black text-emerald-500">{stats.txCount}</div>
+              </div>
+           </div>
+
+           {activeTab === 'orders' && (
+             <div className="space-y-4">
+                {orders.map(order => (
+                  <div key={order.id} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex items-center justify-between group hover:border-indigo-100 transition-all">
+                     <div className="flex items-center gap-6">
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white ${order.paymentStatus === 'paid' ? 'bg-emerald-500 shadow-emerald-100' : 'bg-amber-500 shadow-amber-100'} shadow-lg`}>
+                           {order.paymentStatus === 'paid' ? <CheckCircle className="w-6 h-6" /> : <Clock className="w-6 h-6" />}
+                        </div>
+                        <div>
+                           <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{order.id} • {order.clientEmail}</div>
+                           <h3 className="text-lg font-black text-slate-900">{services.find(s => s.id === order.serviceId)?.name}</h3>
+                        </div>
+                     </div>
+                     <select 
+                        value={order.status} 
+                        onChange={(e) => updateOrderStatus(order.id, e.target.value as any)}
+                        className="bg-slate-50 border-none rounded-xl text-[10px] font-black uppercase py-2 px-4 focus:ring-2 focus:ring-indigo-600"
+                     >
+                        <option value="pending">Ожидание</option>
+                        <option value="in_progress">В работе</option>
+                        <option value="completed">Готов</option>
+                     </select>
+                  </div>
+                ))}
+             </div>
+           )}
+
+           {activeTab === 'finance' && (
+             <div className="bg-white rounded-[2.5rem] border border-slate-100 shadow-sm overflow-hidden">
+                <table className="w-full text-left">
+                   <thead className="bg-slate-50 border-b border-slate-100">
+                      <tr>
+                         <th className="px-8 py-6 text-[10px] font-black uppercase text-slate-400">ID Транзакции</th>
+                         <th className="px-8 py-6 text-[10px] font-black uppercase text-slate-400">Метод</th>
+                         <th className="px-8 py-6 text-[10px] font-black uppercase text-slate-400">Сумма</th>
+                         <th className="px-8 py-6 text-[10px] font-black uppercase text-slate-400">Дата</th>
+                      </tr>
+                   </thead>
+                   <tbody>
+                      {transactions.map(tx => (
+                        <tr key={tx.id} className="border-b border-slate-50 hover:bg-slate-50/50 transition-colors">
+                           <td className="px-8 py-6 font-mono text-xs font-bold text-slate-400">{tx.id}</td>
+                           <td className="px-8 py-6">
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-indigo-50 text-indigo-600 rounded-full text-[9px] font-black uppercase tracking-widest">
+                                 {tx.method === 'sbp' ? <Landmark className="w-3 h-3" /> : <TrendingUp className="w-3 h-3" />}
+                                 {tx.method.toUpperCase()}
+                              </span>
+                           </td>
+                           <td className="px-8 py-6 font-black text-slate-900">{tx.amount.toLocaleString()} ₽</td>
+                           <td className="px-8 py-6 text-xs text-slate-400 font-medium">{new Date(tx.timestamp).toLocaleString()}</td>
+                        </tr>
+                      ))}
+                   </tbody>
+                </table>
+             </div>
+           )}
+
+           {activeTab === 'logs' && (
+             <div className="bg-slate-900 rounded-[2.5rem] p-8 h-[500px] overflow-y-auto font-mono text-xs custom-scrollbar">
+                {logs.map(log => (
+                  <div key={log.id} className="mb-2 flex gap-4">
+                     <span className="text-slate-600 shrink-0">[{log.timestamp}]</span>
+                     <span className={log.type === 'error' ? 'text-red-400' : log.type === 'success' ? 'text-emerald-400' : 'text-indigo-400'}>{log.type.toUpperCase()}:</span>
+                     <span className="text-slate-300">{log.message}</span>
+                  </div>
+                ))}
+             </div>
+           )}
+        </div>
+      </div>
     </div>
   );
 };

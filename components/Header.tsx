@@ -1,11 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
-import { View } from '../types';
-import { Menu, Settings, X, ChevronRight, Send, MessageCircle, Crown, Apple, Zap } from 'lucide-react';
+import { ViewId } from '../types';
+import { Menu, X, ChevronRight, Send, MessageCircle, Crown, Apple, Zap } from 'lucide-react';
 
 interface HeaderProps {
-  setView: (view: View) => void;
-  currentView: View;
+  setView: (view: ViewId) => void;
+  currentView: ViewId;
 }
 
 const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
     { id: 'contacts', label: 'Контакты' },
   ];
 
-  const navigate = (id: View) => {
+  const navigate = (id: ViewId) => {
     setView(id);
     setMobileMenu(false);
   };
@@ -54,7 +54,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
             {links.map((item) => (
               <button 
                 key={item.id}
-                onClick={() => navigate(item.id as View)}
+                onClick={() => navigate(item.id as ViewId)}
                 className={`text-[10px] font-black uppercase tracking-[0.2em] transition-all relative py-2 group ${
                   currentView === item.id ? 'text-indigo-600' : 'text-slate-500 hover:text-indigo-600'
                 }`}
@@ -66,44 +66,6 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
           </nav>
 
           <div className="flex items-center space-x-3">
-            <div className="hidden lg:flex items-center gap-3 mr-4">
-               <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-100 animate-in fade-in zoom-in">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                  </span>
-                  <span className="text-[9px] font-black uppercase tracking-widest">Мест: {slots}</span>
-               </div>
-            </div>
-
-            <div className="hidden lg:flex items-center gap-2.5 border-r border-slate-200 pr-4 mr-2">
-               <a 
-                href="sms:+79991234567" 
-                className="w-10 h-10 bg-slate-50 text-slate-400 rounded-xl flex items-center justify-center hover:bg-gradient-to-br hover:from-[#007AFF] hover:to-[#00C6FF] hover:text-white transition-all shadow-sm hover:scale-110 group/apple"
-                aria-label="iMessage"
-               >
-                 <Apple className="w-5 h-5 stroke-[2.5]" />
-               </a>
-               <a 
-                href="https://t.me/textflow_agency" 
-                target="_blank" 
-                rel="noopener" 
-                className="w-10 h-10 bg-slate-50 text-slate-400 rounded-xl flex items-center justify-center hover:bg-[#229ED9] hover:text-white transition-all shadow-sm hover:scale-110 group/tg"
-                aria-label="Telegram"
-               >
-                 <Send className="w-5 h-5 stroke-[2.5]" />
-               </a>
-               <a 
-                href="https://wa.me/79991234567" 
-                target="_blank" 
-                rel="noopener" 
-                className="w-10 h-10 bg-slate-50 text-slate-400 rounded-xl flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-all shadow-sm hover:scale-110 group/wa"
-                aria-label="WhatsApp"
-               >
-                 <MessageCircle className="w-5 h-5 stroke-[2.5]" />
-               </a>
-            </div>
-            
             <button 
               onClick={() => navigate('pricing')}
               className="hidden sm:flex bg-slate-900 text-white px-8 py-3.5 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-all shadow-xl shadow-slate-100 items-center gap-2 hover:scale-105 active:scale-95 group"
@@ -127,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
             {links.map((item) => (
               <button 
                 key={item.id}
-                onClick={() => navigate(item.id as View)}
+                onClick={() => navigate(item.id as ViewId)}
                 className={`flex items-center justify-between w-full text-left p-6 rounded-[2rem] font-black uppercase tracking-widest transition-all ${
                   currentView === item.id ? 'bg-indigo-600 text-white shadow-2xl shadow-indigo-100' : 'bg-slate-50 text-slate-600 hover:bg-slate-100'
                 }`}

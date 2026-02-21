@@ -2,10 +2,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import './index.css';
 
+// Точка входа в приложение
 const rootElement = document.getElementById('root');
 if (!rootElement) {
-  throw new Error("Could not find root element to mount to");
+  throw new Error("Не удалось найти корневой элемент для монтирования приложения");
 }
 
 const root = ReactDOM.createRoot(rootElement);

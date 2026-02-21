@@ -9,21 +9,12 @@ export interface Service {
   icon: string;
 }
 
-export interface BriefDetails {
-  email: string;
-  description: string;
-  toneOfVoice: 'expert' | 'friendly' | 'aggressive' | 'minimalist';
-  targetAudience: string;
-  keywords: string;
-}
-
-export interface SEOTask {
+export interface OrderItem {
   id: string;
-  url: string;
-  keyword: string;
-  targetLength: number;
-  status: 'pending' | 'writing' | 'seo_audit' | 'published';
-  content?: string;
+  title: string;
+  status: 'pending' | 'processing' | 'completed' | 'error';
+  progress: number;
+  result?: string;
 }
 
 export interface Order {
@@ -34,36 +25,20 @@ export interface Order {
   status: 'pending' | 'in_progress' | 'completed' | 'cancelled';
   paymentStatus: 'unpaid' | 'paid' | 'processing';
   paymentMethod?: 'card' | 'sbp' | 'invoice';
-  adminResponse?: string;
   clientEmail: string;
   description: string;
-  brief?: Partial<BriefDetails>;
   createdAt: string;
   isBulk?: boolean;
-  bulkItemsCount?: number;
-  seoTasks?: SEOTask[];
-  apiKey?: string;
+  items?: OrderItem[];
 }
 
-export interface CaseStudyMetric {
-  label: string;
-  value: string;
-  trend?: 'up' | 'down';
-}
-
-export interface CaseStudy {
+export interface Transaction {
   id: string;
-  title: string;
-  category: string;
-  description: string;
-  metrics: CaseStudyMetric[];
-  resultsDetail: string;
-  quote: {
-    text: string;
-    author: string;
-    role: string;
-  };
-  image: string;
+  orderId: string;
+  amount: number;
+  method: 'card' | 'sbp' | 'invoice';
+  timestamp: string;
+  status: 'success' | 'failed';
 }
 
 export interface Article {
@@ -73,7 +48,7 @@ export interface Article {
   excerpt: string;
   content: string;
   category: string;
-  tags?: string[];
+  tags: string[];
   date: string;
   image: string;
   imageAlt: string;
@@ -83,12 +58,42 @@ export interface Article {
     role: string;
     avatar: string;
   };
-  expertQuote?: string;
-  checklist?: string[];
-  faq?: { q: string, a: string }[];
-  sources?: string[];
 }
 
+export type ViewId = 'home' | 'pricing' | 'admin' | 'order' | 'payment' | 'cases' | 'blog' | 'article' | 'reviews' | 'contacts';
+export type View = ViewId;
+
+export interface Route {
+  view: ViewId;
+  params?: Record<string, string>;
+}
+
+export interface AuthState {
+  isAuthenticated: boolean;
+  token: string | null;
+  role: 'admin' | 'user' | null;
+}
+
+export interface SystemLog {
+  id: string;
+  type: 'info' | 'warning' | 'error' | 'success';
+  message: string;
+  timestamp: string;
+}
+
+// Added CaseStudy interface to resolve errors in constants.ts and CaseStudies.tsx
+export interface CaseStudy {
+  id: string;
+  category: string;
+  title: string;
+  description: string;
+  resultsDetail: string;
+  metrics: { label: string; value: string; trend: 'up' | 'down' }[];
+  quote: { text: string; author: string; role: string };
+  image: string;
+}
+
+// Added Review interface to resolve errors in constants.ts and TestimonialCarousel.tsx
 export interface Review {
   id: string;
   author: string;
@@ -98,4 +103,9 @@ export interface Review {
   avatar: string;
 }
 
-export type View = 'home' | 'pricing' | 'admin' | 'order' | 'payment' | 'cases' | 'blog' | 'article' | 'reviews' | 'contacts' | 'bulk_order' | 'connector';
+// Added BriefDetails interface to resolve error in OrderForm.tsx
+export interface BriefDetails {
+  toneOfVoice: 'expert' | 'friendly' | 'aggressive' | 'minimalist';
+  targetAudience: string;
+  keywords: string;
+}
