@@ -1,6 +1,6 @@
 
 import React, { useState, useRef } from 'react';
-import { Layers, Upload, FileText, CheckCircle2, Trash2, Plus, ArrowRight, Zap, Info, ShieldCheck, Database, Rocket, PlusCircle, MinusCircle, FileSpreadsheet, Download } from 'lucide-react';
+import { Layers, Upload, FileText, CheckCircle2, Trash2, Plus, ArrowRight, Zap, Info, ShieldCheck, Database, Rocket, PlusCircle, MinusCircle, FileSpreadsheet, Download, FileJson, Code } from 'lucide-react';
 import { INITIAL_SERVICES } from '../constants';
 
 interface BulkItem {
@@ -78,7 +78,7 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
     },
     {
       q: "Как проверяется качество при массовом создании?",
-      a: "Каждый текст проходит трехуровневую проверку: 1. AI-анализ на соответствие ТЗ и стилистику. 2. Проверка уникальности по алгоритмам Text.ru. 3. Выборочная проверка выпускающим редактором перед отправкой."
+      a: "Каждый текст проходит трехуровневую проверку: 1. Автоматизированный аудит на соответствие ТЗ и стилистику. 2. Проверка уникальности по алгоритмам Text.ru. 3. Обязательная проверка выпускающим редактором перед отправкой."
     }
   ];
 
@@ -92,22 +92,22 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
 
       <header className="text-center mb-20">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 border border-indigo-100">
-           <Database className="w-3 h-3" /> Автоматизация контента
+           <Database className="w-3 h-3" /> Enterprise Content Automation
         </div>
-        <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter leading-[1] max-w-4xl mx-auto">
-          Массовое заполнение <span className="gradient-text">сайтов контентом</span> под ключ
+        <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter leading-[1] max-w-5xl mx-auto">
+          Масштабное создание <span className="gradient-text">SEO-контента</span> для тысяч страниц
         </h1>
         <p className="text-slate-500 max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">
-          Профессиональное создание SEO-текстов в промышленных масштабах. Идеально для маркетплейсов, интернет-магазинов и новостных порталов.
+          Наполняем многостраничные сайты, интернет-магазины и порталы уникальным контентом: от Meta-тегов до развернутых FAQ. Масштабируем ваш бизнес в органическом поиске.
         </p>
       </header>
 
       <div className="grid md:grid-cols-4 gap-6 mb-24">
          {[
-           { icon: FileSpreadsheet, title: "Готовые таблицы", desc: "Выгрузка в Excel/CSV для мгновенного импорта в Bitrix, WordPress, Tilda." },
-           { icon: ShieldCheck, title: "Уникальность 100%", desc: "Строгий контроль плагиата. Каждый из 1000 текстов будет абсолютно оригинальным." },
-           { icon: Rocket, title: "Запуск за 48ч", desc: "Сеть из 500+ авторов позволяет выполнять огромные объемы в сжатые сроки." },
-           { icon: Download, title: "JSON для API", desc: "Предоставляем данные в структурированном JSON формате для легкой интеграции." }
+           { icon: FileSpreadsheet, title: "Полный пакет Meta", desc: "Создаем Title и Description для каждой страницы с учетом ключевых слов и LSI." },
+           { icon: ShieldCheck, title: "Уникальность 100%", desc: "Каждый текст проходит проверку на плагиат. Никакого дублирования контента даже на 100 000 страницах." },
+           { icon: Rocket, title: "FAQ для каждой страницы", desc: "Разрабатываем блоки часто задаваемых вопросов (Schema.org), которые повышают CTR в выдаче." },
+           { icon: Download, title: "Мгновенный импорт", desc: "Выгрузка в CSV/XLSX/JSON, готовая для загрузки в вашу CMS за считанные минуты." }
          ].map((benefit, i) => (
            <section key={i} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-xl transition-all group">
              <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
@@ -125,7 +125,7 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
           <section>
             <div className="flex items-center gap-3 mb-6">
                <div className="w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-xs">1</div>
-               <h2 className="text-2xl font-black text-slate-900">Загрузка файла ТЗ</h2>
+               <h2 className="text-2xl font-black text-slate-900">Загрузка списка страниц</h2>
             </div>
             <div 
               className={`relative group p-12 rounded-[3rem] border-4 border-dashed transition-all cursor-pointer text-center ${dragActive ? 'border-indigo-600 bg-indigo-50 scale-[1.01]' : 'border-slate-100 hover:border-indigo-200 bg-white shadow-sm'}`}
@@ -139,11 +139,16 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
               <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-[2.5rem] flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Upload className="w-10 h-10" />
               </div>
-              <h3 className="text-2xl font-black text-slate-900 mb-2">Загрузить таблицу проектов</h3>
-              <p className="text-slate-500 text-sm mb-6">Поддерживаем .XLSX, .CSV. Система автоматически создаст список задач.</p>
-              <button className="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-colors">
-                 <FileSpreadsheet className="w-4 h-4" /> Скачать пример шаблона
-              </button>
+              <h3 className="text-2xl font-black text-slate-900 mb-2">Загрузить файл со списком URL или ключевых слов</h3>
+              <p className="text-slate-500 text-sm mb-6">Загрузите список страниц, которые нужно наполнить. Мы создадим для них контент, мета-теги и FAQ.</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <button className="inline-flex items-center gap-2 px-6 py-2.5 bg-slate-900 text-white rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-indigo-600 transition-colors">
+                   <FileSpreadsheet className="w-4 h-4" /> Шаблон для интернет-магазина
+                </button>
+                <button className="inline-flex items-center gap-2 px-6 py-2.5 bg-white border border-slate-200 text-slate-900 rounded-xl text-[10px] font-black uppercase tracking-widest hover:bg-slate-50 transition-colors">
+                   <FileText className="w-4 h-4" /> Шаблон для инфо-портала
+                </button>
+              </div>
             </div>
           </section>
 
@@ -151,13 +156,13 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
             <div className="flex items-center justify-between px-2">
               <div className="flex items-center gap-3">
                  <div className="w-8 h-8 bg-slate-900 text-white rounded-full flex items-center justify-center font-black text-xs">2</div>
-                 <h2 className="text-2xl font-black text-slate-900">Редактор списка</h2>
+                 <h2 className="text-2xl font-black text-slate-900">Предпросмотр структуры</h2>
               </div>
               <button 
                 onClick={addItem}
                 className="flex items-center gap-2 text-indigo-600 font-black uppercase text-xs tracking-widest hover:opacity-70 group"
               >
-                <PlusCircle className="w-5 h-5 group-hover:rotate-90 transition-transform" /> Добавить позицию
+                <PlusCircle className="w-5 h-5 group-hover:rotate-90 transition-transform" /> Добавить страницу вручную
               </button>
             </div>
 
@@ -168,17 +173,17 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
                     {idx + 1}
                   </div>
                   <div className="flex-1 w-full space-y-1">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Тема / Карточка товара</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">URL / Название страницы</label>
                     <input 
                       type="text" 
-                      placeholder="Напр: Смартфон Samsung Galaxy S23" 
+                      placeholder="Напр: /category/smartphones/samsung-s23" 
                       value={item.title}
                       onChange={(e) => updateItem(item.id, 'title', e.target.value)}
                       className="w-full bg-slate-50 border border-slate-100 rounded-xl py-3.5 px-4 focus:ring-2 focus:ring-indigo-500 focus:outline-none font-bold text-sm"
                     />
                   </div>
                   <div className="w-full md:w-32 space-y-1">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Знаков</label>
+                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Объем (зн.)</label>
                     <input 
                       type="number" 
                       step="500"
@@ -201,27 +206,69 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
 
           <section className="prose prose-slate max-w-none bg-slate-900 text-white p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden">
              <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl"></div>
-             <h2 className="text-3xl font-black text-white mb-6 tracking-tight">Как массовое наполнение сайта влияет на SEO?</h2>
+             <h2 className="text-3xl font-black text-white mb-6 tracking-tight">Как мы создаем десятки тысяч страниц?</h2>
              <div className="space-y-6 text-slate-300">
                 <p>
-                  Масштабируемость контента — это "топливо" для органического роста. В 2024 году Яндекс и Google отдают предпочтение сайтам с полным покрытием семантического ядра. 
-                  Массовое создание текстов позволяет интернет-магазинам быстрее выходить в ТОП поисковой выдачи по тысячам низкочастотных запросов.
+                  Наша технология Enterprise Content Engine объединяет современные инструменты оптимизации и экспертную редактуру. Мы не просто пишем тексты — мы создаем полноценную SEO-структуру для каждой страницы вашего сайта силами нашей большой команды.
                 </p>
                 <div className="grid md:grid-cols-2 gap-8 mt-10">
                    <div className="p-6 bg-white/5 rounded-3xl border border-white/10">
                       <h4 className="font-black text-white mb-3 flex items-center gap-2">
                         <Zap className="w-5 h-5 text-indigo-400" />
-                        LSI-копирайтинг
+                        Meta + FAQ + Text
                       </h4>
-                      <p className="text-xs">Наши авторы используют тематические слова-спутники, что делает контент максимально релевантным запросам пользователей.</p>
+                      <p className="text-xs">Для каждой страницы вы получаете: уникальный Title, Description, H1, основной текст и 3-5 вопросов FAQ с разметкой Schema.org.</p>
                    </div>
                    <div className="p-6 bg-white/5 rounded-3xl border border-white/10">
                       <h4 className="font-black text-white mb-3 flex items-center gap-2">
                         <ShieldCheck className="w-5 h-5 text-indigo-400" />
-                        Техническая чистота
+                        Готовность к импорту
                       </h4>
-                      <p className="text-xs">Тексты предоставляются в структуре, готовой для API-импорта, включая мета-теги и заголовки.</p>
+                      <p className="text-xs">Результат — таблица, которую ваша CMS (Bitrix, WP, Magento) проглотит мгновенно. Никакого ручного копипаста.</p>
                    </div>
+                </div>
+
+                <div className="mt-12 pt-12 border-t border-white/10">
+                   <h3 className="text-xl font-black text-white mb-6">Пример структуры выгрузки (JSON/CSV/HTML):</h3>
+                   <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-4">
+                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-indigo-400">
+                            <FileJson className="w-4 h-4" /> JSON Формат
+                         </div>
+                         <div className="bg-black/40 rounded-2xl p-6 font-mono text-[10px] overflow-x-auto border border-white/5 text-indigo-300">
+                            <pre>{`{
+  "slug": "konteynernye-perevozki-vageningen",
+  "h1": "Услуги контейнерных перевозок...",
+  "title": "Контейнерные перевозки...",
+  "description": "Профессиональная доставка...",
+  "text": "<h2>Комплексный подход...</h2>...",
+  "faq": "#### Какие документы?..."
+}`}</pre>
+                         </div>
+                      </div>
+                      <div className="space-y-4">
+                         <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-amber-400">
+                            <Code className="w-4 h-4" /> HTML Превью
+                         </div>
+                         <div className="bg-white rounded-2xl p-6 font-inter text-[10px] overflow-x-auto border border-white/5 text-slate-900 shadow-inner h-[140px]">
+                            <h2 className="text-sm font-black mb-2">Комплексный подход к доставке</h2>
+                            <p className="mb-2">Международная доставка грузов морем остается краеугольным камнем...</p>
+                            <table className="w-full border-collapse border border-slate-100 mb-2">
+                               <tr className="bg-slate-50">
+                                  <th className="border border-slate-100 p-1">Параметр</th>
+                                  <th className="border border-slate-100 p-1">Значение</th>
+                               </tr>
+                               <tr>
+                                  <td className="border border-slate-100 p-1">Тип</td>
+                                  <td className="border border-slate-100 p-1">Контейнерная</td>
+                               </tr>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                   <p className="text-[10px] text-slate-500 mt-6 italic">
+                     * Мы предоставляем контент в любом формате, включая чистый HTML для прямой вставки в базу данных или CSV для массового импорта в CMS.
+                   </p>
                 </div>
              </div>
           </section>

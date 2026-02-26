@@ -21,6 +21,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
 
   const links = [
     { id: 'home', label: 'Главная' },
+    { id: 'bulk', label: 'Массовое создание' },
     { id: 'pricing', label: 'Цены' },
     { id: 'cases', label: 'Кейсы' },
     { id: 'blog', label: 'Блог' },

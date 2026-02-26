@@ -13,14 +13,14 @@ const TextAuditTool: React.FC = () => {
   const performAudit = async () => {
     if (inputText.length < 100) return alert('Минимум 100 символов.');
     setLoading(true);
-    addLog('info', 'Запуск AI-ядра для аудита текста');
+    addLog('info', 'Запуск экспертного аудита текста');
     
     try {
       const result = await TextFlowAPI.auditText(inputText);
       setAnalysis(result);
       addLog('success', `Аудит завершен успешно. Score: ${result.score}/100`);
     } catch (e) {
-      addLog('error', 'Сбой AI-ядра при аудите');
+      addLog('error', 'Сбой системы аудита');
       alert('Ошибка. Проверьте API_KEY в окружении.');
     } finally {
       setLoading(false);
@@ -35,7 +35,7 @@ const TextAuditTool: React.FC = () => {
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-white/20 backdrop-blur-md">
             <Sparkles className="w-3 h-3 fill-current" /> Аналитическая лаборатория
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">Текст под микроскопом ИИ</h2>
+          <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">Текст под микроскопом экспертов</h2>
           <p className="text-indigo-100 text-lg font-medium opacity-80">Мгновенный аудит по стандартам Яндекса 2025.</p>
         </div>
 

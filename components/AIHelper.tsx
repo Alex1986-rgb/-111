@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { GoogleGenAI } from '@google/genai';
 import { Sparkles, SendHorizontal, Loader2, BotMessageSquare, X } from 'lucide-react';
 
-const AIHelper: React.FC = () => {
+const EditorialAssistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState('');
   const [response, setResponse] = useState('');
@@ -19,7 +19,7 @@ const AIHelper: React.FC = () => {
       const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const res = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: `Ты - экспертный копирайтер агентства TextFlow. Помоги клиенту составить структуру статьи или придумай 5 цепляющих заголовков для темы: ${prompt}`,
+        contents: `Ты - старший редактор агентства TextFlow. Помоги клиенту составить структуру статьи или придумай 5 цепляющих заголовков для темы: ${prompt}. Помни, что финальный текст будет писать профессиональный копирайтер.`,
         config: {
           systemInstruction: 'Отвечай на русском языке. Будь кратким, профессиональным и вдохновляющим.'
         }
@@ -28,7 +28,7 @@ const AIHelper: React.FC = () => {
       setResponse(res.text || 'Не удалось сгенерировать ответ.');
     } catch (error) {
       console.error(error);
-      setResponse('Произошла ошибка при работе с AI. Попробуйте позже.');
+      setResponse('Произошла ошибка. Попробуйте позже.');
     } finally {
       setLoading(false);
     }
@@ -42,7 +42,7 @@ const AIHelper: React.FC = () => {
             <div className="absolute top-0 right-0 w-24 h-24 bg-white/10 blur-2xl rounded-full"></div>
             <div className="flex items-center gap-3 font-black uppercase text-xs tracking-widest relative z-10">
               <BotMessageSquare className="w-6 h-6 stroke-[2.5]" />
-              <span>AI Помощник</span>
+              <span>Редакционный ассистент</span>
             </div>
             <button 
               onClick={() => setIsOpen(false)} 
@@ -101,4 +101,4 @@ const AIHelper: React.FC = () => {
   );
 };
 
-export default AIHelper;
+export default EditorialAssistant;

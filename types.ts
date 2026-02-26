@@ -7,6 +7,11 @@ export interface Service {
   pricePer1k: number;
   description: string;
   icon: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  fullContent?: string;
+  features?: string[];
+  faq?: { q: string; a: string }[];
 }
 
 export interface OrderItem {
@@ -60,7 +65,7 @@ export interface Article {
   };
 }
 
-export type ViewId = 'home' | 'pricing' | 'admin' | 'order' | 'payment' | 'cases' | 'blog' | 'article' | 'reviews' | 'contacts';
+export type ViewId = 'home' | 'pricing' | 'admin' | 'order' | 'payment' | 'cases' | 'blog' | 'article' | 'reviews' | 'contacts' | 'bulk' | 'service' | 'privacy' | 'terms';
 export type View = ViewId;
 
 export interface Route {

@@ -35,9 +35,10 @@ const iconsMap: Record<string, any> = {
 interface ServicesGridProps {
   services: Service[];
   onOrder: (serviceId: string, symbols: number, price: number) => void;
+  onExplore: (serviceId: string) => void;
 }
 
-const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder }) => {
+const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder, onExplore }) => {
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,8 +67,9 @@ const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder }) => {
             return (
               <div 
                 key={service.id} 
-                className="group relative p-10 bg-slate-50 rounded-[3rem] border border-transparent hover:border-indigo-100 hover:bg-white hover:shadow-2xl hover:shadow-indigo-100/40 transition-all duration-700 ease-out flex flex-col h-full animate-in fade-in slide-in-from-bottom-8 fill-mode-both"
+                className="group relative p-10 bg-slate-50 rounded-[3rem] border border-transparent hover:border-indigo-100 hover:bg-white hover:shadow-2xl hover:shadow-indigo-100/40 transition-all duration-700 ease-out flex flex-col h-full animate-in fade-in slide-in-from-bottom-8 fill-mode-both cursor-pointer"
                 style={{ animationDelay: `${index * 80}ms` }}
+                onClick={() => onExplore(service.id)}
                 itemScope itemType="https://schema.org/Service"
               >
                 <meta itemProp="serviceType" content={service.name} />
@@ -79,9 +81,14 @@ const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder }) => {
                   <Icon className="w-8 h-8 stroke-[2.5] transition-transform duration-500 ease-out group-hover:rotate-[-6deg] group-hover:scale-110" />
                 </div>
                 
-                <h3 className="text-2xl font-black text-slate-900 mb-5 group-hover:text-indigo-600 transition-colors duration-300" itemProp="name">
-                  {service.name}
-                </h3>
+                <div className="flex items-center justify-between mb-5">
+                  <h3 className="text-2xl font-black text-slate-900 group-hover:text-indigo-600 transition-colors duration-300" itemProp="name">
+                    {service.name}
+                  </h3>
+                  <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                    Подробнее <ArrowUpRight className="w-3 h-3" />
+                  </div>
+                </div>
                 
                 <p className="text-slate-500 text-base leading-relaxed mb-10 font-medium group-hover:text-slate-600 transition-colors duration-300">
                   {service.description}
@@ -102,11 +109,14 @@ const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder }) => {
                   </div>
                   
                   <button 
-                    onClick={() => onOrder(service.id, 2000, service.pricePer1k * 2)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onOrder(service.id, 2000, service.pricePer1k * 2);
+                    }}
                     className="w-14 h-14 rounded-2xl bg-slate-900 text-white flex items-center justify-center hover:bg-indigo-600 transition-all active:scale-90 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 duration-500 ease-out shadow-lg"
                     aria-label={`Заказать ${service.name}`}
                   >
-                    <ArrowUpRight className="w-6 h-6 stroke-[3]" />
+                    <Zap className="w-6 h-6 fill-current" />
                   </button>
                 </div>
               </div>

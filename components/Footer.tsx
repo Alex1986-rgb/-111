@@ -18,7 +18,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
   const seoTags = [
     "Копирайтинг Москва", "Тексты для сайта цена", "Заказать SEO статьи", 
     "Написание карточек WB", "Копирайтер для Ozon", "LSI тексты на заказ",
-    "Копирайтинг СПб", "Тексты для бизнеса", "Аудит контента AI"
+    "Копирайтинг СПб", "Тексты для бизнеса", "Экспертный аудит контента"
   ];
 
   return (
@@ -58,10 +58,10 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
           <ul className="space-y-4 text-sm font-medium">
             {[
               { label: 'SEO-копирайтинг', id: 'pricing' },
-              { label: 'Тексты для маркетплейсов', id: 'bulk_order' },
+              { label: 'Массовое создание', id: 'bulk' },
               { label: 'Статьи для блога', id: 'blog' },
               { label: 'LSI-тексты на заказ', id: 'pricing' },
-              { label: 'Наполнение сайтов', id: 'pricing' }
+              { label: 'Наполнение сайтов', id: 'bulk' }
             ].map(item => (
               <li key={item.label} onClick={() => setView(item.id as View)} className="hover:text-indigo-400 cursor-pointer transition-colors">{item.label}</li>
             ))}

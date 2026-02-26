@@ -25,8 +25,8 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
 
   const trendingKeywords = [
     "lsi копирайтинг 2025", "статья на vc.ru цена", "seo карточки wildberries", 
-    "автонаполнение сайта api", "редакционная политика", "lsi семантика яндекс",
-    "контент-стратегия", "экспертный копирайтер", "тексты для нейросетей"
+    "наполнение сайта через api", "редакционная политика", "lsi семантика яндекс",
+    "контент-стратегия", "экспертный копирайтер", "авторский контент"
   ];
 
   return (
@@ -146,7 +146,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
                       title="Матрица эффективности"
                       data={[
                         { label: "LSI Глубокий анализ", us: true, others: false },
-                        { label: "AI + Редактор (Гибрид)", us: true, others: false },
+                        { label: "Команда экспертов (Human)", us: true, others: false },
                         { label: "SEO Карта интентов", us: true, others: true },
                         { label: "Гарантия индексации", us: true, others: false }
                       ]}

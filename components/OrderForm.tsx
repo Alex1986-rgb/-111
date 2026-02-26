@@ -181,7 +181,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                     <div className="flex justify-between items-center px-4">
                       <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Описание задачи</label>
                       <button type="button" className="text-[10px] font-black text-indigo-600 flex items-center gap-1 uppercase hover:opacity-70">
-                         <Zap className="w-3 h-3 fill-current" /> Помощь AI
+                         <Zap className="w-3 h-3 fill-current" /> Помощь редактора
                       </button>
                     </div>
                     <div className="relative group">
