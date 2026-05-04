@@ -82,89 +82,132 @@ const SEOSuperpowerAnalyzer: React.FC = () => {
     setProgress(0);
     setResult(null);
 
-    // Симуляция анализа (в реальности здесь будет вызов API)
-    const enabledModules = modules.filter(m => m.enabled);
-    const totalSteps = enabledModules.length;
+    try {
+      // Запускаем аудит через API
+      const startResponse = await fetch('http://localhost:5001/api/audit/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          url,
+          maxPages,
+          modules: modules.filter(m => m.enabled).map(m => m.id)
+        })
+      });
 
-    for (let i = 0; i < enabledModules.length; i++) {
-      const module = enabledModules[i];
+      const { audit_id } = await startResponse.json();
 
-      // Обновляем статус модуля
-      setModules(prev => prev.map(m =>
-        m.id === module.id ? { ...m, status: 'running' } : m
-      ));
+      // Опрашиваем статус
+      const pollInterval = setInterval(async () => {
+        try {
+          const statusResponse = await fetch(`http://localhost:5001/api/audit/${audit_id}/status`);
+          const statusData = await statusResponse.json();
 
-      // Симуляция работы модуля
-      await new Promise(resolve => setTimeout(resolve, 2000));
+          setProgress(statusData.progress || 0);
 
-      // Обновляем прогресс
-      setProgress(((i + 1) / totalSteps) * 100);
+          // Обновляем статусы модулей
+          if (statusData.status === 'Analyzing...') {
+            modules.forEach(m => {
+              if (m.enabled) {
+                setModules(prev => prev.map(mod =>
+                  mod.id === m.id ? { ...mod, status: 'running' } : mod
+                ));
+              }
+            });
+          }
 
-      // Обновляем статус модуля
-      setModules(prev => prev.map(m =>
-        m.id === module.id ? { ...m, status: 'completed', score: Math.floor(Math.random() * 30) + 70 } : m
-      ));
-    }
+          if (statusData.status === 'completed' && statusData.results) {
+            clearInterval(pollInterval);
 
-    // Генерируем результат
-    const mockResult: AuditResult = {
-      url,
-      timestamp: new Date().toISOString(),
-      totalPages: maxPages,
-      totalIssues: Math.floor(Math.random() * 500) + 100,
-      modules: {
-        performance: {
-          score: 85,
-          lcp: 2.1,
-          fid: 45,
-          cls: 0.05,
-          issues: ['Optimize images', 'Reduce JavaScript execution time']
-        },
-        seo_combinator: {
-          score: 78,
-          missing_titles: 23,
-          duplicate_content: 5,
-          recommendations: ['Add meta descriptions', 'Fix duplicate titles']
-        },
-        code_review: {
-          score: 82,
-          html_issues: 12,
-          css_issues: 8,
-          js_issues: 15
-        },
-        security_review: {
-          score: 92,
-          vulnerabilities: 2,
-          https_status: true
-        },
-        frontend_design: {
-          score: 88,
-          accessibility_score: 85,
-          mobile_friendly: true
-        },
-        memory_profile: {
-          score: 90,
-          dom_size: 1250,
-          resource_count: 45
+            // Обновляем оценки модулей
+            const results = statusData.results;
+            setModules(prev => prev.map(m => ({
+              ...m,
+              status: 'completed',
+              score: results[m.id]?.[`${m.id}_score`] ||
+                     results[m.id === 'seo' ? 'seo_combinator' : m.id]?.[`${m.id === 'seo' ? 'seo_combinator' : m.id}_score`] ||
+                     results[m.id === 'code' ? 'code_review' : m.id]?.[`${m.id === 'code' ? 'code_review' : m.id}_score`] ||
+                     results[m.id === 'security' ? 'security_review' : m.id]?.[`${m.id === 'security' ? 'security_review' : m.id}_score`] ||
+                     results[m.id === 'design' ? 'frontend_design' : m.id]?.[`${m.id === 'design' ? 'frontend_design' : m.id}_score`] ||
+                     results[m.id === 'memory' ? 'memory_profile' : m.id]?.[`${m.id === 'memory' ? 'memory_profile' : m.id}_score`] ||
+                     85
+            })));
+
+            // Формируем результат
+            const auditResult: AuditResult = {
+              url: statusData.url,
+              timestamp: statusData.start_time,
+              totalPages: statusData.max_pages,
+              totalIssues: Object.values(results).reduce((acc: number, mod: any) => {
+                return acc + (mod.issues?.length || mod.recommendations?.length || 0);
+              }, 0),
+              modules: {
+                performance: results.performance,
+                seo_combinator: results.seo_combinator,
+                code_review: results.code_review,
+                security_review: results.security_review,
+                frontend_design: results.frontend_design,
+                memory_profile: results.memory_profile
+              }
+            };
+
+            setResult(auditResult);
+            setIsAnalyzing(false);
+          }
+
+          if (statusData.status === 'error') {
+            clearInterval(pollInterval);
+            alert('Ошибка анализа: ' + statusData.error);
+            setIsAnalyzing(false);
+          }
+        } catch (error) {
+          console.error('Polling error:', error);
         }
-      }
-    };
+      }, 2000);
 
-    setResult(mockResult);
-    setIsAnalyzing(false);
+    } catch (error) {
+      console.error('Start analysis error:', error);
+      alert('Ошибка запуска анализа. Убедитесь, что backend запущен на порту 5001');
+      setIsAnalyzing(false);
+    }
   };
 
-  const exportResults = (format: 'csv' | 'json' | 'xlsx') => {
+  const exportResults = async (format: 'csv' | 'json' | 'xlsx') => {
     if (!result) return;
 
-    // В реальности здесь будет генерация файлов
-    const data = JSON.stringify(result, null, 2);
-    const blob = new Blob([data], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `seo-audit-${Date.now()}.${format}`;
-    a.click();
+    try {
+      // Получаем audit_id из результата (нужно сохранить при получении)
+      const auditId = (result as any).audit_id || 'latest';
+
+      const response = await fetch(`http://localhost:5001/api/audit/${auditId}/export?format=${format}`);
+
+      if (format === 'json') {
+        const data = await response.json();
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `seo-audit-${Date.now()}.json`;
+        a.click();
+      } else if (format === 'csv') {
+        const text = await response.text();
+        const blob = new Blob([text], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `seo-audit-${Date.now()}.csv`;
+        a.click();
+      }
+    } catch (error) {
+      console.error('Export error:', error);
+      // Fallback к локальному экспорту
+      const data = JSON.stringify(result, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `seo-audit-${Date.now()}.${format}`;
+      a.click();
+    }
   };
 
   const getScoreColor = (score: number) => {
