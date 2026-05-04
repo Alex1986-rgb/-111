@@ -272,25 +272,44 @@ const App: React.FC = () => {
         />
         <Header setView={navigate} currentView={route.view} />
         
-        <main className="flex-grow pt-20">
+        <main className="flex-grow pt-20" role="main">
           {route.view === 'home' && (
-            <div className="animate-fade-in">
+            <article className="animate-fade-in">
               <Hero setView={navigate} />
               <TrustBar />
-              <HowItWorks />
-              <TextAuditTool />
-              <ServicesGrid 
-              services={services} 
-              onOrder={createOrder} 
+              <section>
+                <HowItWorks />
+              </section>
+              <section>
+                <TextAuditTool />
+              </section>
+              <section>
+                <ServicesGrid 
+              services={services}
+              onOrder={createOrder}
               onExplore={(id) => navigate('service', id)}
             />
-              <EnterpriseSection onNavigate={() => navigate('bulk')} />
-              <ConversionQuiz onComplete={() => navigate('pricing')} />
-              <CaseStudies />
-              <PricingCalculator services={services} onStartOrder={createOrder} />
-              <TestimonialCarousel reviews={REVIEWS} />
-              <FAQ />
-              <SEOSection 
+              </section>
+              <section>
+                <EnterpriseSection onNavigate={() => navigate('bulk')} />
+              </section>
+              <section>
+                <ConversionQuiz onComplete={() => navigate('pricing')} />
+              </section>
+              <section>
+                <CaseStudies />
+              </section>
+              <section>
+                <PricingCalculator services={services} onStartOrder={createOrder} />
+              </section>
+              <section>
+                <TestimonialCarousel reviews={REVIEWS} />
+              </section>
+              <section>
+                <FAQ />
+              </section>
+              <section>
+              <SEOSection
                 title="Лидеры рынка копирайтинга и SEO-контента"
                 subtitle="Мы создаем тексты, которые не просто читают, а которые приносят прибыль вашему бизнесу."
                 seoText={`
@@ -303,7 +322,8 @@ const App: React.FC = () => {
                   { q: 'Как вы контролируете качество?', a: 'Каждый текст проходит 3 этапа проверки: корректор (ошибки и опечатки), SEO-специалист (ключи и структура) и выпускающий редактор (стилистика и фактология).' }
                 ]}
               />
-            </div>
+              </section>
+            </article>
           )}
 
           {route.view === 'admin' && <AdminDashboard />}
