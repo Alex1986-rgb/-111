@@ -65,7 +65,7 @@ export interface Article {
   };
 }
 
-export type ViewId = 'home' | 'pricing' | 'admin' | 'order' | 'payment' | 'cases' | 'blog' | 'article' | 'reviews' | 'contacts' | 'bulk' | 'service' | 'privacy' | 'terms';
+export type ViewId = 'home' | 'pricing' | 'admin' | 'order' | 'payment' | 'cases' | 'blog' | 'article' | 'reviews' | 'contacts' | 'bulk' | 'service' | 'privacy' | 'terms' | 'seo-audit';
 export type View = ViewId;
 
 export interface Route {

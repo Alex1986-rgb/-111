@@ -29,6 +29,7 @@ import EnterpriseSection from './components/EnterpriseSection';
 import ServicePage from './components/ServicePage';
 
 import SEOSection from './components/SEOSection';
+import SEOSuperpowerAnalyzer from './components/SEOSuperpowerAnalyzer';
 
 // --- GLOBAL STATE PROVIDER ---
 interface AppContextType {
@@ -330,6 +331,7 @@ const App: React.FC = () => {
             status: 'success'
           })} />}
           {route.view === 'contacts' && <ContactPage />}
+          {route.view === 'seo-audit' && <SEOSuperpowerAnalyzer />}
         </main>
 
         <EditorialAssistant />

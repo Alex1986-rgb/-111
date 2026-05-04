@@ -1,0 +1,169 @@
+{
+  "version": "1.0.0",
+  "agents": {
+    "master": {
+      "name": "Master Orchestrator",
+      "model": "kr/claude-sonnet-4.5",
+      "role": "coordinator",
+      "description": "Координирует работу всех агентов, принимает решения о делегировании задач",
+      "capabilities": [
+        "task_analysis",
+        "agent_selection",
+        "quality_control",
+        "result_integration"
+      ]
+    },
+    "seo-superpower": {
+      "name": "SEO Superpower Analyzer",
+      "model": "kr/claude-sonnet-4.5",
+      "role": "seo_audit",
+      "description": "Комплексный SEO-анализ с 6 модулями: Performance, SEO, Code, Security, Design, Memory",
+      "capabilities": [
+        "site_crawling",
+        "performance_analysis",
+        "seo_audit",
+        "code_review",
+        "security_scan",
+        "design_audit",
+        "memory_profiling"
+      ],
+      "modules": {
+        "performance": {
+          "enabled": true,
+          "metrics": ["lcp", "fid", "cls", "ttfb", "lighthouse_score"]
+        },
+        "seo_combinator": {
+          "enabled": true,
+          "checks": ["meta_tags", "headings", "content_quality", "internal_links", "schema_org"]
+        },
+        "code_review": {
+          "enabled": true,
+          "languages": ["html", "css", "javascript", "typescript"]
+        },
+        "security_review": {
+          "enabled": true,
+          "checks": ["https", "headers", "vulnerabilities", "owasp_top10"]
+        },
+        "frontend_design": {
+          "enabled": true,
+          "checks": ["accessibility", "responsive", "contrast", "typography"]
+        },
+        "memory_profile": {
+          "enabled": true,
+          "metrics": ["dom_size", "resource_count", "memory_usage"]
+        }
+      }
+    },
+    "content-simple": {
+      "name": "Simple Content Generator",
+      "model": "kr/claude-haiku-4.5",
+      "role": "content_generation",
+      "description": "Быстрая генерация простых описаний товаров по шаблонам",
+      "capabilities": [
+        "product_descriptions",
+        "meta_tags",
+        "alt_tags",
+        "simple_seo"
+      ],
+      "cost_per_1k_tokens": 0.00025
+    },
+    "content-expert": {
+      "name": "Expert Content Generator",
+      "model": "kr/claude-sonnet-4.5",
+      "role": "content_generation",
+      "description": "Создание экспертного контента: статьи, лонгриды, PR-материалы",
+      "capabilities": [
+        "expert_articles",
+        "longreads",
+        "pr_content",
+        "technical_docs",
+        "advanced_seo"
+      ],
+      "cost_per_1k_tokens": 0.003
+    },
+    "code-reviewer": {
+      "name": "Code Quality Reviewer",
+      "model": "kr/claude-sonnet-4.5",
+      "role": "code_review",
+      "description": "Проверка качества кода, архитектуры, безопасности",
+      "capabilities": [
+        "code_analysis",
+        "architecture_review",
+        "security_audit",
+        "performance_check",
+        "best_practices"
+      ],
+      "languages": ["typescript", "javascript", "react", "node.js"]
+    },
+    "security-scanner": {
+      "name": "Security Scanner",
+      "model": "kr/claude-sonnet-4.5",
+      "role": "security",
+      "description": "Поиск уязвимостей и проблем безопасности",
+      "capabilities": [
+        "vulnerability_scan",
+        "owasp_check",
+        "dependency_audit",
+        "api_security",
+        "auth_review"
+      ]
+    },
+    "design-auditor": {
+      "name": "Design & UX Auditor",
+      "model": "kr/claude-haiku-4.5",
+      "role": "design_audit",
+      "description": "Анализ UI/UX, accessibility, mobile-friendly",
+      "capabilities": [
+        "accessibility_check",
+        "responsive_test",
+        "contrast_analysis",
+        "typography_review",
+        "ux_patterns"
+      ],
+      "cost_per_1k_tokens": 0.00025
+    },
+    "performance-optimizer": {
+      "name": "Performance Optimizer",
+      "model": "kr/claude-sonnet-4.5",
+      "role": "optimization",
+      "description": "Оптимизация производительности приложения",
+      "capabilities": [
+        "bundle_analysis",
+        "code_splitting",
+        "lazy_loading",
+        "image_optimization",
+        "caching_strategy"
+      ]
+    }
+  },
+  "routing_rules": {
+    "simple_tasks": {
+      "model": "kr/claude-haiku-4.5",
+      "examples": [
+        "fix typo",
+        "update styles",
+        "format code",
+        "simple bug fix",
+        "generate simple content"
+      ]
+    },
+    "complex_tasks": {
+      "model": "kr/claude-sonnet-4.5",
+      "examples": [
+        "architecture design",
+        "security audit",
+        "complex refactoring",
+        "api integration",
+        "expert content"
+      ]
+    }
+  },
+  "cost_optimization": {
+    "enabled": true,
+    "strategy": "auto",
+    "thresholds": {
+      "complexity_score": 0.7,
+      "estimated_tokens": 10000
+    }
+  }
+}

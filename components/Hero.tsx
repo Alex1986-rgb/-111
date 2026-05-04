@@ -75,7 +75,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
             </p>
             
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 mb-16">
-              <button 
+              <button
                 onClick={() => setView('pricing')}
                 className="group relative px-10 py-5 bg-indigo-600 text-white rounded-[1.8rem] font-black text-lg hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-indigo-100 overflow-hidden"
               >
@@ -83,7 +83,16 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
                 <span className="relative z-10">Начать проект</span>
                 <ArrowRight className="w-5 h-5 stroke-[3] group-hover:translate-x-1 transition-transform relative z-10" />
               </button>
-              
+
+              <button
+                onClick={() => setView('seo-audit')}
+                className="group relative px-10 py-5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-[1.8rem] font-black text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-purple-100 overflow-hidden"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <Zap className="w-5 h-5 stroke-[3] relative z-10" />
+                <span className="relative z-10">SEO Audit</span>
+              </button>
+
               <div className="flex items-center gap-4 px-6 py-4 bg-slate-50 rounded-[1.8rem] border border-slate-100">
                  <div className="flex -space-x-2">
                     {[1, 2, 3].map(i => (
