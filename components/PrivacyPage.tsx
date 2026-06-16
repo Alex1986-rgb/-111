@@ -9,7 +9,7 @@ const PrivacyPage: React.FC = () => {
         <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-sm">
           <ShieldCheck className="w-10 h-10" />
         </div>
-        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">Политика <span className="text-indigo-600">конфиденциальности</span></h1>
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 tracking-tight break-words">Политика <span className="text-indigo-600">конфиденциальности</span></h1>
         <p className="text-slate-500 text-lg font-medium">Последнее обновление: 26 февраля 2026 г.</p>
       </div>
 

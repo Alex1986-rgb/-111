@@ -53,7 +53,7 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
       </div>
 
       <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-xl border border-slate-100 mb-12 md:mb-16 animate-in fade-in slide-in-from-top-4">
-        <div className="grid lg:grid-cols-12 gap-8 md:gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-start">
           <div className="lg:col-span-4 space-y-3 md:space-y-4">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2 md:ml-4">Поиск по статьям</label>
             <div className="relative">
@@ -118,27 +118,27 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
       {filteredArticles.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           {filteredArticles.map((article) => (
-            <article 
-              key={article.id} 
-              className="group bg-white rounded-[2rem] md:rounded-[3rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-700 cursor-pointer flex flex-col h-full"
+            <article
+              key={article.id}
+              className="group apple-card overflow-hidden cursor-pointer flex flex-col h-full"
               onClick={() => onArticleClick(article)}
             >
               <div className="relative overflow-hidden h-56 md:h-72">
-                <img 
-                  src={article.image + '&w=800'} 
-                  alt={article.imageAlt} 
+                <img
+                  src={article.image + '&w=800'}
+                  alt={article.imageAlt}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1200ms] ease-out"
                 />
                 <div className="absolute top-4 md:top-6 left-4 md:left-6">
-                  <span className="bg-white/95 backdrop-blur-md text-indigo-600 text-[9px] md:text-[10px] font-black px-4 md:px-5 py-1.5 md:py-2 rounded-full uppercase tracking-widest shadow-xl border border-white/50">
+                  <span className="bg-white/80 backdrop-blur-xl text-[var(--color-apple-ink)] text-[11px] md:text-xs font-semibold px-4 md:px-5 py-1.5 md:py-2 rounded-full tracking-tight shadow-sm border border-white/50">
                     {article.category}
                   </span>
                 </div>
               </div>
               <div className="p-6 md:p-10 flex flex-col flex-1">
-                <div className="flex items-center gap-4 md:gap-6 text-slate-400 text-[9px] md:text-[10px] font-black uppercase tracking-widest mb-4 md:mb-6">
+                <div className="flex items-center gap-4 md:gap-6 text-[var(--color-apple-grey)] text-xs md:text-sm font-medium tracking-tight mb-4 md:mb-6">
                   <div className="flex items-center gap-1.5 md:gap-2">
                     <Calendar className="w-3.5 md:w-4 h-3.5 md:h-4" />
                     <span>{article.date}</span>
@@ -148,33 +148,33 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
                     <span>{article.readingTime} мин</span>
                   </div>
                 </div>
-                <h2 className="text-xl md:text-3xl font-black text-slate-900 mb-3 md:mb-4 group-hover:text-indigo-600 transition-colors leading-tight">
+                <h2 className="text-xl md:text-3xl font-semibold text-[var(--color-apple-ink)] mb-3 md:mb-4 group-hover:text-[var(--color-apple-blue)] transition-colors leading-tight tracking-tight">
                   {article.title}
                 </h2>
-                <p className="text-slate-500 text-sm md:text-base mb-6 md:mb-8 line-clamp-3 leading-relaxed font-medium">
+                <p className="text-[var(--color-apple-grey)] text-sm md:text-base mb-6 md:mb-8 line-clamp-3 leading-relaxed font-normal">
                   {article.excerpt}
                 </p>
-                
+
                 <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
                   {article.tags.map(tag => (
-                    <span key={tag} className="text-[8px] md:text-[9px] font-black uppercase text-slate-300">#{tag}</span>
+                    <span key={tag} className="text-[11px] md:text-xs font-medium text-slate-400 tracking-tight">#{tag}</span>
                   ))}
                 </div>
 
-                <div className="mt-auto pt-6 md:pt-8 border-t border-slate-50 flex items-center justify-between">
+                <div className="mt-auto pt-6 md:pt-8 border-t border-black/[0.06] flex items-center justify-between">
                   <div className="flex items-center gap-2 md:gap-3">
-                     <img 
-                        src={article.author.avatar} 
-                        alt={article.author.name} 
+                     <img
+                        src={article.author.avatar}
+                        alt={article.author.name}
                         loading="lazy"
-                        className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl object-cover grayscale group-hover:grayscale-0 transition-all shadow-md" 
+                        className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all"
                       />
                      <div>
-                        <div className="text-[9px] md:text-[10px] font-black text-slate-900 uppercase tracking-widest leading-none">{article.author.name}</div>
-                        <div className="text-[8px] md:text-[9px] font-bold text-slate-400 uppercase tracking-tighter mt-1">{article.author.role}</div>
+                        <div className="text-xs md:text-sm font-semibold text-[var(--color-apple-ink)] tracking-tight leading-none">{article.author.name}</div>
+                        <div className="text-[11px] md:text-xs font-normal text-[var(--color-apple-grey)] tracking-tight mt-1">{article.author.role}</div>
                      </div>
                   </div>
-                  <div className="w-9 h-9 md:w-10 md:h-10 bg-indigo-50 text-indigo-600 rounded-lg md:rounded-xl flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
+                  <div className="w-9 h-9 md:w-10 md:h-10 apple-chip flex items-center justify-center group-hover:bg-[var(--color-apple-blue)] group-hover:text-white">
                      <ArrowRight className="w-4 md:w-5 h-4 md:h-5" />
                   </div>
                 </div>

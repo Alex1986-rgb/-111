@@ -119,7 +119,7 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
          ))}
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-12 items-start mb-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
         <div className="lg:col-span-8 space-y-12">
           
           <section>

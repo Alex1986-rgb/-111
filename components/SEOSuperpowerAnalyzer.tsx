@@ -137,7 +137,7 @@ const SEOSuperpowerAnalyzer: React.FC = () => {
               url: statusData.url,
               timestamp: statusData.start_time,
               totalPages: statusData.max_pages,
-              totalIssues: Object.values(results).reduce((acc: number, mod: any) => {
+              totalIssues: Object.values(results).reduce<number>((acc, mod: any) => {
                 return acc + (mod.issues?.length || mod.recommendations?.length || 0);
               }, 0),
               modules: {

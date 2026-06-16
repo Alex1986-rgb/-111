@@ -27,6 +27,8 @@ import ReviewsPage from './components/ReviewsPage';
 import BulkOrderView from './components/BulkOrderView';
 import EnterpriseSection from './components/EnterpriseSection';
 import ServicePage from './components/ServicePage';
+import PrivacyPage from './components/PrivacyPage';
+import TermsPage from './components/TermsPage';
 
 import SEOSection from './components/SEOSection';
 import SEOSuperpowerAnalyzer from './components/SEOSuperpowerAnalyzer';
@@ -94,9 +96,17 @@ const SEOManager: React.FC<{ route: Route, article?: Article | null, service?: S
         title = "Массовое наполнение сайтов контентом | TextFlow Enterprise";
         desc = "Профессиональное создание сотен текстов для интернет-магазинов и маркетплейсов силами нашей редакции.";
         break;
-      case 'contact':
+      case 'contacts':
         title = "Контакты агентства TextFlow | Обсудить проект";
         desc = "Свяжитесь с нами через Telegram, WhatsApp или оставьте заявку на сайте. Офис в Москва-Сити.";
+        break;
+      case 'privacy':
+        title = "Политика конфиденциальности | TextFlow";
+        desc = "Как агентство TextFlow обрабатывает и защищает персональные данные пользователей в соответствии с 152-ФЗ.";
+        break;
+      case 'terms':
+        title = "Договор оферты | TextFlow";
+        desc = "Публичная оферта на оказание услуг копирайтинга и SEO-редакции агентством TextFlow.";
         break;
       case 'admin':
         title = "Панель управления | TextFlow Admin";
@@ -105,14 +115,40 @@ const SEOManager: React.FC<{ route: Route, article?: Article | null, service?: S
     }
 
     document.title = title;
-    
+
+    // Обновление мета-тегов (description, Open Graph, Twitter, canonical)
+    const canonicalUrl = `https://textflow.ru/${route.view === 'home' ? '' : route.view}${route.params?.slug ? '/' + route.params.slug : ''}`;
+    const setMeta = (selector: string, attr: 'name' | 'property', key: string, value: string) => {
+      let el = document.head.querySelector<HTMLMetaElement>(selector);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(attr, key);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', value);
+    };
+    setMeta('meta[name="description"]', 'name', 'description', desc);
+    setMeta('meta[property="og:title"]', 'property', 'og:title', title);
+    setMeta('meta[property="og:description"]', 'property', 'og:description', desc);
+    setMeta('meta[property="og:url"]', 'property', 'og:url', canonicalUrl);
+    setMeta('meta[property="twitter:title"]', 'property', 'twitter:title', title);
+    setMeta('meta[property="twitter:description"]', 'property', 'twitter:description', desc);
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalUrl);
+
     // JSON-LD Injection
-    const schema = {
+    const schema: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": route.view === 'article' ? "Article" : "WebSite",
       "name": title,
       "description": desc,
-      "url": window.location.href,
+      "url": canonicalUrl,
       "publisher": {
         "@type": "Organization",
         "name": "TextFlow",
@@ -122,7 +158,13 @@ const SEOManager: React.FC<{ route: Route, article?: Article | null, service?: S
         }
       }
     };
-    
+    if (route.view === 'article' && article) {
+      schema.headline = article.title;
+      schema.datePublished = article.date;
+      schema.image = article.image;
+      schema.author = { "@type": "Person", "name": article.author?.name, "jobTitle": article.author?.role };
+    }
+
     let script = document.getElementById('json-ld-dynamic');
     if (!script) {
       script = document.createElement('script');
@@ -131,7 +173,7 @@ const SEOManager: React.FC<{ route: Route, article?: Article | null, service?: S
       document.head.appendChild(script);
     }
     script.textContent = JSON.stringify(schema);
-  }, [route, article]);
+  }, [route, article, service]);
   return null;
 };
 
@@ -351,6 +393,8 @@ const App: React.FC = () => {
             status: 'success'
           })} />}
           {route.view === 'contacts' && <ContactPage />}
+          {route.view === 'privacy' && <PrivacyPage />}
+          {route.view === 'terms' && <TermsPage />}
           {route.view === 'seo-audit' && <SEOSuperpowerAnalyzer />}
         </main>
 

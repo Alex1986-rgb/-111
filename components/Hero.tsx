@@ -37,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
       }`}></div>
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
           <div className="lg:col-span-7 xl:col-span-8 text-left">
             <div className="flex flex-wrap gap-2 mb-8">

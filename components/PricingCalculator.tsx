@@ -63,14 +63,14 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
                     <button
                       key={s.id}
                       onClick={() => setSelectedServiceId(s.id)}
-                      className={`p-5 rounded-[1.5rem] border-2 text-left transition-all duration-300 ${
-                        selectedServiceId === s.id 
-                          ? 'border-indigo-500 bg-indigo-500/10 text-white shadow-[0_0_30px_rgba(79,70,229,0.15)]' 
-                          : 'border-slate-800 hover:border-slate-700 text-slate-500'
+                      className={`p-5 rounded-3xl border text-left transition-all duration-300 ${
+                        selectedServiceId === s.id
+                          ? 'border-[var(--color-apple-blue)] bg-[var(--color-apple-blue)]/10 text-white shadow-[0_0_40px_rgba(0,113,227,0.18)]'
+                          : 'border-white/10 hover:border-white/25 text-slate-400'
                       }`}
                     >
-                      <div className="text-sm font-black mb-1">{s.name}</div>
-                      <div className="text-[10px] font-bold opacity-60">{s.pricePer1k} ₽ / 1к зн.</div>
+                      <div className="text-sm font-semibold tracking-tight mb-1">{s.name}</div>
+                      <div className="text-xs font-normal opacity-60">{s.pricePer1k} ₽ / 1к зн.</div>
                     </button>
                   ))}
                 </div>
@@ -115,9 +115,9 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
 
           <div className="bg-white p-10 md:p-12 rounded-[4rem] text-slate-900 shadow-3xl lg:sticky lg:top-24">
             <div className="flex justify-between items-center mb-10">
-              <h3 className="text-2xl font-black">Ваш заказ</h3>
-              <div className="w-12 h-12 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center">
-                 <ReceiptText className="w-6 h-6 stroke-[2.5]" />
+              <h3 className="text-2xl font-semibold tracking-tight">Ваш заказ</h3>
+              <div className="w-12 h-12 apple-chip text-[var(--color-apple-blue)] flex items-center justify-center">
+                 <ReceiptText className="w-6 h-6 stroke-[2]" />
               </div>
             </div>
             
@@ -158,11 +158,11 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
               </div>
             </div>
 
-            <button 
+            <button
               onClick={handleOrder}
-              className="w-full bg-indigo-600 text-white py-6 rounded-[2rem] font-black text-xl flex items-center justify-center gap-4 hover:bg-indigo-700 transition-all hover:scale-[1.02] active:scale-95 shadow-2xl shadow-indigo-100 group"
+              className="apple-btn w-full py-6 text-xl gap-4 group"
             >
-              <ShoppingBasket className="w-6 h-6 stroke-[2.5] group-hover:animate-bounce" />
+              <ShoppingBasket className="w-6 h-6 stroke-[2] group-hover:animate-bounce" />
               <span>Оформить заказ</span>
             </button>
           </div>

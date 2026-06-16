@@ -103,8 +103,8 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase font-bold tracking-widest text-center md:text-left gap-6">
         <p>© 2024-2025 TextFlow Russia. Все права защищены. Тексты любой сложности от 1000 знаков без пробелов.</p>
         <div className="flex space-x-8">
-          <span className="hover:text-white cursor-pointer transition-colors">Конфиденциальность</span>
-          <span className="hover:text-white cursor-pointer transition-colors">Оферта</span>
+          <span onClick={() => setView('privacy')} className="hover:text-white cursor-pointer transition-colors">Конфиденциальность</span>
+          <span onClick={() => setView('terms')} className="hover:text-white cursor-pointer transition-colors">Оферта</span>
         </div>
       </div>
     </footer>

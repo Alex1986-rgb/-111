@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /#/admin
+Disallow: /admin
+
+# Яндекс
+User-agent: Yandex
+Allow: /
+Disallow: /admin
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content
+
+Host: https://textflow.ru
+Sitemap: https://textflow.ru/sitemap.xml

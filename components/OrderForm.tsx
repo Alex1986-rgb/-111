@@ -80,7 +80,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         {/* Form Body */}
         <div className="lg:col-span-8 bg-white rounded-[3rem] shadow-2xl shadow-indigo-100/50 border border-slate-100 overflow-hidden">
           <div className="p-8 md:p-12">
