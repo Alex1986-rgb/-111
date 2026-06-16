@@ -2,7 +2,6 @@
 import React, { useState, useMemo } from 'react';
 import { Service } from '../types';
 import { Calculator, ShoppingBasket, Zap, CheckCircle2, AlertCircle, Info, ReceiptText, ShieldCheck, BarChart3 } from 'lucide-react';
-import SEODataTable from './SEODataTable';
 import SEOSection from './SEOSection';
 
 interface PricingCalculatorProps {
@@ -43,7 +42,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
 
   return (
     <>
-      <section id="pricing-calc" className="py-9 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-8 my-6 overflow-hidden relative shadow-2xl">
+      <section id="pricing-calc" className="py-6 bg-slate-900 text-white rounded-[3rem] mx-4 md:mx-8 my-4 overflow-hidden relative shadow-2xl">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/10 blur-[150px] -z-0"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-10 items-start relative z-10">
@@ -51,26 +50,26 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
             <div className="inline-block px-4 py-1.5 bg-indigo-500/20 text-indigo-400 rounded-full text-[10px] font-black uppercase tracking-widest mb-3 border border-indigo-500/30">
                Smart Pricing Engine
             </div>
-            <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tighter">
-              Рассчитайте выгоду <br />вашего контента
+            <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tighter">
+              Рассчитайте выгоду вашего контента
             </h2>
 
-            <div className="space-y-4 mt-4">
+            <div className="space-y-3 mt-3">
               <div>
-                <label className="block text-[10px] font-black text-slate-500 mb-2.5 uppercase tracking-[0.2em]">Тип контента</label>
+                <label className="block text-[10px] font-black text-slate-500 mb-2 uppercase tracking-[0.2em]">Тип контента</label>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {services.map((s) => (
                     <button
                       key={s.id}
                       onClick={() => setSelectedServiceId(s.id)}
-                      className={`p-3 rounded-2xl border text-left transition-all duration-300 ${
+                      className={`px-3 py-2 rounded-xl border text-left transition-all duration-300 ${
                         selectedServiceId === s.id
                           ? 'border-[var(--color-apple-blue)] bg-[var(--color-apple-blue)]/10 text-white shadow-[0_0_40px_rgba(0,113,227,0.18)]'
                           : 'border-white/10 hover:border-white/25 text-slate-400'
                       }`}
                     >
-                      <div className="text-[13px] font-semibold tracking-tight leading-snug mb-0.5">{s.name}</div>
-                      <div className="text-[11px] font-normal opacity-60">{s.pricePer1k} ₽ / 1к зн.</div>
+                      <div className="text-xs font-semibold tracking-tight leading-tight">{s.name}</div>
+                      <div className="text-[10px] font-normal opacity-60 mt-0.5">{s.pricePer1k} ₽ / 1к зн.</div>
                     </button>
                   ))}
                 </div>
@@ -99,16 +98,16 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
                 />
               </div>
 
-              <div className="bg-white/5 p-3 rounded-3xl">
-                 <SEODataTable 
-                   type="specs"
-                   title="Что входит в стоимость"
-                   data={[
-                     { category: "Quality", label: "Проверка по 15 параметрам", profit: "Included" },
-                     { category: "SEO", label: "LSI ядро и вхождение ключей", profit: "Included" },
-                     { category: "Legal", label: "Передача авторских прав", profit: "Included" }
-                   ]}
-                 />
+              <div className="bg-white/5 p-3 rounded-2xl">
+                 <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2.5">Что входит в стоимость</div>
+                 <div className="space-y-1.5">
+                   {["Проверка по 15 параметрам", "LSI-ядро и вхождение ключей", "Передача авторских прав"].map((t, i) => (
+                     <div key={i} className="flex items-center gap-2.5 text-sm">
+                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                       <span className="text-slate-300 font-medium">{t}</span>
+                     </div>
+                   ))}
+                 </div>
               </div>
             </div>
           </div>
