@@ -247,12 +247,12 @@ const App: React.FC = () => {
     addLog('info', `Цена услуги ${id} изменена: ${price}₽`);
   };
 
-  const createOrder = (orderData: any) => {
-    if (orderData.serviceId === 'bulk') {
+  const createOrder = (serviceId: string, symbols: number, price: number) => {
+    if (serviceId === 'bulk') {
       navigate('bulk');
       return;
     }
-    setPendingOrderData(orderData);
+    setPendingOrderData({ serviceId, symbols, price });
     navigate('order');
   };
 

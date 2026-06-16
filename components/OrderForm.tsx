@@ -37,7 +37,20 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
   const [keywords, setKeywords] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  if (!pendingOrder) return null;
+  if (!pendingOrder) {
+    return (
+      <div className="max-w-xl mx-auto px-4 py-20 text-center animate-in fade-in duration-500">
+        <div className="w-16 h-16 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center mx-auto mb-6">
+          <FileEdit className="w-8 h-8" />
+        </div>
+        <h1 className="text-2xl font-black text-slate-900 mb-2 tracking-tight">Заказ не выбран</h1>
+        <p className="text-slate-500 font-medium mb-8">Вернитесь на главную и выберите услугу или рассчитайте стоимость в калькуляторе.</p>
+        <button onClick={onCancel} className="apple-btn px-8 py-4 text-sm">
+          <ArrowLeft className="w-4 h-4" /> На главную
+        </button>
+      </div>
+    );
+  }
 
   const service = INITIAL_SERVICES.find(s => s.id === pendingOrder.serviceId);
 
