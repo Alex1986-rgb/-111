@@ -223,21 +223,21 @@ const SEOSuperpowerAnalyzer: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[70vh] bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-12 px-4">
+    <div className="min-h-[70vh] bg-gradient-to-br from-indigo-50 via-white to-purple-50 py-9 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-6">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
+        <div className="text-center mb-4">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-4">
             🚀 SEO Superpower Analyzer
           </h1>
-          <p className="text-xl text-gray-600">
+          <p className="text-lg text-gray-600">
             Комплексный анализ сайта с 6 модулями: Performance, SEO, Code, Security, Design, Memory
           </p>
         </div>
 
         {/* Input Form */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-8">
-          <div className="space-y-6">
+        <div className="bg-white rounded-2xl shadow-xl p-6 mb-5">
+          <div className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 URL сайта для анализа
@@ -338,10 +338,10 @@ const SEOSuperpowerAnalyzer: React.FC = () => {
 
         {/* Results */}
         {result && (
-          <div className="space-y-6">
+          <div className="space-y-4">
             {/* Summary */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h2 className="text-2xl font-bold mb-6">Результаты анализа</h2>
+            <div className="bg-white rounded-2xl shadow-xl p-6">
+              <h2 className="text-2xl font-bold mb-4">Результаты анализа</h2>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <div className="text-center p-4 bg-indigo-50 rounded-xl">
                   <div className="text-3xl font-bold text-indigo-600">{result.totalPages}</div>
@@ -367,7 +367,7 @@ const SEOSuperpowerAnalyzer: React.FC = () => {
             </div>
 
             {/* Module Results */}
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4">
               {modules.filter(m => m.enabled && m.score).map((module) => {
                 const Icon = module.icon;
                 return (
@@ -377,7 +377,7 @@ const SEOSuperpowerAnalyzer: React.FC = () => {
                         <div className={`p-3 rounded-xl ${getScoreBg(module.score!)}`}>
                           <Icon className={`w-6 h-6 ${getScoreColor(module.score!)}`} />
                         </div>
-                        <h3 className="text-lg font-bold">{module.name}</h3>
+                        <h3 className="text-base font-bold">{module.name}</h3>
                       </div>
                       <div className={`text-2xl font-bold ${getScoreColor(module.score!)}`}>
                         {module.score}/100
@@ -404,8 +404,8 @@ const SEOSuperpowerAnalyzer: React.FC = () => {
             </div>
 
             {/* Export Buttons */}
-            <div className="bg-white rounded-2xl shadow-xl p-8">
-              <h3 className="text-xl font-bold mb-4">Экспорт результатов</h3>
+            <div className="bg-white rounded-2xl shadow-xl p-6">
+              <h3 className="text-lg font-bold mb-4">Экспорт результатов</h3>
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => exportResults('csv')}

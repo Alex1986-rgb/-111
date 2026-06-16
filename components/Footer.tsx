@@ -22,16 +22,16 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
   ];
 
   return (
-    <footer className="bg-slate-900 text-slate-400 py-12 px-4">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
+    <footer className="bg-slate-900 text-slate-400 py-9 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-5 gap-5 mb-5">
         <div className="col-span-2">
-          <div className="flex items-center space-x-2.5 mb-8">
+          <div className="flex items-center space-x-2.5 mb-5">
             <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
-              <span className="text-white font-black text-xl">TF</span>
+              <span className="text-white font-black text-lg">TF</span>
             </div>
             <span className="text-2xl font-black tracking-tighter text-white">Text<span className="text-indigo-600">Flow</span></span>
           </div>
-          <p className="max-w-xs text-sm leading-relaxed mb-8">
+          <p className="max-w-xs text-sm leading-relaxed mb-5">
             Агентство экспертного копирайтинга №1 в РФ. Создаем тексты, которые обожают поисковые системы и живые люди. Работаем с 2024 года.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -54,7 +54,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
         </div>
         
         <div>
-          <h4 className="font-black text-white uppercase text-xs tracking-widest mb-6">Услуги</h4>
+          <h4 className="font-black text-white uppercase text-xs tracking-widest mb-4">Услуги</h4>
           <ul className="space-y-4 text-sm font-medium">
             {[
               { label: 'SEO-копирайтинг', id: 'pricing' },
@@ -69,7 +69,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
         </div>
 
         <div>
-          <h4 className="font-black text-white uppercase text-xs tracking-widest mb-6">Навигация</h4>
+          <h4 className="font-black text-white uppercase text-xs tracking-widest mb-4">Навигация</h4>
           <ul className="space-y-4 text-sm font-medium">
             <li onClick={() => setView('home')} className="hover:text-indigo-400 cursor-pointer transition-colors">Главная</li>
             <li onClick={() => setView('pricing')} className="hover:text-indigo-400 cursor-pointer transition-colors">Цены за 1000 знаков</li>
@@ -80,7 +80,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
         </div>
 
         <div>
-          <h4 className="font-black text-white uppercase text-xs tracking-widest mb-6">Связаться</h4>
+          <h4 className="font-black text-white uppercase text-xs tracking-widest mb-4">Связаться</h4>
           <ul className="space-y-4 text-sm font-medium">
             <li onClick={() => setView('contacts')} className="hover:text-indigo-400 cursor-pointer transition-colors">Контакты в Москве</li>
             <li>hello@textflow.ru</li>
@@ -90,7 +90,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mb-8 pt-5 border-t border-white/5">
+      <div className="max-w-7xl mx-auto mb-5 pt-5 border-t border-white/5">
          <div className="flex flex-wrap gap-3">
             {seoTags.map(tag => (
               <span key={tag} className="text-[10px] font-black uppercase tracking-tighter text-slate-600 hover:text-indigo-500 cursor-default transition-colors">
@@ -100,7 +100,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
          </div>
       </div>
       
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase font-bold tracking-widest text-center md:text-left gap-6">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase font-bold tracking-widest text-center md:text-left gap-4">
         <p>© 2024-2025 TextFlow Russia. Все права защищены. Тексты любой сложности от 1000 знаков без пробелов.</p>
         <div className="flex space-x-8">
           <span onClick={() => setView('privacy')} className="hover:text-white cursor-pointer transition-colors">Конфиденциальность</span>

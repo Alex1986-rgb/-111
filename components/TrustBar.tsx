@@ -7,11 +7,11 @@ const logos = [
 
 const TrustBar: React.FC = () => {
   return (
-    <div className="py-10 border-y border-slate-100 bg-white overflow-hidden relative">
+    <div className="py-8 border-y border-slate-100 bg-white overflow-hidden relative">
       <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
       <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
       
-      <div className="max-w-7xl mx-auto px-4 mb-6">
+      <div className="max-w-7xl mx-auto px-4 mb-4">
         <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Партнеры и экосистемы</p>
       </div>
 
@@ -20,7 +20,7 @@ const TrustBar: React.FC = () => {
           {[...logos, ...logos].map((logo, i) => (
             <span 
               key={i} 
-              className="text-3xl md:text-4xl font-black tracking-tighter text-slate-200 hover:text-indigo-600 transition-colors cursor-default select-none"
+              className="text-3xl md:text-3xl font-black tracking-tighter text-slate-200 hover:text-indigo-600 transition-colors cursor-default select-none"
             >
               {logo}
             </span>

@@ -28,21 +28,21 @@ const TextAuditTool: React.FC = () => {
   };
 
   return (
-    <section className="py-12 bg-indigo-600 rounded-[4rem] mx-4 md:mx-8 my-10 relative overflow-hidden shadow-3xl">
+    <section className="py-9 bg-indigo-600 rounded-[4rem] mx-4 md:mx-8 my-10 relative overflow-hidden shadow-3xl">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-6">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-white/20 backdrop-blur-md">
+        <div className="text-center mb-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-4 border border-white/20 backdrop-blur-md">
             <Sparkles className="w-3 h-3 fill-current" /> Аналитическая лаборатория
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tighter">Текст под микроскопом экспертов</h2>
-          <p className="text-indigo-100 text-lg font-medium opacity-80">Мгновенный аудит по стандартам Яндекса 2025.</p>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter">Текст под микроскопом экспертов</h2>
+          <p className="text-indigo-100 text-base font-medium opacity-80">Мгновенный аудит по стандартам Яндекса 2025.</p>
         </div>
 
         <div className="bg-white p-2 rounded-[2.5rem] shadow-2xl relative">
           {loading && (
             <div className="absolute inset-0 z-20 bg-white/80 backdrop-blur-sm rounded-[2.5rem] flex flex-col items-center justify-center animate-in fade-in duration-300">
-               <Loader2 className="w-16 h-16 text-indigo-600 animate-spin mb-6" />
+               <Loader2 className="w-16 h-16 text-indigo-600 animate-spin mb-4" />
                <div className="text-slate-900 font-black uppercase text-xs tracking-[0.2em]">Синхронизация с базой LSI...</div>
             </div>
           )}
@@ -53,7 +53,7 @@ const TextAuditTool: React.FC = () => {
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
                 placeholder="Вставьте ваш текст здесь..."
-                className="w-full h-64 p-8 rounded-[2rem] text-slate-900 placeholder:text-slate-300 focus:outline-none text-lg font-medium resize-none bg-slate-50/30"
+                className="w-full h-64 p-6 rounded-[2rem] text-slate-900 placeholder:text-slate-300 focus:outline-none text-base font-medium resize-none bg-slate-50/30"
               ></textarea>
               <div className="absolute bottom-6 right-6 flex items-center gap-4">
                 <button 
@@ -67,11 +67,11 @@ const TextAuditTool: React.FC = () => {
             </div>
           ) : (
             <div className="p-6 animate-in zoom-in duration-500">
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-4">
                 <h3 className="text-2xl font-black text-slate-900">Отчет сформирован</h3>
                 <button onClick={() => setAnalysis(null)} className="text-indigo-600 font-black text-[10px] uppercase hover:underline">Новый тест</button>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                 {[
                   { label: "Балл", val: analysis.score, c: "text-indigo-600" },
                   { label: "SEO", val: analysis.params.seo + "%", c: "text-slate-900" },
@@ -84,8 +84,8 @@ const TextAuditTool: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <div className="bg-indigo-50 p-8 rounded-[2rem] border border-indigo-100 mb-6">
-                 <p className="text-indigo-900 font-bold text-lg mb-6 leading-tight">"{analysis.verdict}"</p>
+              <div className="bg-indigo-50 p-6 rounded-[2rem] border border-indigo-100 mb-4">
+                 <p className="text-indigo-900 font-bold text-base mb-4 leading-tight">"{analysis.verdict}"</p>
                  <div className="space-y-3">
                     {analysis.tips.map((tip: string, i: number) => (
                       <div key={i} className="flex items-start gap-3 text-sm text-indigo-700 font-medium">
@@ -96,7 +96,7 @@ const TextAuditTool: React.FC = () => {
               </div>
               <button 
                 onClick={() => document.getElementById('pricing-calc')?.scrollIntoView({ behavior: 'smooth' })}
-                className="w-full bg-slate-900 text-white py-6 rounded-[1.5rem] font-black text-xl flex items-center justify-center gap-4 hover:bg-indigo-600 transition-all shadow-2xl active:scale-95"
+                className="w-full bg-slate-900 text-white py-6 rounded-[1.5rem] font-black text-lg flex items-center justify-center gap-4 hover:bg-indigo-600 transition-all shadow-2xl active:scale-95"
               >
                 Исправить с TextFlow <ArrowRight className="w-6 h-6" />
               </button>

@@ -22,8 +22,8 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ amount, orderId, onSucc
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-center justify-center py-12 animate-in zoom-in duration-500">
-        <div className="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-8 shadow-inner">
+      <div className="flex flex-col items-center justify-center py-9 animate-in zoom-in duration-500">
+        <div className="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-5 shadow-inner">
           <CheckCircle2 className="w-12 h-12" />
         </div>
         <h2 className="text-3xl font-black text-slate-900 mb-2">Оплата прошла успешно</h2>
@@ -34,19 +34,19 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ amount, orderId, onSucc
 
   return (
     <div className="max-w-md mx-auto bg-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden animate-in fade-in slide-in-from-bottom-8">
-      <div className="bg-slate-900 p-8 text-white relative">
+      <div className="bg-slate-900 p-6 text-white relative">
         <div className="absolute top-0 right-0 p-4 opacity-10"><Landmark className="w-24 h-24" /></div>
-        <div className="flex justify-between items-center mb-6 relative z-10">
+        <div className="flex justify-between items-center mb-4 relative z-10">
           <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">Order Pay ID: {orderId}</div>
           <Lock className="w-4 h-4 text-emerald-500" />
         </div>
         <div className="relative z-10">
           <div className="text-[10px] font-black uppercase tracking-widest text-slate-500 mb-1">Сумма к оплате</div>
-          <div className="text-5xl font-black tracking-tight">{amount.toLocaleString()} <span className="text-xl text-slate-500">₽</span></div>
+          <div className="text-4xl font-black tracking-tight">{amount.toLocaleString()} <span className="text-lg text-slate-500">₽</span></div>
         </div>
       </div>
 
-      <div className="p-8 space-y-8">
+      <div className="p-6 space-y-5">
         <div className="grid grid-cols-2 gap-3">
           <button 
             onClick={() => setMethod('card')}
@@ -84,12 +84,12 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ amount, orderId, onSucc
         <button 
           onClick={handlePay}
           disabled={status === 'processing'}
-          className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 disabled:bg-slate-300 group"
+          className="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black text-base flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 disabled:bg-slate-300 group"
         >
           {status === 'processing' ? <Loader2 className="w-6 h-6 animate-spin" /> : <>Подтвердить оплату <ArrowRight className="w-5 h-5 group-hover:translate-x-1" /></>}
         </button>
 
-        <div className="flex items-center justify-center gap-6 opacity-30">
+        <div className="flex items-center justify-center gap-4 opacity-30">
           <ShieldCheck className="w-8 h-8" />
           <div className="text-[8px] font-black uppercase tracking-widest text-slate-900">Защищено PCI DSS <br /> Security Standard</div>
         </div>

@@ -63,20 +63,20 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
 
   return (
     <>
-      <section className="py-10 bg-slate-50 relative overflow-hidden font-inter">
+      <section className="py-8 bg-slate-50 relative overflow-hidden font-inter">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-100/30 rounded-full blur-[100px] -z-0 translate-x-1/2 -translate-y-1/2"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {showTitle && (
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 gap-4">
               <div className="max-w-xl">
                 <div className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-white border border-slate-200 text-indigo-600 rounded-full text-[9px] font-black uppercase tracking-widest mb-4">
                    <Trophy className="w-3 h-3" /> Кейс-стади
                 </div>
-                <h2 className="text-3xl md:text-5xl font-black mb-4 tracking-tighter text-slate-900 leading-[0.95]">
+                <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tighter text-slate-900 leading-[0.95]">
                   Наши <span className="text-indigo-600">результаты</span>
                 </h2>
-                <p className="text-slate-500 text-base md:text-lg font-medium leading-relaxed">
+                <p className="text-slate-500 text-base md:text-base font-medium leading-relaxed">
                   Посмотрите, как мы решаем реальные задачи бизнеса.
                 </p>
               </div>
@@ -129,7 +129,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                               <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-0.5 flex items-center gap-1">
                                  <TrendingUp className="w-2.5 h-2.5 text-emerald-500" /> {m.label}
                               </div>
-                              <div className="text-xl font-black text-indigo-600 tracking-tighter">{m.value}</div>
+                              <div className="text-lg font-black text-indigo-600 tracking-tighter">{m.value}</div>
                            </div>
                          ))}
                       </div>
@@ -142,21 +142,21 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                       </button>
                     </div>
 
-                    <div className="lg:w-7/12 p-8 md:p-8 lg:p-16 flex flex-col justify-center bg-white">
+                    <div className="lg:w-7/12 p-6 md:p-6 lg:p-16 flex flex-col justify-center bg-white">
                       <div className={`transition-all duration-500 delay-200 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
                         <div className="flex items-center gap-3 text-indigo-600 font-black text-[9px] uppercase tracking-[0.3em] mb-4">
                            <span className="w-8 h-0.5 bg-indigo-600 rounded-full"></span>
                            {item.category}
                         </div>
-                        <h3 className="text-2xl md:text-4xl font-black text-slate-900 mb-4 leading-tight tracking-tight">
+                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 leading-tight tracking-tight">
                           {item.title}
                         </h3>
-                        <p className="text-slate-500 text-sm md:text-base mb-8 leading-relaxed font-medium">
+                        <p className="text-slate-500 text-sm md:text-base mb-5 leading-relaxed font-medium">
                           {item.description}
                         </p>
                       </div>
                       
-                      <div className={`flex items-center gap-4 mb-8 transition-all duration-500 delay-300 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
+                      <div className={`flex items-center gap-4 mb-5 transition-all duration-500 delay-300 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
                          <button 
                           onClick={() => setSelectedCase(item)}
                           className="bg-slate-900 text-white px-8 py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center gap-3 hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200 active:scale-95 group"
@@ -165,7 +165,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                          </button>
                       </div>
 
-                      <div className={`pt-5 border-t border-slate-50 flex items-center gap-6 transition-all duration-500 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+                      <div className={`pt-5 border-t border-slate-50 flex items-center gap-4 transition-all duration-500 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                         <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
                           <Quote className="w-7 h-7 fill-current opacity-20" />
                         </div>
@@ -183,7 +183,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
             })}
           </div>
 
-          <div className="mt-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="mt-5 flex flex-col md:flex-row items-center justify-between gap-4">
              <div className="flex gap-2.5">
                 {CASE_STUDIES.map((_, i) => (
                   <button 
@@ -217,7 +217,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
               
               <div className="md:w-5/12 relative overflow-hidden hidden md:block">
                  <img src={selectedCase.image + '&w=1000'} className="w-full h-full object-cover" alt={selectedCase.title} loading="lazy" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-8">
+                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-6">
                     <h2 className="text-3xl font-black text-white leading-tight mb-4">{selectedCase.title}</h2>
                     <div className="inline-block px-4 py-1.5 bg-indigo-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest w-fit">
                       {selectedCase.category}
@@ -228,7 +228,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
               <div className="md:w-7/12 p-6 overflow-y-auto bg-slate-50 custom-scrollbar">
                  <div className="space-y-12">
                     <section>
-                      <h4 className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-6 flex items-center gap-2">
+                      <h4 className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-4 flex items-center gap-2">
                          <BarChart3 className="w-4 h-4" /> Показатели
                       </h4>
                       <div className="grid grid-cols-2 gap-4">
@@ -241,13 +241,13 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                       </div>
                     </section>
                     
-                    <section className="space-y-6">
+                    <section className="space-y-4">
                       <div>
                         <h4 className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-4">Детали</h4>
                         <p className="text-slate-600 text-base leading-relaxed font-medium">{selectedCase.resultsDetail}</p>
                       </div>
                       
-                      <div className="p-8 bg-indigo-600 rounded-[2rem] text-white shadow-xl">
+                      <div className="p-6 bg-indigo-600 rounded-[2rem] text-white shadow-xl">
                          <h4 className="text-[9px] font-black text-indigo-200 uppercase tracking-widest mb-4 flex items-center gap-2">
                             <Target className="w-4 h-4" /> Стратегия
                          </h4>

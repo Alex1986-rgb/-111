@@ -29,9 +29,9 @@ const FAQ: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-12 max-w-4xl mx-auto px-4">
-      <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-5xl font-black mb-4">Ответы на <span className="text-indigo-600">важные вопросы</span></h2>
+    <section className="py-9 max-w-4xl mx-auto px-4">
+      <div className="text-center mb-5">
+        <h2 className="text-3xl md:text-4xl font-black mb-4">Ответы на <span className="text-indigo-600">важные вопросы</span></h2>
         <p className="text-slate-500">Все, что нужно знать перед стартом работы с лучшей редакцией страны.</p>
       </div>
 
@@ -43,9 +43,9 @@ const FAQ: React.FC = () => {
           >
             <button 
               onClick={() => setOpen(open === i ? null : i)}
-              className="w-full p-8 flex justify-between items-center text-left"
+              className="w-full p-6 flex justify-between items-center text-left"
             >
-              <span className="text-lg font-black text-slate-900 leading-tight">{faq.q}</span>
+              <span className="text-base font-black text-slate-900 leading-tight">{faq.q}</span>
               <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${open === i ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
                 {open === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
               </div>

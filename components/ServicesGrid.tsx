@@ -40,9 +40,9 @@ interface ServicesGridProps {
 
 const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder, onExplore }) => {
   return (
-    <section className="py-12 bg-[var(--color-apple-mist)] relative overflow-hidden">
+    <section className="py-9 bg-[var(--color-apple-mist)] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6 animate-in fade-in slide-in-from-top-4 duration-700">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-5 gap-4 animate-in fade-in slide-in-from-top-4 duration-700">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-5">
               <div className="apple-pill-label">
@@ -52,11 +52,11 @@ const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder, onExplor
                 <Star className="w-3 h-3 fill-amber-400 text-amber-400" /> 5.0 · 1200+ отзывов
               </div>
             </div>
-            <h2 className="text-4xl md:text-5xl font-semibold text-[var(--color-apple-ink)] tracking-tight leading-[1.05]">
+            <h2 className="text-3xl md:text-4xl font-semibold text-[var(--color-apple-ink)] tracking-tight leading-[1.05]">
               Профессиональные <br /><span className="text-[var(--color-apple-blue)]">тексты на заказ</span>
             </h2>
           </div>
-          <p className="text-[var(--color-apple-grey)] text-lg font-normal max-w-sm leading-relaxed">
+          <p className="text-[var(--color-apple-grey)] text-base font-normal max-w-sm leading-relaxed">
             Оптимизированный контент, который решает задачи бизнеса: от SEO-продвижения до роста конверсии карточек.
           </p>
         </div>
@@ -76,7 +76,7 @@ const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder, onExplor
                 <meta itemProp="description" content={service.description} />
 
                 <div
-                  className="apple-chip w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-[var(--color-apple-blue)] group-hover:text-white group-hover:scale-105"
+                  className="apple-chip w-16 h-16 flex items-center justify-center mb-4 group-hover:bg-[var(--color-apple-blue)] group-hover:text-white group-hover:scale-105"
                 >
                   <Icon className="w-8 h-8 stroke-[2] transition-transform duration-500 ease-out" />
                 </div>
@@ -90,7 +90,7 @@ const ServicesGrid: React.FC<ServicesGridProps> = ({ services, onOrder, onExplor
                   </div>
                 </div>
 
-                <p className="text-[var(--color-apple-grey)] text-base leading-relaxed mb-6 font-normal">
+                <p className="text-[var(--color-apple-grey)] text-base leading-relaxed mb-4 font-normal">
                   {service.description}
                 </p>
 

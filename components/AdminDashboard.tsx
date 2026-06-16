@@ -31,12 +31,12 @@ const AdminDashboard: React.FC = () => {
   if (!auth.isAuthenticated) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-[3rem] shadow-2xl border border-slate-100 text-center animate-in zoom-in duration-500">
-           <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-8">
+        <div className="max-w-md w-full bg-white p-6 rounded-[3rem] shadow-2xl border border-slate-100 text-center animate-in zoom-in duration-500">
+           <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-5">
               <Lock className="w-10 h-10" />
            </div>
            <h2 className="text-3xl font-black text-slate-900 mb-2">SaaS Entry</h2>
-           <p className="text-slate-400 font-medium mb-6">Авторизуйтесь для управления системой</p>
+           <p className="text-slate-400 font-medium mb-4">Авторизуйтесь для управления системой</p>
            <form onSubmit={handleLogin} className="space-y-4">
               <input 
                 type="password" 
@@ -55,13 +55,13 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
+    <div className="max-w-7xl mx-auto px-4 py-9">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         
         {/* Sidebar */}
-        <div className="lg:col-span-3 space-y-6">
-           <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100">
-              <div className="flex items-center gap-4 mb-6">
+        <div className="lg:col-span-3 space-y-4">
+           <div className="bg-white p-6 rounded-[2.5rem] shadow-xl border border-slate-100">
+              <div className="flex items-center gap-4 mb-4">
                  <div className="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-lg"><ShieldCheck /></div>
                  <div className="text-sm font-black uppercase tracking-widest">Root Console</div>
               </div>
@@ -91,18 +91,18 @@ const AdminDashboard: React.FC = () => {
         </div>
 
         {/* Main */}
-        <div className="lg:col-span-9 space-y-8">
+        <div className="lg:col-span-9 space-y-5">
            {/* Stats Row */}
-           <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-slate-900 p-8 rounded-[2.5rem] text-white">
+           <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-slate-900 p-6 rounded-[2.5rem] text-white">
                  <div className="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-1">Выручка (Total)</div>
                  <div className="text-3xl font-black">{stats.revenue.toLocaleString()} ₽</div>
               </div>
-              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+              <div className="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm">
                  <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Средний чек</div>
                  <div className="text-3xl font-black text-slate-900">{stats.avgCheck.toLocaleString()} ₽</div>
               </div>
-              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+              <div className="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm">
                  <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest mb-1">Оплат (SaaS)</div>
                  <div className="text-3xl font-black text-emerald-500">{stats.txCount}</div>
               </div>
@@ -111,14 +111,14 @@ const AdminDashboard: React.FC = () => {
            {activeTab === 'orders' && (
              <div className="space-y-4">
                 {orders.map(order => (
-                  <div key={order.id} className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm flex items-center justify-between group hover:border-indigo-100 transition-all">
-                     <div className="flex items-center gap-6">
+                  <div key={order.id} className="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm flex items-center justify-between group hover:border-indigo-100 transition-all">
+                     <div className="flex items-center gap-4">
                         <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white ${order.paymentStatus === 'paid' ? 'bg-emerald-500 shadow-emerald-100' : 'bg-amber-500 shadow-amber-100'} shadow-lg`}>
                            {order.paymentStatus === 'paid' ? <CheckCircle className="w-6 h-6" /> : <Clock className="w-6 h-6" />}
                         </div>
                         <div>
                            <div className="text-[9px] font-black text-slate-400 uppercase tracking-widest">{order.id} • {order.clientEmail}</div>
-                           <h3 className="text-lg font-black text-slate-900">{services.find(s => s.id === order.serviceId)?.name}</h3>
+                           <h3 className="text-base font-black text-slate-900">{services.find(s => s.id === order.serviceId)?.name}</h3>
                         </div>
                      </div>
                      <select 
@@ -166,7 +166,7 @@ const AdminDashboard: React.FC = () => {
            )}
 
            {activeTab === 'logs' && (
-             <div className="bg-slate-900 rounded-[2.5rem] p-8 h-[500px] overflow-y-auto font-mono text-xs custom-scrollbar">
+             <div className="bg-slate-900 rounded-[2.5rem] p-6 h-[500px] overflow-y-auto font-mono text-xs custom-scrollbar">
                 {logs.map(log => (
                   <div key={log.id} className="mb-2 flex gap-4">
                      <span className="text-slate-600 shrink-0">[{log.timestamp}]</span>

@@ -37,10 +37,10 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
       }`}></div>
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center">
           
           <div className="lg:col-span-7 xl:col-span-8 text-left">
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap gap-2 mb-5">
                {niches.map((n, i) => {
                  const Icon = n.icon;
                  return (
@@ -60,7 +60,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
                })}
             </div>
             
-            <h1 className="text-5xl md:text-5xl xl:text-[6.5rem] font-black tracking-tighter text-slate-900 mb-8 leading-[0.9] transition-all duration-700">
+            <h1 className="text-4xl md:text-4xl xl:text-[6.5rem] font-black tracking-tighter text-slate-900 mb-5 leading-[0.9] transition-all duration-700">
               {niches[activeNiche].title.split(' ').map((word, i) => (
                 <span key={i} className="inline-block mr-3">
                   {['берет', 'продажи', 'смыслы', 'решений'].includes(word.toLowerCase())
@@ -70,14 +70,14 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
               ))}
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-500 mb-6 leading-relaxed max-w-2xl font-medium">
+            <p className="text-base md:text-lg text-slate-500 mb-4 leading-relaxed max-w-2xl font-medium">
               {niches[activeNiche].desc}
             </p>
             
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 mb-8">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 mb-5">
               <button
                 onClick={() => setView('pricing')}
-                className="group relative px-10 py-5 bg-indigo-600 text-white rounded-[1.8rem] font-black text-lg hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-indigo-100 overflow-hidden"
+                className="group relative px-10 py-5 bg-indigo-600 text-white rounded-[1.8rem] font-black text-base hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-indigo-100 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <span className="relative z-10">Начать проект</span>
@@ -86,7 +86,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
 
               <button
                 onClick={() => setView('seo-audit')}
-                className="group relative px-10 py-5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-[1.8rem] font-black text-lg hover:shadow-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-purple-100 overflow-hidden"
+                className="group relative px-10 py-5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-[1.8rem] font-black text-base hover:shadow-2xl transition-all flex items-center justify-center gap-3 shadow-xl shadow-purple-100 overflow-hidden"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 <Zap className="w-5 h-5 stroke-[3] relative z-10" />
@@ -123,7 +123,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
           </div>
 
           <div className="lg:col-span-5 xl:col-span-4 relative">
-             <div className="relative animate-fade-in py-10">
+             <div className="relative animate-fade-in py-8">
                 {/* Виджеты статистики */}
                 <div className="absolute top-0 -left-6 z-20 bg-white p-5 rounded-[1.8rem] shadow-2xl border border-slate-50 animate-bounce-slow">
                    <div className="flex items-center gap-3">
@@ -132,7 +132,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
                       </div>
                       <div>
                          <div className="text-[8px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">Индекс роста</div>
-                         <div className="text-lg font-black text-slate-900">+142%</div>
+                         <div className="text-base font-black text-slate-900">+142%</div>
                       </div>
                    </div>
                 </div>
@@ -144,7 +144,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
                       </div>
                       <div>
                          <div className="text-[8px] font-black text-indigo-300 uppercase tracking-widest leading-none mb-1">Качество</div>
-                         <div className="text-lg font-black text-white">9.8/10</div>
+                         <div className="text-base font-black text-white">9.8/10</div>
                       </div>
                    </div>
                 </div>

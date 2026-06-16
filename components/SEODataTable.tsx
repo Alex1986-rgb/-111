@@ -18,7 +18,7 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
              <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(#4F46E5 0.5px, transparent 0.5px)', backgroundSize: '15px 15px' }}></div>
              
              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-8">
+                <div className="flex items-center justify-between mb-5">
                    <div className="flex items-center gap-3">
                       <div className="w-9 h-9 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30">
                          <Activity className="w-4.5 h-4.5 text-white" />
@@ -61,7 +61,7 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
                    ))}
                 </div>
 
-                <div className="mt-8 pt-6 border-t border-white/5 flex items-center justify-between">
+                <div className="mt-5 pt-6 border-t border-white/5 flex items-center justify-between">
                    <div className="flex -space-x-1.5">
                       {[1, 2, 3].map(i => (
                         <div key={i} className="w-5 h-5 rounded-full border border-slate-900 bg-slate-800 overflow-hidden">
@@ -83,8 +83,8 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
   if (type === 'roadmap') {
     return (
       <div className="my-6">
-        <div className="flex items-center justify-between mb-8">
-           <h3 className="text-xl font-black text-slate-900 tracking-tight">{title}</h3>
+        <div className="flex items-center justify-between mb-5">
+           <h3 className="text-lg font-black text-slate-900 tracking-tight">{title}</h3>
            <div className="flex items-center gap-2 text-[10px] font-black text-indigo-600 uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">
               <Zap className="w-3 h-3 fill-current" /> Быстрая доставка
            </div>
@@ -106,9 +106,9 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
   }
 
   return (
-    <div className="my-6 bg-slate-900 p-8 rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
+    <div className="my-6 bg-slate-900 p-6 rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/10 blur-[80px]"></div>
-      <h3 className="text-xl font-black mb-8 flex items-center gap-3">
+      <h3 className="text-lg font-black mb-5 flex items-center gap-3">
         <BarChart3 className="w-5 h-5 text-indigo-400" /> {title}
       </h3>
       <div className="space-y-3">
@@ -118,7 +118,7 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
                <div className="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-0.5">{item.category}</div>
                <div className="text-base font-black">{item.label}</div>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4">
                <div className="text-right">
                   <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Профит</div>
                   <div className="text-emerald-400 font-black">{item.profit}</div>

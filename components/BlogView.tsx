@@ -42,18 +42,18 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
   }, [searchQuery, selectedCategory, selectedTags]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:py-10">
-      <div className="text-center mb-6 md:mb-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 md:py-8">
+      <div className="text-center mb-4 md:mb-5">
         <div className="inline-block px-4 py-1 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 border border-indigo-100">База знаний TEXTFLOW</div>
-        <h1 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 tracking-tighter text-slate-900 leading-[1] md:leading-[0.9]">
+        <h1 className="text-3xl md:text-6xl font-black mb-4 md:mb-5 tracking-tighter text-slate-900 leading-[1] md:leading-[0.9]">
           Экспертный <br />
           <span className="gradient-text">Блог</span>
         </h1>
-        <p className="text-slate-500 max-w-2xl mx-auto text-lg md:text-xl font-medium px-4">Аналитика, тренды и практические советы по контенту для вашего бизнеса.</p>
+        <p className="text-slate-500 max-w-2xl mx-auto text-base md:text-lg font-medium px-4">Аналитика, тренды и практические советы по контенту для вашего бизнеса.</p>
       </div>
 
-      <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-8 shadow-xl border border-slate-100 mb-6 md:mb-8 animate-in fade-in slide-in-from-top-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6 items-start">
+      <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-6 shadow-xl border border-slate-100 mb-4 md:mb-5 animate-in fade-in slide-in-from-top-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-4 items-start">
           <div className="lg:col-span-4 space-y-3 md:space-y-4">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2 md:ml-4">Поиск по статьям</label>
             <div className="relative">
@@ -116,14 +116,14 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
       </div>
 
       {filteredArticles.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-4">
           {filteredArticles.map((article) => (
             <article
               key={article.id}
               className="group apple-card overflow-hidden cursor-pointer flex flex-col h-full"
               onClick={() => onArticleClick(article)}
             >
-              <div className="relative overflow-hidden h-56 md:h-72">
+              <div className="relative overflow-hidden h-44 md:h-52">
                 <img
                   src={article.image + '&w=800'}
                   alt={article.imageAlt}
@@ -138,7 +138,7 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
                 </div>
               </div>
               <div className="p-6 md:p-6 flex flex-col flex-1">
-                <div className="flex items-center gap-4 md:gap-6 text-[var(--color-apple-grey)] text-xs md:text-sm font-medium tracking-tight mb-4 md:mb-6">
+                <div className="flex items-center gap-4 md:gap-4 text-[var(--color-apple-grey)] text-xs md:text-sm font-medium tracking-tight mb-4 md:mb-4">
                   <div className="flex items-center gap-1.5 md:gap-2">
                     <Calendar className="w-3.5 md:w-4 h-3.5 md:h-4" />
                     <span>{article.date}</span>
@@ -148,14 +148,14 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
                     <span>{article.readingTime} мин</span>
                   </div>
                 </div>
-                <h2 className="text-xl md:text-3xl font-semibold text-[var(--color-apple-ink)] mb-3 md:mb-4 group-hover:text-[var(--color-apple-blue)] transition-colors leading-tight tracking-tight">
+                <h2 className="text-lg md:text-3xl font-semibold text-[var(--color-apple-ink)] mb-3 md:mb-4 group-hover:text-[var(--color-apple-blue)] transition-colors leading-tight tracking-tight">
                   {article.title}
                 </h2>
-                <p className="text-[var(--color-apple-grey)] text-sm md:text-base mb-6 md:mb-8 line-clamp-3 leading-relaxed font-normal">
+                <p className="text-[var(--color-apple-grey)] text-sm md:text-base mb-4 md:mb-5 line-clamp-3 leading-relaxed font-normal">
                   {article.excerpt}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
+                <div className="flex flex-wrap gap-2 mb-4 md:mb-5">
                   {article.tags.map(tag => (
                     <span key={tag} className="text-[11px] md:text-xs font-medium text-slate-400 tracking-tight">#{tag}</span>
                   ))}
@@ -183,15 +183,15 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
           ))}
         </div>
       ) : (
-        <div className="text-center py-12 md:py-40 bg-white rounded-[2rem] md:rounded-[4rem] border border-dashed border-slate-200 mx-4">
-           <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center mx-auto mb-6">
+        <div className="text-center py-9 md:py-40 bg-white rounded-[2rem] md:rounded-[4rem] border border-dashed border-slate-200 mx-4">
+           <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center mx-auto mb-4">
               <Search className="w-8 md:w-10 h-8 md:h-10" />
            </div>
-           <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2">Статьи не найдены</h3>
+           <h3 className="text-lg md:text-2xl font-black text-slate-900 mb-2">Статьи не найдены</h3>
            <p className="text-slate-500 text-sm md:text-base px-6">Попробуйте изменить параметры фильтрации или поисковый запрос.</p>
            <button 
              onClick={() => { setSelectedCategory('Все'); setSelectedTags([]); setSearchQuery(''); }}
-             className="mt-8 text-indigo-600 font-black uppercase text-xs tracking-[0.2em] hover:opacity-70"
+             className="mt-5 text-indigo-600 font-black uppercase text-xs tracking-[0.2em] hover:opacity-70"
            >
              Сбросить все фильтры
            </button>

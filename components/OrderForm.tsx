@@ -67,9 +67,9 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 md:py-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
+    <div className="max-w-6xl mx-auto px-4 py-8 md:py-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
       {/* Header & Back button */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4">
         <button onClick={onCancel} className="flex items-center gap-2 text-slate-400 hover:text-indigo-600 transition-all font-black uppercase text-[10px] tracking-[0.2em] group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1" /> Отмена заказа
         </button>
@@ -80,22 +80,22 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Form Body */}
         <div className="lg:col-span-8 bg-white rounded-[3rem] shadow-2xl shadow-indigo-100/50 border border-slate-100 overflow-hidden">
-          <div className="p-8 md:p-8">
-            <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter leading-none">
+          <div className="p-6 md:p-6">
+            <h1 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tighter leading-none">
               {pendingOrder.isBulk ? 'Массовый заказ' : step === 1 ? 'Контактные данные' : 'Детали проекта'}
             </h1>
-            <p className="text-slate-500 font-medium mb-6">
+            <p className="text-slate-500 font-medium mb-4">
               {pendingOrder.isBulk 
                 ? 'Подтвердите почту для получения готовых таблиц.' 
                 : step === 1 ? 'Начнем с малого. Как нам с вами связаться?' : 'Опишите характер будущего текста для идеального попадания в цель.'}
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-4">
               {step === 1 || pendingOrder.isBulk ? (
-                <div className="space-y-8">
+                <div className="space-y-5">
                   <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-4">Рабочий Email</label>
                     <div className="relative group">
@@ -106,12 +106,12 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="example@company.ru"
-                        className="w-full bg-slate-50 border-2 border-slate-50 rounded-[1.5rem] py-5 pl-16 pr-8 text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-lg"
+                        className="w-full bg-slate-50 border-2 border-slate-50 rounded-[1.5rem] py-5 pl-16 pr-8 text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-base"
                       />
                     </div>
                   </div>
                   
-                  <div className="p-8 bg-indigo-50 rounded-[2rem] border border-indigo-100 flex items-start gap-6">
+                  <div className="p-6 bg-indigo-50 rounded-[2rem] border border-indigo-100 flex items-start gap-4">
                     <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-indigo-600 shadow-sm shrink-0">
                       <ShieldCheck className="w-6 h-6" />
                     </div>
@@ -122,8 +122,8 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                   </div>
                 </div>
               ) : (
-                <div className="space-y-6 animate-in slide-in-from-right-8 duration-500">
-                  <div className="space-y-6">
+                <div className="space-y-4 animate-in slide-in-from-right-8 duration-500">
+                  <div className="space-y-4">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-4">Стиль подачи (Tone of Voice)</label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {tones.map((t) => {
@@ -212,7 +212,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                 <button 
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 bg-indigo-600 text-white py-5 rounded-[1.5rem] font-black text-lg flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 active:scale-[0.98] disabled:bg-slate-300 group"
+                  className="flex-1 bg-indigo-600 text-white py-5 rounded-[1.5rem] font-black text-base flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 active:scale-[0.98] disabled:bg-slate-300 group"
                 >
                   {isSubmitting ? (
                     <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
@@ -229,15 +229,15 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
         </div>
 
         {/* Floating Order Summary (Live Check) */}
-        <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
+        <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
           <div className="bg-slate-900 rounded-[3rem] p-6 text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-600/20 blur-3xl -translate-y-12 translate-x-12"></div>
             
-            <h3 className="text-xl font-black mb-8 flex items-center gap-3">
+            <h3 className="text-lg font-black mb-5 flex items-center gap-3">
                <Zap className="w-5 h-5 text-indigo-400 fill-current" /> Чек заказа
             </h3>
             
-            <div className="space-y-6 mb-6">
+            <div className="space-y-4 mb-4">
               <div className="flex justify-between items-center py-1 border-b border-white/5">
                 <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Услуга</span>
                 <span className="font-bold text-sm">{service?.name}</span>
@@ -260,12 +260,12 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
               )}
             </div>
 
-            <div className="bg-white/5 p-8 rounded-[2rem] border border-white/10 text-center mb-8">
+            <div className="bg-white/5 p-6 rounded-[2rem] border border-white/10 text-center mb-5">
                <div className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em] mb-2">Итоговая сумма</div>
-               <div className="text-5xl font-black tracking-tight">{pendingOrder.price.toLocaleString()} <span className="text-lg text-slate-500">₽</span></div>
+               <div className="text-4xl font-black tracking-tight">{pendingOrder.price.toLocaleString()} <span className="text-base text-slate-500">₽</span></div>
             </div>
 
-            <div className="space-y-4 mb-8">
+            <div className="space-y-4 mb-5">
                <div className="flex items-center gap-3 text-[9px] font-black uppercase tracking-widest text-slate-400">
                   <CheckCircle2 className="w-4 h-4 text-emerald-500" /> Уникальность по Text.ru 100%
                </div>
@@ -284,7 +284,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
             </a>
           </div>
 
-          <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-xl flex items-center gap-5">
+          <div className="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-xl flex items-center gap-5">
              <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center shrink-0">
                 <MessageSquare className="w-6 h-6" />
              </div>

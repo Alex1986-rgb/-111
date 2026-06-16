@@ -86,7 +86,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
     },
     {
       name: 'WhatsApp',
-      icon: <div className="font-bold text-lg">W</div>,
+      icon: <div className="font-bold text-base">W</div>,
       url: `https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + window.location.href)}`,
       color: 'bg-[#25D366]'
     },
@@ -172,20 +172,20 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
       // Семантическая обработка заголовков
       if (line.startsWith('### ')) {
         elements.push(
-          <h3 key={i} className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mt-6 sm:mt-6 mb-6 tracking-tight flex items-center gap-3 animate-in fade-in slide-in-from-left duration-500">
+          <h3 key={i} className="text-lg sm:text-2xl md:text-3xl font-extrabold text-slate-900 mt-6 sm:mt-6 mb-4 tracking-tight flex items-center gap-3 animate-in fade-in slide-in-from-left duration-500">
             <span className="w-1.5 h-6 sm:h-8 bg-indigo-600 rounded-full shrink-0"></span>
             {line.replace('### ', '')}
           </h3>
         );
       } else if (line.startsWith('## ')) {
         elements.push(
-          <h2 key={i} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mt-6 sm:mt-12 mb-8 sm:mb-6 tracking-tighter leading-tight bg-slate-50/50 p-5 sm:p-8 md:p-6 rounded-2xl sm:rounded-3xl border-l-[8px] sm:border-l-[10px] border-indigo-600 shadow-sm animate-in fade-in slide-in-from-left duration-700">
+          <h2 key={i} className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-black text-slate-900 mt-6 sm:mt-12 mb-5 sm:mb-4 tracking-tighter leading-tight bg-slate-50/50 p-5 sm:p-6 md:p-6 rounded-2xl sm:rounded-3xl border-l-[8px] sm:border-l-[10px] border-indigo-600 shadow-sm animate-in fade-in slide-in-from-left duration-700">
             {line.replace('## ', '')}
           </h2>
         );
       } else if (line.startsWith('> ')) {
         elements.push(
-          <blockquote key={i} className="my-8 sm:my-10 p-6 sm:p-8 bg-indigo-50 border-l-8 border-indigo-600 rounded-r-2xl sm:rounded-r-[2.5rem] italic text-indigo-900 font-bold text-base sm:text-lg shadow-inner">
+          <blockquote key={i} className="my-8 sm:my-10 p-6 sm:p-6 bg-indigo-50 border-l-8 border-indigo-600 rounded-r-2xl sm:rounded-r-[2.5rem] italic text-indigo-900 font-bold text-base sm:text-base shadow-inner">
             {parseInlineMarkdown(line.replace('> ', ''))}
           </blockquote>
         );
@@ -199,7 +199,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
       } else if (/^\d+\.\s/.test(line)) {
         // Нумерованные списки
         elements.push(
-          <div key={i} className="flex gap-4 mb-6 items-start">
+          <div key={i} className="flex gap-4 mb-4 items-start">
             <span className="flex-shrink-0 w-8 h-8 bg-indigo-600 text-white rounded-lg flex items-center justify-center font-black text-sm shadow-lg shadow-indigo-100">
               {line.match(/^\d+/)?.[0]}
             </span>
@@ -211,7 +211,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
       } else if (line.trim() === '') {
         elements.push(<div key={i} className="h-4 sm:h-6" />);
       } else {
-        elements.push(<p key={i} className="mb-6 sm:mb-8 leading-relaxed text-slate-600 font-medium">{parseInlineMarkdown(line)}</p>);
+        elements.push(<p key={i} className="mb-4 sm:mb-5 leading-relaxed text-slate-600 font-medium">{parseInlineMarkdown(line)}</p>);
       }
       
       return elements;
@@ -232,7 +232,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
       {isShareModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center px-4">
           <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setIsShareModalOpen(false)}></div>
-          <div className="bg-white rounded-[2.5rem] w-full max-w-md p-8 sm:p-6 relative z-10 shadow-3xl animate-in zoom-in duration-300">
+          <div className="bg-white rounded-[2.5rem] w-full max-w-md p-6 sm:p-6 relative z-10 shadow-3xl animate-in zoom-in duration-300">
             <button 
               onClick={() => setIsShareModalOpen(false)}
               className="absolute top-6 right-6 w-10 h-10 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center hover:bg-slate-100 transition-colors"
@@ -241,9 +241,9 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
             </button>
             
             <h3 className="text-2xl font-black text-slate-900 mb-2">Поделиться</h3>
-            <p className="text-slate-500 text-sm font-medium mb-8">Расскажите об этой статье своим коллегам и друзьям.</p>
+            <p className="text-slate-500 text-sm font-medium mb-5">Расскажите об этой статье своим коллегам и друзьям.</p>
             
-            <div className="grid grid-cols-3 gap-4 mb-8">
+            <div className="grid grid-cols-3 gap-4 mb-5">
               {shareLinks.map(link => (
                 <a 
                   key={link.name}
@@ -283,7 +283,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Хлебные крошки */}
-        <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-8 sm:mb-6 overflow-x-auto whitespace-nowrap pb-2 no-scrollbar">
+        <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-5 sm:mb-4 overflow-x-auto whitespace-nowrap pb-2 no-scrollbar">
            <button onClick={() => onBack()} className="hover:text-indigo-600 flex items-center gap-1.5 shrink-0 transition-colors">
               <Home className="w-3.5 h-3.5" /> Главная
            </button>
@@ -293,19 +293,19 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
            <span className="text-slate-900 truncate max-w-[150px] sm:max-w-[200px]">{article.title}</span>
         </nav>
 
-        <header className="mb-6 sm:mb-6">
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 sm:mb-6">
+        <header className="mb-4 sm:mb-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-4 sm:mb-4">
             <div className="bg-indigo-600 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest shadow-xl shadow-indigo-100">
               {article.category}
             </div>
-            <div className="flex items-center gap-4 sm:gap-6 text-slate-400 font-black text-[9px] sm:text-[10px] uppercase tracking-widest">
+            <div className="flex items-center gap-4 sm:gap-4 text-slate-400 font-black text-[9px] sm:text-[10px] uppercase tracking-widest">
               <div className="flex items-center gap-2 sm:gap-2.5"><Clock className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-indigo-400" /> {article.readingTime} мин</div>
               <div className="flex items-center gap-2 sm:gap-2.5"><Calendar className="w-3.5 sm:w-4 h-3.5 sm:h-4 text-indigo-400" /> {article.date}</div>
             </div>
           </div>
           
           {/* H1 - Главный заголовок статьи (оптимизирован для мобильных) */}
-          <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1] sm:leading-[0.9] mb-6 sm:mb-8 tracking-tighter animate-in fade-in slide-in-from-bottom-12 duration-1000">
+          <h1 className="text-3xl sm:text-4xl md:text-4xl lg:text-6xl font-black text-slate-900 leading-[1] sm:leading-[0.9] mb-4 sm:mb-5 tracking-tighter animate-in fade-in slide-in-from-bottom-12 duration-1000">
             {article.title}
           </h1>
 
@@ -315,21 +315,21 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
               alt={article.imageAlt} 
               className="w-full h-[250px] sm:h-[400px] md:h-[600px] lg:h-[750px] object-cover transition-transform duration-[15s] group-hover:scale-105" 
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-8">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-6">
                <div className="text-white/60 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] mb-2 sm:mb-4">Original Expert Content</div>
                <div className="h-1 sm:h-1.5 w-16 sm:w-24 bg-indigo-500 rounded-full"></div>
             </div>
           </div>
         </header>
 
-        <div className="flex flex-col lg:flex-row gap-8 sm:gap-20 relative">
+        <div className="flex flex-col lg:flex-row gap-5 sm:gap-20 relative">
           <div className="lg:w-8/12">
             <div className="max-w-none transition-all duration-500" style={{ fontSize: `${fontSize}px` }}>
               {renderContent(article.content)}
             </div>
 
             {/* Секция автора внизу статьи */}
-            <div className="mt-6 p-8 sm:p-8 bg-slate-50 rounded-[3rem] border border-slate-100 flex flex-col sm:flex-row items-center gap-5">
+            <div className="mt-6 p-6 sm:p-6 bg-slate-50 rounded-[3rem] border border-slate-100 flex flex-col sm:flex-row items-center gap-5">
                <img 
                   src={article.author.avatar} 
                   alt={article.author.name} 
@@ -345,11 +345,11 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
           </div>
 
           <div className="lg:w-4/12">
-            <div className="sticky top-32 space-y-8 sm:space-y-6">
+            <div className="sticky top-32 space-y-5 sm:space-y-4">
               {/* Параметры чтения */}
               <section className="bg-white p-6 sm:p-6 rounded-[2rem] sm:rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-100/50">
-                <h4 className="font-black text-[10px] uppercase tracking-[0.3em] text-slate-400 mb-6 sm:mb-8 border-b border-slate-50 pb-4">Параметры чтения</h4>
-                <div className="flex items-center justify-between p-4 sm:p-5 bg-slate-50 rounded-[1.2rem] sm:rounded-[1.5rem] border border-slate-100 mb-6">
+                <h4 className="font-black text-[10px] uppercase tracking-[0.3em] text-slate-400 mb-4 sm:mb-5 border-b border-slate-50 pb-4">Параметры чтения</h4>
+                <div className="flex items-center justify-between p-4 sm:p-5 bg-slate-50 rounded-[1.2rem] sm:rounded-[1.5rem] border border-slate-100 mb-4">
                   <span className="text-[10px] font-black uppercase text-slate-900 tracking-widest">Шрифт</span>
                   <div className="flex items-center gap-3 sm:gap-4">
                     <button onClick={() => changeFontSize(-2)} className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white shadow-sm flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all active:scale-90 border border-slate-100 text-xs sm:text-base"><Minus className="w-3.5 sm:w-4 h-3.5 sm:h-4" /></button>
@@ -371,16 +371,16 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
               </section>
 
               {/* Рекламный блок */}
-              <section className="bg-slate-900 p-8 sm:p-8 rounded-[2.5rem] sm:rounded-[3.5rem] text-white shadow-3xl relative overflow-hidden group">
+              <section className="bg-slate-900 p-6 sm:p-6 rounded-[2.5rem] sm:rounded-[3.5rem] text-white shadow-3xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-indigo-500/20 rounded-full blur-[50px] sm:blur-[60px] -translate-y-12 translate-x-12 group-hover:bg-indigo-500/40 transition-colors"></div>
-                <h4 className="text-xl sm:text-2xl md:text-3xl font-black mb-4 sm:mb-6 leading-tight relative z-10">Статья была <br /><span className="text-indigo-400">полезна?</span></h4>
-                <p className="text-xs sm:text-sm text-slate-400 mb-8 sm:mb-6 leading-relaxed font-medium relative z-10">Закажите экспертный контент у авторов этого материала. Сделаем глубокий аудит вашего сайта бесплатно.</p>
+                <h4 className="text-lg sm:text-2xl md:text-3xl font-black mb-4 sm:mb-4 leading-tight relative z-10">Статья была <br /><span className="text-indigo-400">полезна?</span></h4>
+                <p className="text-xs sm:text-sm text-slate-400 mb-5 sm:mb-4 leading-relaxed font-medium relative z-10">Закажите экспертный контент у авторов этого материала. Сделаем глубокий аудит вашего сайта бесплатно.</p>
                 <button className="w-full py-5 sm:py-6 bg-indigo-600 text-white rounded-[1.2rem] sm:rounded-[1.5rem] font-black text-[10px] sm:text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-700 hover:scale-[1.02] transition-all shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 active:scale-95">
                   Обсудить проект <ArrowRight className="w-4 h-4" />
                 </button>
               </section>
 
-              <div className="p-6 sm:p-8 border-2 border-dashed border-slate-100 rounded-[2rem] sm:rounded-[3rem] text-center">
+              <div className="p-6 sm:p-6 border-2 border-dashed border-slate-100 rounded-[2rem] sm:rounded-[3rem] text-center">
                  <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-indigo-100 mx-auto mb-3 sm:mb-4" />
                  <p className="text-[8px] sm:text-[10px] font-black text-slate-300 uppercase tracking-widest">TextFlow Editorial System v2.5</p>
               </div>
@@ -391,10 +391,10 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
         {/* Секция похожих статей */}
         {relatedArticles.length > 0 && (
           <section className="mt-32 pt-20 border-t border-slate-100">
-            <div className="flex items-end justify-between mb-6">
+            <div className="flex items-end justify-between mb-4">
                <div>
                   <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-4">Читайте далее</div>
-                  <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter">Похожие <span className="text-indigo-600">материалы</span></h2>
+                  <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tighter">Похожие <span className="text-indigo-600">материалы</span></h2>
                </div>
                <button onClick={() => onBack()} className="hidden sm:flex items-center gap-2 text-[10px] font-black uppercase text-slate-400 hover:text-indigo-600 transition-colors">
                   Все статьи <ArrowRight className="w-4 h-4" />
@@ -408,13 +408,13 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
                   onClick={() => { onNavigateToArticle(rel); window.scrollTo(0, 0); }}
                   className="group cursor-pointer"
                  >
-                    <div className="relative overflow-hidden rounded-[2rem] h-48 mb-6">
+                    <div className="relative overflow-hidden rounded-[2rem] h-48 mb-4">
                        <img src={rel.image + '&w=600'} alt={rel.imageAlt} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                        <div className="absolute top-4 left-4">
                           <span className="bg-white/90 backdrop-blur-sm text-indigo-600 text-[8px] font-black px-3 py-1 rounded-full uppercase tracking-widest">{rel.category}</span>
                        </div>
                     </div>
-                    <h4 className="text-xl font-black text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-tight">{rel.title}</h4>
+                    <h4 className="text-lg font-black text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-tight">{rel.title}</h4>
                     <p className="text-slate-500 text-sm font-medium line-clamp-2 mb-4">{rel.excerpt}</p>
                     <div className="flex items-center gap-2 text-[9px] font-black text-slate-300 uppercase tracking-widest">
                        <Clock className="w-3 h-3" /> {rel.readingTime} мин

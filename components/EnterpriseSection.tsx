@@ -8,7 +8,7 @@ interface EnterpriseSectionProps {
 
 const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onNavigate }) => {
   return (
-    <section className="py-12 bg-slate-50 relative overflow-hidden">
+    <section className="py-9 bg-slate-50 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-indigo-500/5 rounded-full blur-[120px]"></div>
@@ -17,18 +17,18 @@ const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onNavigate }) => 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="animate-in fade-in slide-in-from-left duration-700">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-600 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-600 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-4">
               <Layers className="w-3.5 h-3.5" /> Enterprise Solutions
             </div>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter leading-[0.95] mb-8">
+            <h2 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tighter leading-[0.95] mb-5">
               Массовое создание <br />
               <span className="text-indigo-600">SEO-контента</span>
             </h2>
-            <p className="text-lg text-slate-500 font-medium leading-relaxed mb-6 max-w-xl">
+            <p className="text-base text-slate-500 font-medium leading-relaxed mb-4 max-w-xl">
               Наполняем сайты на 10 000+ страниц за считанные дни. Наша команда создает не просто текст, а полный пакет данных: Meta-теги, FAQ с разметкой и уникальные статьи, готовые к импорту.
             </p>
 
-            <div className="space-y-4 mb-6">
+            <div className="space-y-4 mb-4">
               {[
                 "Создание Meta Title & Description для каждой страницы",
                 "Разработка блоков FAQ с разметкой Schema.org",
@@ -52,8 +52,8 @@ const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onNavigate }) => 
           </div>
 
           <div className="relative animate-in fade-in slide-in-from-right duration-700 delay-200">
-            <div className="bg-white p-8 rounded-[3rem] shadow-2xl border border-slate-100 relative overflow-hidden">
-              <div className="flex items-center justify-between mb-8">
+            <div className="bg-white p-6 rounded-[3rem] shadow-2xl border border-slate-100 relative overflow-hidden">
+              <div className="flex items-center justify-between mb-5">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center">
                     <FileJson className="w-5 h-5" />
@@ -106,7 +106,7 @@ const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onNavigate }) => 
               </div>
 
               {/* Floating Badge */}
-              <div className="absolute -bottom-4 -right-4 bg-indigo-600 text-white p-8 rounded-full shadow-2xl rotate-12 flex flex-col items-center justify-center">
+              <div className="absolute -bottom-4 -right-4 bg-indigo-600 text-white p-6 rounded-full shadow-2xl rotate-12 flex flex-col items-center justify-center">
                 <Zap className="w-6 h-6 mb-1 fill-current" />
                 <span className="text-[10px] font-black uppercase tracking-widest">Fast Import</span>
               </div>

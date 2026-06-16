@@ -15,17 +15,17 @@ const MotivationalQuote: React.FC<{ index?: number }> = ({ index = 0 }) => {
   return (
     <div className="my-10 relative group">
       <div className="absolute -inset-4 bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-[3.5rem] blur-2xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
-      <div className="relative bg-white border border-slate-100 p-8 md:p-16 rounded-[3.5rem] shadow-2xl overflow-hidden">
-        <div className="absolute top-0 right-0 p-8 opacity-5">
+      <div className="relative bg-white border border-slate-100 p-6 md:p-16 rounded-[3.5rem] shadow-2xl overflow-hidden">
+        <div className="absolute top-0 right-0 p-6 opacity-5">
           <Quote className="w-48 h-48 rotate-12" />
         </div>
         
         <div className="flex flex-col items-center text-center">
-          <div className="w-16 h-16 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-indigo-100 group-hover:scale-110 transition-transform duration-500">
+          <div className="w-16 h-16 bg-indigo-600 text-white rounded-2xl flex items-center justify-center mb-4 shadow-xl shadow-indigo-100 group-hover:scale-110 transition-transform duration-500">
             <Icon className="w-8 h-8 stroke-[2.5]" />
           </div>
           
-          <blockquote className="text-2xl md:text-4xl font-black text-slate-900 leading-tight tracking-tighter mb-8 max-w-3xl">
+          <blockquote className="text-2xl md:text-3xl font-black text-slate-900 leading-tight tracking-tighter mb-5 max-w-3xl">
             «{quote.text}»
           </blockquote>
           

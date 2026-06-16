@@ -46,7 +46,7 @@ const Header: React.FC<HeaderProps> = ({ setView, currentView }) => {
               <Crown className="text-white w-6 h-6 stroke-[2.5]" />
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-black tracking-tighter text-slate-900 leading-none">Text<span className="text-indigo-600">Flow</span></span>
+              <span className="text-lg font-black tracking-tighter text-slate-900 leading-none">Text<span className="text-indigo-600">Flow</span></span>
               <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest mt-1">Copy Agency</span>
             </div>
           </div>
