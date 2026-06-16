@@ -46,38 +46,38 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
       <section id="pricing-calc" className="py-9 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-8 my-6 overflow-hidden relative shadow-2xl">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/10 blur-[150px] -z-0"></div>
         
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-start relative z-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-10 items-start relative z-10">
           <div>
-            <div className="inline-block px-4 py-1.5 bg-indigo-500/20 text-indigo-400 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 border border-indigo-500/30">
+            <div className="inline-block px-4 py-1.5 bg-indigo-500/20 text-indigo-400 rounded-full text-[10px] font-black uppercase tracking-widest mb-3 border border-indigo-500/30">
                Smart Pricing Engine
             </div>
             <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tighter">
               Рассчитайте выгоду <br />вашего контента
             </h2>
-            
-            <div className="space-y-4 mt-6">
+
+            <div className="space-y-4 mt-4">
               <div>
-                <label className="block text-[10px] font-black text-slate-500 mb-4 uppercase tracking-[0.2em]">Тип контента</label>
-                <div className="grid grid-cols-2 gap-3">
+                <label className="block text-[10px] font-black text-slate-500 mb-2.5 uppercase tracking-[0.2em]">Тип контента</label>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {services.map((s) => (
                     <button
                       key={s.id}
                       onClick={() => setSelectedServiceId(s.id)}
-                      className={`p-5 rounded-3xl border text-left transition-all duration-300 ${
+                      className={`p-3 rounded-2xl border text-left transition-all duration-300 ${
                         selectedServiceId === s.id
                           ? 'border-[var(--color-apple-blue)] bg-[var(--color-apple-blue)]/10 text-white shadow-[0_0_40px_rgba(0,113,227,0.18)]'
                           : 'border-white/10 hover:border-white/25 text-slate-400'
                       }`}
                     >
-                      <div className="text-sm font-semibold tracking-tight mb-1">{s.name}</div>
-                      <div className="text-xs font-normal opacity-60">{s.pricePer1k} ₽ / 1к зн.</div>
+                      <div className="text-[13px] font-semibold tracking-tight leading-snug mb-0.5">{s.name}</div>
+                      <div className="text-[11px] font-normal opacity-60">{s.pricePer1k} ₽ / 1к зн.</div>
                     </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between items-end mb-4">
+                <div className="flex justify-between items-end mb-3">
                   <div>
                      <label className="text-[10px] font-black text-slate-500 uppercase tracking-[0.2em]">Объем текста</label>
                      <div className="text-3xl font-black text-indigo-400 mt-1">{symbols.toLocaleString()} <span className="text-base text-slate-500">зн.</span></div>
@@ -99,7 +99,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
                 />
               </div>
 
-              <div className="bg-white/5 p-4 rounded-[2.5rem]">
+              <div className="bg-white/5 p-3 rounded-3xl">
                  <SEODataTable 
                    type="specs"
                    title="Что входит в стоимость"

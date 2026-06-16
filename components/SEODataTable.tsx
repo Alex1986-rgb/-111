@@ -106,24 +106,24 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
   }
 
   return (
-    <div className="my-6 bg-slate-900 p-6 rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
+    <div className="bg-slate-900 p-4 rounded-3xl shadow-2xl text-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/10 blur-[80px]"></div>
-      <h3 className="text-lg font-black mb-5 flex items-center gap-3">
-        <BarChart3 className="w-5 h-5 text-indigo-400" /> {title}
+      <h3 className="text-base font-black mb-3 flex items-center gap-2.5">
+        <BarChart3 className="w-4.5 h-4.5 text-indigo-400" /> {title}
       </h3>
-      <div className="space-y-3">
+      <div className="space-y-2">
         {data.map((item, i) => (
-          <div key={i} className="flex flex-col md:flex-row md:items-center justify-between p-5 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
-            <div className="mb-3 md:mb-0">
+          <div key={i} className="flex items-center justify-between gap-3 p-3 bg-white/5 rounded-xl border border-white/5 hover:bg-white/10 transition-colors">
+            <div>
                <div className="text-[9px] font-black text-indigo-400 uppercase tracking-widest mb-0.5">{item.category}</div>
-               <div className="text-base font-black">{item.label}</div>
+               <div className="text-sm font-black leading-tight">{item.label}</div>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 shrink-0">
                <div className="text-right">
                   <div className="text-[8px] font-black text-slate-500 uppercase tracking-widest">Профит</div>
-                  <div className="text-emerald-400 font-black">{item.profit}</div>
+                  <div className="text-emerald-400 font-black text-sm">{item.profit}</div>
                </div>
-               <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center">
+               <div className="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
                   <TrendingUp className="w-4 h-4 text-indigo-400" />
                </div>
             </div>
