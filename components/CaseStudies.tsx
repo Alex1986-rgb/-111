@@ -63,12 +63,12 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
 
   return (
     <>
-      <section className="py-16 bg-slate-50 relative overflow-hidden font-inter">
+      <section className="py-10 bg-slate-50 relative overflow-hidden font-inter">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-100/30 rounded-full blur-[100px] -z-0 translate-x-1/2 -translate-y-1/2"></div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {showTitle && (
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 gap-6">
               <div className="max-w-xl">
                 <div className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-white border border-slate-200 text-indigo-600 rounded-full text-[9px] font-black uppercase tracking-widest mb-4">
                    <Trophy className="w-3 h-3" /> Кейс-стади
@@ -142,7 +142,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                       </button>
                     </div>
 
-                    <div className="lg:w-7/12 p-8 md:p-12 lg:p-16 flex flex-col justify-center bg-white">
+                    <div className="lg:w-7/12 p-8 md:p-8 lg:p-16 flex flex-col justify-center bg-white">
                       <div className={`transition-all duration-500 delay-200 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
                         <div className="flex items-center gap-3 text-indigo-600 font-black text-[9px] uppercase tracking-[0.3em] mb-4">
                            <span className="w-8 h-0.5 bg-indigo-600 rounded-full"></span>
@@ -165,7 +165,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                          </button>
                       </div>
 
-                      <div className={`pt-8 border-t border-slate-50 flex items-center gap-6 transition-all duration-500 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+                      <div className={`pt-5 border-t border-slate-50 flex items-center gap-6 transition-all duration-500 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
                         <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
                           <Quote className="w-7 h-7 fill-current opacity-20" />
                         </div>
@@ -217,7 +217,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
               
               <div className="md:w-5/12 relative overflow-hidden hidden md:block">
                  <img src={selectedCase.image + '&w=1000'} className="w-full h-full object-cover" alt={selectedCase.title} loading="lazy" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-12">
+                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent flex flex-col justify-end p-8">
                     <h2 className="text-3xl font-black text-white leading-tight mb-4">{selectedCase.title}</h2>
                     <div className="inline-block px-4 py-1.5 bg-indigo-600 text-white rounded-xl text-[9px] font-black uppercase tracking-widest w-fit">
                       {selectedCase.category}
@@ -225,7 +225,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                  </div>
               </div>
               
-              <div className="md:w-7/12 p-10 overflow-y-auto bg-slate-50 custom-scrollbar">
+              <div className="md:w-7/12 p-6 overflow-y-auto bg-slate-50 custom-scrollbar">
                  <div className="space-y-12">
                     <section>
                       <h4 className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-6 flex items-center gap-2">

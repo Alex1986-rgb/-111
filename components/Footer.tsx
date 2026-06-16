@@ -22,8 +22,8 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
   ];
 
   return (
-    <footer className="bg-slate-900 text-slate-400 py-20 px-4">
-      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
+    <footer className="bg-slate-900 text-slate-400 py-12 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
         <div className="col-span-2">
           <div className="flex items-center space-x-2.5 mb-8">
             <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20">
@@ -90,7 +90,7 @@ const Footer: React.FC<FooterProps> = ({ setView }) => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto mb-16 pt-8 border-t border-white/5">
+      <div className="max-w-7xl mx-auto mb-8 pt-5 border-t border-white/5">
          <div className="flex flex-wrap gap-3">
             {seoTags.map(tag => (
               <span key={tag} className="text-[10px] font-black uppercase tracking-tighter text-slate-600 hover:text-indigo-500 cursor-default transition-colors">

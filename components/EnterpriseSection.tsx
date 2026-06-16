@@ -8,7 +8,7 @@ interface EnterpriseSectionProps {
 
 const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onNavigate }) => {
   return (
-    <section className="py-24 bg-slate-50 relative overflow-hidden">
+    <section className="py-12 bg-slate-50 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-indigo-500/5 rounded-full blur-[120px]"></div>
@@ -20,15 +20,15 @@ const EnterpriseSection: React.FC<EnterpriseSectionProps> = ({ onNavigate }) => 
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-600 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
               <Layers className="w-3.5 h-3.5" /> Enterprise Solutions
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter leading-[0.95] mb-8">
+            <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter leading-[0.95] mb-8">
               Массовое создание <br />
               <span className="text-indigo-600">SEO-контента</span>
             </h2>
-            <p className="text-lg text-slate-500 font-medium leading-relaxed mb-10 max-w-xl">
+            <p className="text-lg text-slate-500 font-medium leading-relaxed mb-6 max-w-xl">
               Наполняем сайты на 10 000+ страниц за считанные дни. Наша команда создает не просто текст, а полный пакет данных: Meta-теги, FAQ с разметкой и уникальные статьи, готовые к импорту.
             </p>
 
-            <div className="space-y-4 mb-12">
+            <div className="space-y-4 mb-6">
               {[
                 "Создание Meta Title & Description для каждой страницы",
                 "Разработка блоков FAQ с разметкой Schema.org",

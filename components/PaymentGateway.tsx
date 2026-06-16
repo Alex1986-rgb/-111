@@ -22,7 +22,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ amount, orderId, onSucc
 
   if (status === 'success') {
     return (
-      <div className="flex flex-col items-center justify-center py-20 animate-in zoom-in duration-500">
+      <div className="flex flex-col items-center justify-center py-12 animate-in zoom-in duration-500">
         <div className="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-8 shadow-inner">
           <CheckCircle2 className="w-12 h-12" />
         </div>
@@ -36,7 +36,7 @@ const PaymentGateway: React.FC<PaymentGatewayProps> = ({ amount, orderId, onSucc
     <div className="max-w-md mx-auto bg-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden animate-in fade-in slide-in-from-bottom-8">
       <div className="bg-slate-900 p-8 text-white relative">
         <div className="absolute top-0 right-0 p-4 opacity-10"><Landmark className="w-24 h-24" /></div>
-        <div className="flex justify-between items-center mb-10 relative z-10">
+        <div className="flex justify-between items-center mb-6 relative z-10">
           <div className="text-[10px] font-black uppercase tracking-widest text-slate-400">Order Pay ID: {orderId}</div>
           <Lock className="w-4 h-4 text-emerald-500" />
         </div>

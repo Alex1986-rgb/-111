@@ -28,14 +28,14 @@ const TextAuditTool: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-indigo-600 rounded-[4rem] mx-4 md:mx-8 my-20 relative overflow-hidden shadow-3xl">
+    <section className="py-12 bg-indigo-600 rounded-[4rem] mx-4 md:mx-8 my-10 relative overflow-hidden shadow-3xl">
       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
       <div className="max-w-5xl mx-auto px-6 relative z-10">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/10 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-6 border border-white/20 backdrop-blur-md">
             <Sparkles className="w-3 h-3 fill-current" /> Аналитическая лаборатория
           </div>
-          <h2 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">Текст под микроскопом экспертов</h2>
+          <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tighter">Текст под микроскопом экспертов</h2>
           <p className="text-indigo-100 text-lg font-medium opacity-80">Мгновенный аудит по стандартам Яндекса 2025.</p>
         </div>
 
@@ -66,12 +66,12 @@ const TextAuditTool: React.FC = () => {
               </div>
             </div>
           ) : (
-            <div className="p-10 animate-in zoom-in duration-500">
-              <div className="flex justify-between items-center mb-10">
+            <div className="p-6 animate-in zoom-in duration-500">
+              <div className="flex justify-between items-center mb-6">
                 <h3 className="text-2xl font-black text-slate-900">Отчет сформирован</h3>
                 <button onClick={() => setAnalysis(null)} className="text-indigo-600 font-black text-[10px] uppercase hover:underline">Новый тест</button>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 {[
                   { label: "Балл", val: analysis.score, c: "text-indigo-600" },
                   { label: "SEO", val: analysis.params.seo + "%", c: "text-slate-900" },
@@ -84,7 +84,7 @@ const TextAuditTool: React.FC = () => {
                   </div>
                 ))}
               </div>
-              <div className="bg-indigo-50 p-8 rounded-[2rem] border border-indigo-100 mb-10">
+              <div className="bg-indigo-50 p-8 rounded-[2rem] border border-indigo-100 mb-6">
                  <p className="text-indigo-900 font-bold text-lg mb-6 leading-tight">"{analysis.verdict}"</p>
                  <div className="space-y-3">
                     {analysis.tips.map((tip: string, i: number) => (

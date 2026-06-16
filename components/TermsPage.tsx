@@ -4,12 +4,12 @@ import { ScrollText, FileSignature, CreditCard, RefreshCw } from 'lucide-react';
 
 const TermsPage: React.FC = () => {
   return (
-    <div className="max-w-4xl mx-auto px-4 py-16 md:py-24">
-      <div className="text-center mb-16 animate-in fade-in slide-in-from-bottom duration-700">
+    <div className="max-w-4xl mx-auto px-4 py-10 md:py-12">
+      <div className="text-center mb-8 animate-in fade-in slide-in-from-bottom duration-700">
         <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-8 shadow-sm">
           <ScrollText className="w-10 h-10" />
         </div>
-        <h1 className="text-4xl md:text-6xl font-black mb-6 tracking-tight">Договор <span className="text-indigo-600">публичной оферты</span></h1>
+        <h1 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">Договор <span className="text-indigo-600">публичной оферты</span></h1>
         <p className="text-slate-500 text-lg font-medium">Последнее обновление: 26 февраля 2026 г.</p>
       </div>
 
@@ -71,7 +71,7 @@ const TermsPage: React.FC = () => {
           </p>
         </section>
 
-        <div className="pt-8 border-t border-slate-100">
+        <div className="pt-5 border-t border-slate-100">
           <p className="text-slate-400 text-sm font-bold text-center uppercase tracking-widest">
             TextFlow — Прозрачные условия сотрудничества
           </p>

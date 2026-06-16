@@ -83,18 +83,18 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16 animate-fade-in">
-      <nav className="mb-12">
+    <div className="max-w-7xl mx-auto px-4 py-10 animate-fade-in">
+      <nav className="mb-6">
         <button onClick={onBack} className="flex items-center gap-2 text-slate-500 hover:text-indigo-600 font-black uppercase text-xs tracking-widest group">
           <ArrowRight className="w-4 h-4 rotate-180 group-hover:-translate-x-1 transition-transform" /> Назад к услугам
         </button>
       </nav>
 
-      <header className="text-center mb-20">
+      <header className="text-center mb-6">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 border border-indigo-100">
            <Database className="w-3 h-3" /> Enterprise Content Automation
         </div>
-        <h1 className="text-4xl md:text-7xl font-black text-slate-900 mb-6 tracking-tighter leading-[1] max-w-5xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter leading-[1] max-w-5xl mx-auto">
           Масштабное создание <span className="gradient-text">SEO-контента</span> для тысяч страниц
         </h1>
         <p className="text-slate-500 max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">
@@ -119,7 +119,7 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
          ))}
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-24">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-24">
         <div className="lg:col-span-8 space-y-12">
           
           <section>
@@ -128,7 +128,7 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
                <h2 className="text-2xl font-black text-slate-900">Загрузка списка страниц</h2>
             </div>
             <div 
-              className={`relative group p-12 rounded-[3rem] border-4 border-dashed transition-all cursor-pointer text-center ${dragActive ? 'border-indigo-600 bg-indigo-50 scale-[1.01]' : 'border-slate-100 hover:border-indigo-200 bg-white shadow-sm'}`}
+              className={`relative group p-8 rounded-[3rem] border-4 border-dashed transition-all cursor-pointer text-center ${dragActive ? 'border-indigo-600 bg-indigo-50 scale-[1.01]' : 'border-slate-100 hover:border-indigo-200 bg-white shadow-sm'}`}
               onDragEnter={handleDrag}
               onDragLeave={handleDrag}
               onDragOver={handleDrag}
@@ -204,14 +204,14 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
             </div>
           </section>
 
-          <section className="prose prose-slate max-w-none bg-slate-900 text-white p-12 rounded-[3.5rem] shadow-2xl relative overflow-hidden">
+          <section className="prose prose-slate max-w-none bg-slate-900 text-white p-8 rounded-[3.5rem] shadow-2xl relative overflow-hidden">
              <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl"></div>
              <h2 className="text-3xl font-black text-white mb-6 tracking-tight">Как мы создаем десятки тысяч страниц?</h2>
              <div className="space-y-6 text-slate-300">
                 <p>
                   Наша технология Enterprise Content Engine объединяет современные инструменты оптимизации и экспертную редактуру. Мы не просто пишем тексты — мы создаем полноценную SEO-структуру для каждой страницы вашего сайта силами нашей большой команды.
                 </p>
-                <div className="grid md:grid-cols-2 gap-8 mt-10">
+                <div className="grid md:grid-cols-2 gap-5 mt-6">
                    <div className="p-6 bg-white/5 rounded-3xl border border-white/10">
                       <h4 className="font-black text-white mb-3 flex items-center gap-2">
                         <Zap className="w-5 h-5 text-indigo-400" />
@@ -228,7 +228,7 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
                    </div>
                 </div>
 
-                <div className="mt-12 pt-12 border-t border-white/10">
+                <div className="mt-6 pt-12 border-t border-white/10">
                    <h3 className="text-xl font-black text-white mb-6">Пример структуры выгрузки (JSON/CSV/HTML):</h3>
                    <div className="grid md:grid-cols-2 gap-6">
                       <div className="space-y-4">
@@ -275,10 +275,10 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
         </div>
 
         <aside className="lg:col-span-4 sticky top-28">
-          <div className="bg-white rounded-[3rem] p-10 text-slate-900 shadow-2xl border border-slate-100 relative overflow-hidden">
+          <div className="bg-white rounded-[3rem] p-6 text-slate-900 shadow-2xl border border-slate-100 relative overflow-hidden">
             <h3 className="text-2xl font-black mb-8 border-b border-slate-50 pb-6">Резюме проекта</h3>
             
-            <div className="space-y-6 mb-10">
+            <div className="space-y-6 mb-6">
               <div className="flex justify-between items-center">
                 <span className="text-slate-400 text-sm font-medium">Кол-во текстов:</span>
                 <span className="text-xl font-black">{totalItems} шт.</span>
@@ -293,9 +293,9 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
               </div>
             </div>
 
-            <div className="p-8 bg-slate-900 rounded-[2.5rem] text-center mb-10 text-white shadow-xl shadow-slate-100">
+            <div className="p-8 bg-slate-900 rounded-[2.5rem] text-center mb-6 text-white shadow-xl shadow-slate-100">
               <div className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Общая стоимость</div>
-              <div className="text-6xl font-black tracking-tight">{totalPrice.toLocaleString()} <span className="text-xl font-medium text-slate-500">₽</span></div>
+              <div className="text-5xl font-black tracking-tight">{totalPrice.toLocaleString()} <span className="text-xl font-medium text-slate-500">₽</span></div>
             </div>
 
             <button 
@@ -309,9 +309,9 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
         </aside>
       </div>
 
-      <section className="py-24 border-t border-slate-100">
+      <section className="py-12 border-t border-slate-100">
          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-black mb-12 text-center">FAQ по массовым заказам</h2>
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-center">FAQ по массовым заказам</h2>
             <div className="space-y-4">
               {bulkFaqs.map((faq, i) => (
                 <div key={i} className="bg-white border-2 border-slate-50 rounded-[2rem] overflow-hidden hover:border-indigo-100 transition-all">
@@ -326,7 +326,7 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
                     </div>
                   </button>
                   {activeFaq === i && (
-                    <div className="px-8 pb-8 text-slate-500 leading-relaxed text-sm md:text-base animate-fade-in">
+                    <div className="px-8 pb-5 text-slate-500 leading-relaxed text-sm md:text-base animate-fade-in">
                       {faq.a}
                     </div>
                   )}
@@ -336,9 +336,9 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
          </div>
       </section>
 
-      <section className="mt-12 py-12 bg-slate-50 rounded-[4rem] px-8 md:px-16">
+      <section className="mt-6 py-12 bg-slate-50 rounded-[4rem] px-8 md:px-16">
          <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-6 underline">Ключевые преимущества TextFlow Enterprise:</h3>
-         <div className="grid md:grid-cols-3 gap-8 text-[10px] text-slate-400 leading-relaxed">
+         <div className="grid md:grid-cols-3 gap-5 text-[10px] text-slate-400 leading-relaxed">
             <p><strong>Описания товаров для Wildberries:</strong> Оптимизация под внутренние алгоритмы поиска маркетплейсов для повышения конверсии карточек.</p>
             <p><strong>SEO тексты оптом:</strong> Создание контента с учетом LSI-семантики и плотности ключевых слов для быстрого выхода в ТОП Яндекса.</p>
             <p><strong>Автозаполнение блогов:</strong> Регулярное наполнение информационных разделов уникальным контентом с выгрузкой в JSON/CSV.</p>

@@ -29,8 +29,8 @@ const FAQ: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-24 max-w-4xl mx-auto px-4">
-      <div className="text-center mb-16">
+    <section className="py-12 max-w-4xl mx-auto px-4">
+      <div className="text-center mb-8">
         <h2 className="text-3xl md:text-5xl font-black mb-4">Ответы на <span className="text-indigo-600">важные вопросы</span></h2>
         <p className="text-slate-500">Все, что нужно знать перед стартом работы с лучшей редакцией страны.</p>
       </div>
@@ -51,7 +51,7 @@ const FAQ: React.FC = () => {
               </div>
             </button>
             {open === i && (
-              <div className="px-8 pb-8 text-slate-500 leading-relaxed animate-in slide-in-from-top-2 duration-300">
+              <div className="px-8 pb-5 text-slate-500 leading-relaxed animate-in slide-in-from-top-2 duration-300">
                 {faq.a}
               </div>
             )}

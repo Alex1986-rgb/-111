@@ -43,7 +43,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
 
   return (
     <>
-      <section id="pricing-calc" className="py-20 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-8 my-12 overflow-hidden relative shadow-2xl">
+      <section id="pricing-calc" className="py-12 bg-slate-900 text-white rounded-[4rem] mx-4 md:mx-8 my-6 overflow-hidden relative shadow-2xl">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-500/10 blur-[150px] -z-0"></div>
         
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-start relative z-10">
@@ -55,7 +55,7 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
               Рассчитайте выгоду <br />вашего контента
             </h2>
             
-            <div className="space-y-10 mt-12">
+            <div className="space-y-6 mt-6">
               <div>
                 <label className="block text-[10px] font-black text-slate-500 mb-4 uppercase tracking-[0.2em]">Тип контента</label>
                 <div className="grid grid-cols-2 gap-3">
@@ -113,15 +113,15 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
             </div>
           </div>
 
-          <div className="bg-white p-10 md:p-12 rounded-[4rem] text-slate-900 shadow-3xl lg:sticky lg:top-24">
-            <div className="flex justify-between items-center mb-10">
+          <div className="bg-white p-6 md:p-8 rounded-[4rem] text-slate-900 shadow-3xl lg:sticky lg:top-24">
+            <div className="flex justify-between items-center mb-6">
               <h3 className="text-2xl font-semibold tracking-tight">Ваш заказ</h3>
               <div className="w-12 h-12 apple-chip text-[var(--color-apple-blue)] flex items-center justify-center">
                  <ReceiptText className="w-6 h-6 stroke-[2]" />
               </div>
             </div>
             
-            <div className="space-y-6 mb-12">
+            <div className="space-y-6 mb-6">
               <div className="flex justify-between py-2 border-b border-slate-50">
                 <span className="text-slate-400 text-[10px] font-black uppercase tracking-widest">Тариф</span>
                 <span className="font-black text-sm">{selectedService.name}</span>
@@ -150,10 +150,10 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
               </div>
             </div>
 
-            <div className="bg-slate-900 text-white p-10 rounded-[3rem] text-center mb-10 shadow-2xl relative overflow-hidden">
+            <div className="bg-slate-900 text-white p-6 rounded-[3rem] text-center mb-6 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-500/20 blur-2xl"></div>
               <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 mb-2">Итоговая сумма</div>
-              <div className="text-7xl font-black tracking-tighter">
+              <div className="text-5xl font-black tracking-tighter">
                 {Math.round(totalPrice).toLocaleString()} <span className="text-xl text-slate-500 font-medium">₽</span>
               </div>
             </div>

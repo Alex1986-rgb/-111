@@ -82,7 +82,7 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
 
   if (type === 'roadmap') {
     return (
-      <div className="my-12">
+      <div className="my-6">
         <div className="flex items-center justify-between mb-8">
            <h3 className="text-xl font-black text-slate-900 tracking-tight">{title}</h3>
            <div className="flex items-center gap-2 text-[10px] font-black text-indigo-600 uppercase tracking-widest bg-indigo-50 px-3 py-1 rounded-full">
@@ -106,7 +106,7 @@ const SEODataTable: React.FC<SEODataTableProps> = ({ type, title, data }) => {
   }
 
   return (
-    <div className="my-12 bg-slate-900 p-8 rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
+    <div className="my-6 bg-slate-900 p-8 rounded-[3rem] shadow-2xl text-white relative overflow-hidden">
       <div className="absolute top-0 right-0 w-48 h-48 bg-indigo-500/10 blur-[80px]"></div>
       <h3 className="text-xl font-black mb-8 flex items-center gap-3">
         <BarChart3 className="w-5 h-5 text-indigo-400" /> {title}

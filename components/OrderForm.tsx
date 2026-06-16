@@ -67,9 +67,9 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 md:py-16 animate-in fade-in slide-in-from-bottom-8 duration-700">
+    <div className="max-w-6xl mx-auto px-4 py-8 md:py-10 animate-in fade-in slide-in-from-bottom-8 duration-700">
       {/* Header & Back button */}
-      <div className="flex items-center justify-between mb-12">
+      <div className="flex items-center justify-between mb-6">
         <button onClick={onCancel} className="flex items-center gap-2 text-slate-400 hover:text-indigo-600 transition-all font-black uppercase text-[10px] tracking-[0.2em] group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1" /> Отмена заказа
         </button>
@@ -80,20 +80,20 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Form Body */}
         <div className="lg:col-span-8 bg-white rounded-[3rem] shadow-2xl shadow-indigo-100/50 border border-slate-100 overflow-hidden">
-          <div className="p-8 md:p-12">
+          <div className="p-8 md:p-8">
             <h1 className="text-3xl md:text-5xl font-black text-slate-900 mb-4 tracking-tighter leading-none">
               {pendingOrder.isBulk ? 'Массовый заказ' : step === 1 ? 'Контактные данные' : 'Детали проекта'}
             </h1>
-            <p className="text-slate-500 font-medium mb-10">
+            <p className="text-slate-500 font-medium mb-6">
               {pendingOrder.isBulk 
                 ? 'Подтвердите почту для получения готовых таблиц.' 
                 : step === 1 ? 'Начнем с малого. Как нам с вами связаться?' : 'Опишите характер будущего текста для идеального попадания в цель.'}
             </p>
 
-            <form onSubmit={handleSubmit} className="space-y-10">
+            <form onSubmit={handleSubmit} className="space-y-6">
               {step === 1 || pendingOrder.isBulk ? (
                 <div className="space-y-8">
                   <div className="space-y-3">
@@ -122,7 +122,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                   </div>
                 </div>
               ) : (
-                <div className="space-y-10 animate-in slide-in-from-right-8 duration-500">
+                <div className="space-y-6 animate-in slide-in-from-right-8 duration-500">
                   <div className="space-y-6">
                     <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-4">Стиль подачи (Tone of Voice)</label>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -148,7 +148,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                     </div>
                   </div>
 
-                  <div className="grid md:grid-cols-2 gap-8">
+                  <div className="grid md:grid-cols-2 gap-5">
                     <div className="space-y-3">
                       <label className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 ml-4">Целевая аудитория</label>
                       <div className="relative group">
@@ -230,14 +230,14 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
 
         {/* Floating Order Summary (Live Check) */}
         <aside className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">
-          <div className="bg-slate-900 rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden">
+          <div className="bg-slate-900 rounded-[3rem] p-6 text-white shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-40 h-40 bg-indigo-600/20 blur-3xl -translate-y-12 translate-x-12"></div>
             
             <h3 className="text-xl font-black mb-8 flex items-center gap-3">
                <Zap className="w-5 h-5 text-indigo-400 fill-current" /> Чек заказа
             </h3>
             
-            <div className="space-y-6 mb-10">
+            <div className="space-y-6 mb-6">
               <div className="flex justify-between items-center py-1 border-b border-white/5">
                 <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest">Услуга</span>
                 <span className="font-bold text-sm">{service?.name}</span>

@@ -37,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
       }`}></div>
       
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           
           <div className="lg:col-span-7 xl:col-span-8 text-left">
             <div className="flex flex-wrap gap-2 mb-8">
@@ -60,7 +60,7 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
                })}
             </div>
             
-            <h1 className="text-5xl md:text-7xl xl:text-[6.5rem] font-black tracking-tighter text-slate-900 mb-8 leading-[0.9] transition-all duration-700">
+            <h1 className="text-5xl md:text-5xl xl:text-[6.5rem] font-black tracking-tighter text-slate-900 mb-8 leading-[0.9] transition-all duration-700">
               {niches[activeNiche].title.split(' ').map((word, i) => (
                 <span key={i} className="inline-block mr-3">
                   {['берет', 'продажи', 'смыслы', 'решений'].includes(word.toLowerCase())
@@ -70,11 +70,11 @@ const Hero: React.FC<HeroProps> = ({ setView }) => {
               ))}
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-500 mb-10 leading-relaxed max-w-2xl font-medium">
+            <p className="text-lg md:text-xl text-slate-500 mb-6 leading-relaxed max-w-2xl font-medium">
               {niches[activeNiche].desc}
             </p>
             
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 mb-16">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-5 mb-8">
               <button
                 onClick={() => setView('pricing')}
                 className="group relative px-10 py-5 bg-indigo-600 text-white rounded-[1.8rem] font-black text-lg hover:bg-indigo-700 transition-all flex items-center justify-center gap-3 shadow-2xl shadow-indigo-100 overflow-hidden"

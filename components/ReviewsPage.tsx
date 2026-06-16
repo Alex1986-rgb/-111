@@ -18,15 +18,15 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ setView }) => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-16">
-      <div className="text-center mb-20">
-        <h1 className="text-4xl md:text-6xl font-black mb-4">Что о нас <span className="text-indigo-600">говорят</span></h1>
+    <div className="max-w-7xl mx-auto px-4 py-10">
+      <div className="text-center mb-6">
+        <h1 className="text-4xl md:text-5xl font-black mb-4">Что о нас <span className="text-indigo-600">говорят</span></h1>
         <p className="text-slate-500 max-w-2xl mx-auto text-lg">Мы дорожим каждым клиентом и стремимся делать лучший контент на рынке.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {REVIEWS.map((review) => (
-          <div key={review.id} className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm relative group hover:shadow-2xl transition-all duration-500">
+          <div key={review.id} className="bg-white p-6 rounded-[2.5rem] border border-slate-100 shadow-sm relative group hover:shadow-2xl transition-all duration-500">
             <Quote className="absolute top-10 right-10 w-12 h-12 text-indigo-50 opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="flex gap-1 mb-6">
               {[...Array(5)].map((_, i) => (
@@ -56,13 +56,13 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ setView }) => {
           <p>Мы открыты к любой обратной связи и постоянно совершенствуем наши внутренние стандарты качества на основе ваших пожеланий. Ваш успех в поисковой выдаче и рост конверсии — это и наш успех тоже.</p>
         `}
         faqs={reviewsFaqs}
-        className="mt-20"
+        className="mt-6"
       />
 
-      <div className="mt-20 bg-indigo-600 rounded-[4rem] p-12 md:p-20 text-center text-white relative overflow-hidden">
+      <div className="mt-6 bg-indigo-600 rounded-[4rem] p-8 md:p-20 text-center text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[100px] rounded-full"></div>
         <h2 className="text-3xl md:text-5xl font-black mb-6 relative z-10">Станьте нашим довольным клиентом</h2>
-        <p className="text-indigo-100 mb-10 text-lg max-w-2xl mx-auto relative z-10">Доверьте нам свой контент, и мы покажем, как правильные слова могут развивать ваш бизнес.</p>
+        <p className="text-indigo-100 mb-6 text-lg max-w-2xl mx-auto relative z-10">Доверьте нам свой контент, и мы покажем, как правильные слова могут развивать ваш бизнес.</p>
         <button 
           onClick={() => setView && setView('pricing')}
           className="bg-white text-indigo-600 px-10 py-5 rounded-2xl font-black text-xl hover:scale-105 transition-all shadow-2xl relative z-10"

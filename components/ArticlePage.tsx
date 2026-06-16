@@ -172,14 +172,14 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
       // Семантическая обработка заголовков
       if (line.startsWith('### ')) {
         elements.push(
-          <h3 key={i} className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mt-12 sm:mt-16 mb-6 tracking-tight flex items-center gap-3 animate-in fade-in slide-in-from-left duration-500">
+          <h3 key={i} className="text-xl sm:text-2xl md:text-3xl font-extrabold text-slate-900 mt-6 sm:mt-6 mb-6 tracking-tight flex items-center gap-3 animate-in fade-in slide-in-from-left duration-500">
             <span className="w-1.5 h-6 sm:h-8 bg-indigo-600 rounded-full shrink-0"></span>
             {line.replace('### ', '')}
           </h3>
         );
       } else if (line.startsWith('## ')) {
         elements.push(
-          <h2 key={i} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mt-16 sm:mt-24 mb-8 sm:mb-12 tracking-tighter leading-tight bg-slate-50/50 p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl border-l-[8px] sm:border-l-[10px] border-indigo-600 shadow-sm animate-in fade-in slide-in-from-left duration-700">
+          <h2 key={i} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mt-6 sm:mt-12 mb-8 sm:mb-6 tracking-tighter leading-tight bg-slate-50/50 p-5 sm:p-8 md:p-6 rounded-2xl sm:rounded-3xl border-l-[8px] sm:border-l-[10px] border-indigo-600 shadow-sm animate-in fade-in slide-in-from-left duration-700">
             {line.replace('## ', '')}
           </h2>
         );
@@ -219,7 +219,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
   };
 
   return (
-    <article className="min-h-screen bg-white pb-20 sm:pb-32">
+    <article className="min-h-[70vh] bg-white pb-20 sm:pb-32">
       {/* Прогресс-бар чтения */}
       <div className="fixed top-20 left-0 w-full h-1 sm:h-1.5 z-[110] bg-slate-50">
         <div 
@@ -232,7 +232,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
       {isShareModalOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center px-4">
           <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setIsShareModalOpen(false)}></div>
-          <div className="bg-white rounded-[2.5rem] w-full max-w-md p-8 sm:p-10 relative z-10 shadow-3xl animate-in zoom-in duration-300">
+          <div className="bg-white rounded-[2.5rem] w-full max-w-md p-8 sm:p-6 relative z-10 shadow-3xl animate-in zoom-in duration-300">
             <button 
               onClick={() => setIsShareModalOpen(false)}
               className="absolute top-6 right-6 w-10 h-10 bg-slate-50 text-slate-400 rounded-full flex items-center justify-center hover:bg-slate-100 transition-colors"
@@ -283,7 +283,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Хлебные крошки */}
-        <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-8 sm:mb-12 overflow-x-auto whitespace-nowrap pb-2 no-scrollbar">
+        <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-8 sm:mb-6 overflow-x-auto whitespace-nowrap pb-2 no-scrollbar">
            <button onClick={() => onBack()} className="hover:text-indigo-600 flex items-center gap-1.5 shrink-0 transition-colors">
               <Home className="w-3.5 h-3.5" /> Главная
            </button>
@@ -293,8 +293,8 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
            <span className="text-slate-900 truncate max-w-[150px] sm:max-w-[200px]">{article.title}</span>
         </nav>
 
-        <header className="mb-12 sm:mb-20">
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 sm:mb-10">
+        <header className="mb-6 sm:mb-6">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 mb-6 sm:mb-6">
             <div className="bg-indigo-600 text-white px-4 sm:px-6 py-1.5 sm:py-2 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest shadow-xl shadow-indigo-100">
               {article.category}
             </div>
@@ -305,7 +305,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
           </div>
           
           {/* H1 - Главный заголовок статьи (оптимизирован для мобильных) */}
-          <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-slate-900 leading-[1] sm:leading-[0.9] mb-10 sm:mb-16 tracking-tighter animate-in fade-in slide-in-from-bottom-12 duration-1000">
+          <h1 className="text-3xl sm:text-5xl md:text-5xl lg:text-6xl font-black text-slate-900 leading-[1] sm:leading-[0.9] mb-6 sm:mb-8 tracking-tighter animate-in fade-in slide-in-from-bottom-12 duration-1000">
             {article.title}
           </h1>
 
@@ -315,21 +315,21 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
               alt={article.imageAlt} 
               className="w-full h-[250px] sm:h-[400px] md:h-[600px] lg:h-[750px] object-cover transition-transform duration-[15s] group-hover:scale-105" 
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-12">
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent flex flex-col justify-end p-6 sm:p-8">
                <div className="text-white/60 text-[8px] sm:text-[10px] font-black uppercase tracking-[0.4em] mb-2 sm:mb-4">Original Expert Content</div>
                <div className="h-1 sm:h-1.5 w-16 sm:w-24 bg-indigo-500 rounded-full"></div>
             </div>
           </div>
         </header>
 
-        <div className="flex flex-col lg:flex-row gap-12 sm:gap-20 relative">
+        <div className="flex flex-col lg:flex-row gap-8 sm:gap-20 relative">
           <div className="lg:w-8/12">
             <div className="max-w-none transition-all duration-500" style={{ fontSize: `${fontSize}px` }}>
               {renderContent(article.content)}
             </div>
 
             {/* Секция автора внизу статьи */}
-            <div className="mt-20 p-8 sm:p-12 bg-slate-50 rounded-[3rem] border border-slate-100 flex flex-col sm:flex-row items-center gap-8">
+            <div className="mt-6 p-8 sm:p-8 bg-slate-50 rounded-[3rem] border border-slate-100 flex flex-col sm:flex-row items-center gap-5">
                <img 
                   src={article.author.avatar} 
                   alt={article.author.name} 
@@ -345,9 +345,9 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
           </div>
 
           <div className="lg:w-4/12">
-            <div className="sticky top-32 space-y-8 sm:space-y-10">
+            <div className="sticky top-32 space-y-8 sm:space-y-6">
               {/* Параметры чтения */}
-              <section className="bg-white p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-100/50">
+              <section className="bg-white p-6 sm:p-6 rounded-[2rem] sm:rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-100/50">
                 <h4 className="font-black text-[10px] uppercase tracking-[0.3em] text-slate-400 mb-6 sm:mb-8 border-b border-slate-50 pb-4">Параметры чтения</h4>
                 <div className="flex items-center justify-between p-4 sm:p-5 bg-slate-50 rounded-[1.2rem] sm:rounded-[1.5rem] border border-slate-100 mb-6">
                   <span className="text-[10px] font-black uppercase text-slate-900 tracking-widest">Шрифт</span>
@@ -371,10 +371,10 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
               </section>
 
               {/* Рекламный блок */}
-              <section className="bg-slate-900 p-8 sm:p-12 rounded-[2.5rem] sm:rounded-[3.5rem] text-white shadow-3xl relative overflow-hidden group">
+              <section className="bg-slate-900 p-8 sm:p-8 rounded-[2.5rem] sm:rounded-[3.5rem] text-white shadow-3xl relative overflow-hidden group">
                 <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-indigo-500/20 rounded-full blur-[50px] sm:blur-[60px] -translate-y-12 translate-x-12 group-hover:bg-indigo-500/40 transition-colors"></div>
                 <h4 className="text-xl sm:text-2xl md:text-3xl font-black mb-4 sm:mb-6 leading-tight relative z-10">Статья была <br /><span className="text-indigo-400">полезна?</span></h4>
-                <p className="text-xs sm:text-sm text-slate-400 mb-8 sm:mb-10 leading-relaxed font-medium relative z-10">Закажите экспертный контент у авторов этого материала. Сделаем глубокий аудит вашего сайта бесплатно.</p>
+                <p className="text-xs sm:text-sm text-slate-400 mb-8 sm:mb-6 leading-relaxed font-medium relative z-10">Закажите экспертный контент у авторов этого материала. Сделаем глубокий аудит вашего сайта бесплатно.</p>
                 <button className="w-full py-5 sm:py-6 bg-indigo-600 text-white rounded-[1.2rem] sm:rounded-[1.5rem] font-black text-[10px] sm:text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-700 hover:scale-[1.02] transition-all shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 active:scale-95">
                   Обсудить проект <ArrowRight className="w-4 h-4" />
                 </button>
@@ -391,7 +391,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
         {/* Секция похожих статей */}
         {relatedArticles.length > 0 && (
           <section className="mt-32 pt-20 border-t border-slate-100">
-            <div className="flex items-end justify-between mb-12">
+            <div className="flex items-end justify-between mb-6">
                <div>
                   <div className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-4">Читайте далее</div>
                   <h2 className="text-3xl sm:text-5xl font-black text-slate-900 tracking-tighter">Похожие <span className="text-indigo-600">материалы</span></h2>
@@ -401,7 +401,7 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
                </button>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                {relatedArticles.map((rel) => (
                  <div 
                   key={rel.id} 

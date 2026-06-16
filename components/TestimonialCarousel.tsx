@@ -31,9 +31,9 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ reviews }) =>
   }, [handleNext]);
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
+    <section className="py-12 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h2 className="text-3xl md:text-5xl font-black mb-4">Голоса наших <span className="text-indigo-600">клиентов</span></h2>
           <p className="text-slate-500 max-w-2xl mx-auto">Узнайте, почему ведущие компании доверяют свой контент TextFlow.</p>
         </div>
@@ -47,7 +47,7 @@ const TestimonialCarousel: React.FC<TestimonialCarouselProps> = ({ reviews }) =>
             <Quote className="absolute top-10 left-10 w-20 h-20 text-indigo-100 -z-0" />
             
             <div className={`relative z-10 w-full transition-all duration-500 ease-out ${isAnimating ? 'opacity-0 scale-95 translate-x-4' : 'opacity-100 scale-100 translate-x-0'}`}>
-              <div className="flex flex-col md:flex-row gap-12 items-center">
+              <div className="flex flex-col md:flex-row gap-8 items-center">
                 <div className="shrink-0">
                   <div className="relative">
                     <img 

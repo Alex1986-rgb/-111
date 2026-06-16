@@ -38,15 +38,15 @@ const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:py-16">
+    <div className="max-w-7xl mx-auto px-4 py-8 md:py-10">
       <div className="grid lg:grid-cols-2 gap-16 md:gap-24 items-start">
         <div className="animate-in fade-in slide-in-from-left duration-700">
-          <h1 className="text-4xl md:text-7xl font-black mb-8 md:mb-12 tracking-tighter leading-none">Давайте <br /><span className="text-indigo-600">обсудим</span> проект</h1>
-          <p className="text-slate-500 text-lg md:text-xl font-medium mb-12 md:mb-16 leading-relaxed">
+          <h1 className="text-4xl md:text-5xl font-black mb-8 md:mb-6 tracking-tighter leading-none">Давайте <br /><span className="text-indigo-600">обсудим</span> проект</h1>
+          <p className="text-slate-500 text-lg md:text-xl font-medium mb-6 md:mb-8 leading-relaxed">
             Заполните форму или свяжитесь с нами удобным способом. Мы подготовим индивидуальное предложение под ваш бюджет.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {socialLinks.map((s) => {
               const Icon = s.icon;
               return (
@@ -69,7 +69,7 @@ const ContactPage: React.FC = () => {
             })}
           </div>
 
-          <div className="space-y-10">
+          <div className="space-y-6">
             <div className="flex items-start gap-6 group">
               <div className="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-sm">
                 <Mail className="w-6 h-6" />
@@ -102,16 +102,16 @@ const ContactPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-slate-900 p-10 md:p-16 rounded-[4rem] shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-right duration-700">
+        <div className="bg-slate-900 p-6 md:p-16 rounded-[4rem] shadow-2xl relative overflow-hidden animate-in fade-in slide-in-from-right duration-700">
           <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 blur-[100px] rounded-full"></div>
           
           {sent ? (
-            <div className="text-center py-24 animate-in fade-in zoom-in">
+            <div className="text-center py-12 animate-in fade-in zoom-in">
               <div className="w-24 h-24 bg-emerald-500 text-white rounded-[2.5rem] flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-emerald-500/20">
                 <Send className="w-10 h-10" />
               </div>
               <h3 className="text-3xl font-black text-white mb-4">Сообщение отправлено!</h3>
-              <p className="text-slate-400 font-medium mb-12">Мы получили вашу заявку и свяжемся с вами в течение 30 минут.</p>
+              <p className="text-slate-400 font-medium mb-6">Мы получили вашу заявку и свяжемся с вами в течение 30 минут.</p>
               <button onClick={() => setSent(false)} className="text-indigo-400 font-black uppercase text-xs tracking-widest border-b-2 border-indigo-400 pb-1">Отправить еще одно</button>
             </div>
           ) : (
@@ -158,7 +158,7 @@ const ContactPage: React.FC = () => {
           <p>Наш офис в Москве всегда открыт для личных встреч, но мы успешно работаем с клиентами по всему миру. Современные технологии позволяют нам выстраивать эффективную работу удаленно, сохраняя высочайшее качество результата.</p>
         `}
         faqs={contactFaqs}
-        className="mt-20"
+        className="mt-6"
       />
     </div>
   );

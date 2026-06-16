@@ -306,7 +306,7 @@ const App: React.FC = () => {
       services, orders, transactions, auth, logs, addLog, navigate, 
       updatePrice, createOrder, setAuthStatus: setAuth, updateOrderStatus, recordTransaction 
     }}>
-      <div className="min-h-screen flex flex-col font-inter selection:bg-indigo-600 selection:text-white">
+      <div className="min-h-[70vh] flex flex-col font-inter selection:bg-indigo-600 selection:text-white">
         <SEOManager 
           route={route} 
           article={BLOG_ARTICLES.find(a => a.slug === route.params?.slug)} 

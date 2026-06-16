@@ -55,12 +55,12 @@ const ConversionQuiz: React.FC<{ onComplete: (serviceId: string) => void }> = ({
   const rec = getRecommendation();
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 bg-white">
       <div className="max-w-4xl mx-auto px-4">
-        <div className="bg-slate-50 rounded-[3.5rem] p-10 md:p-16 border border-slate-100 shadow-sm relative overflow-hidden">
+        <div className="bg-slate-50 rounded-[3.5rem] p-6 md:p-16 border border-slate-100 shadow-sm relative overflow-hidden">
           {!showResult ? (
             <div className="animate-in fade-in slide-in-from-right duration-500">
-              <div className="flex justify-between items-center mb-10">
+              <div className="flex justify-between items-center mb-6">
                 <div className="text-[10px] font-black uppercase tracking-[0.2em] text-indigo-600">Шаг {currentStep + 1} из {steps.length}</div>
                 <div className="flex gap-1">
                   {steps.map((_, i) => (
@@ -68,7 +68,7 @@ const ConversionQuiz: React.FC<{ onComplete: (serviceId: string) => void }> = ({
                   ))}
                 </div>
               </div>
-              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-12 tracking-tighter leading-none">
+              <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter leading-none">
                 {steps[currentStep].question}
               </h2>
               <div className="grid gap-4">
@@ -99,9 +99,9 @@ const ConversionQuiz: React.FC<{ onComplete: (serviceId: string) => void }> = ({
                 <CheckCircle className="w-12 h-12" />
               </div>
               <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tighter">Ваша идеальная стратегия готова!</h2>
-              <p className="text-slate-500 text-lg mb-10 font-medium">Основываясь на ваших целях, мы рекомендуем тариф:</p>
+              <p className="text-slate-500 text-lg mb-6 font-medium">Основываясь на ваших целях, мы рекомендуем тариф:</p>
               
-              <div className="bg-white p-8 rounded-[2.5rem] border-2 border-emerald-500/20 shadow-2xl mb-12 relative overflow-hidden group">
+              <div className="bg-white p-8 rounded-[2.5rem] border-2 border-emerald-500/20 shadow-2xl mb-6 relative overflow-hidden group">
                  <div className="absolute top-0 right-0 p-4">
                     <div className="bg-emerald-500 text-white text-[10px] font-black px-4 py-2 rounded-xl uppercase tracking-widest shadow-lg">Скидка {rec.discount}</div>
                  </div>

@@ -7,11 +7,11 @@ const logos = [
 
 const TrustBar: React.FC = () => {
   return (
-    <div className="py-16 border-y border-slate-100 bg-white overflow-hidden relative">
+    <div className="py-10 border-y border-slate-100 bg-white overflow-hidden relative">
       <div className="absolute top-0 bottom-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
       <div className="absolute top-0 bottom-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
       
-      <div className="max-w-7xl mx-auto px-4 mb-10">
+      <div className="max-w-7xl mx-auto px-4 mb-6">
         <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Партнеры и экосистемы</p>
       </div>
 

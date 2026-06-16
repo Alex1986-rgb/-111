@@ -19,7 +19,7 @@ const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, faqs,
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-    <section className={`py-24 ${className}`}>
+    <section className={`py-12 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* SEO Text Content */}
@@ -60,7 +60,7 @@ const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, faqs,
                     </div>
                   </button>
                   {openFaq === i && (
-                    <div className="px-6 md:px-8 pb-8 text-slate-500 leading-relaxed font-medium animate-in slide-in-from-top-2 duration-300">
+                    <div className="px-6 md:px-8 pb-5 text-slate-500 leading-relaxed font-medium animate-in slide-in-from-top-2 duration-300">
                       {faq.a}
                     </div>
                   )}

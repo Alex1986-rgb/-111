@@ -54,14 +54,14 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
   const faq = service.faq || defaultFaq;
 
   return (
-    <div className="min-h-screen bg-white animate-fade-in">
+    <div className="min-h-[70vh] bg-white animate-fade-in">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 overflow-hidden bg-slate-50">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[120px] -z-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <button 
             onClick={onBack}
-            className="flex items-center gap-2 text-slate-400 hover:text-indigo-600 font-black uppercase text-[10px] tracking-widest mb-12 transition-colors group"
+            className="flex items-center gap-2 text-slate-400 hover:text-indigo-600 font-black uppercase text-[10px] tracking-widest mb-6 transition-colors group"
           >
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Назад к услугам
           </button>
@@ -71,14 +71,14 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-indigo-600 text-white rounded-full text-[10px] font-black uppercase tracking-widest mb-6">
                 <Icon className="w-3.5 h-3.5" /> {service.name}
               </div>
-              <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[0.95] mb-8">
+              <h1 className="text-5xl md:text-5xl font-black text-slate-900 tracking-tighter leading-[0.95] mb-8">
                 {service.seoTitle || service.name}
               </h1>
-              <p className="text-xl text-slate-500 font-medium leading-relaxed mb-10 max-w-xl">
+              <p className="text-xl text-slate-500 font-medium leading-relaxed mb-6 max-w-xl">
                 {service.seoDescription || service.description}
               </p>
               
-              <div className="flex flex-wrap gap-4 mb-12">
+              <div className="flex flex-wrap gap-4 mb-6">
                 <button 
                   onClick={() => onOrder(service.id, 2000, service.pricePer1k * 2)}
                   className="px-10 py-5 bg-indigo-600 text-white rounded-2xl font-black text-sm uppercase tracking-widest hover:bg-indigo-700 transition-all flex items-center gap-3 shadow-xl shadow-indigo-100"
@@ -95,7 +95,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
             </div>
 
             <div className="relative">
-              <div className="bg-white p-10 rounded-[3rem] shadow-2xl border border-slate-100 relative z-10">
+              <div className="bg-white p-6 rounded-[3rem] shadow-2xl border border-slate-100 relative z-10">
                 <h3 className="text-2xl font-black text-slate-900 mb-8">Что включено в стоимость:</h3>
                 <div className="space-y-5">
                   {features.map((feature, i) => (
@@ -117,10 +117,10 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
       </section>
 
       {/* Detailed Content Section */}
-      <section className="py-24 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-slate prose-lg max-w-none">
-            <h2 className="text-4xl font-black text-slate-900 mb-10 tracking-tight">Почему стоит выбрать {service.name} от TextFlow?</h2>
+            <h2 className="text-4xl font-black text-slate-900 mb-6 tracking-tight">Почему стоит выбрать {service.name} от TextFlow?</h2>
             <div className="text-slate-600 leading-relaxed space-y-8 font-medium">
               {service.fullContent ? (
                 <div dangerouslySetInnerHTML={{ __html: service.fullContent }} />
@@ -129,7 +129,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
                   <p>
                     В современном мире контент — это не просто набор слов, а мощный инструмент коммуникации и продвижения. Наша услуга <strong>{service.name}</strong> разработана специально для того, чтобы ваш бизнес выделялся на фоне конкурентов и занимал лидирующие позиции в поисковой выдаче.
                   </p>
-                  <div className="grid md:grid-cols-2 gap-8 my-12">
+                  <div className="grid md:grid-cols-2 gap-5 my-6">
                     <div className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100">
                       <TrendingUp className="w-10 h-10 text-indigo-600 mb-6" />
                       <h4 className="text-xl font-black text-slate-900 mb-4">Рост трафика</h4>
@@ -152,9 +152,9 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-slate-50">
+      <section className="py-12 bg-slate-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-16 text-center tracking-tight">Часто задаваемые вопросы</h2>
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-8 text-center tracking-tight">Часто задаваемые вопросы</h2>
           <div className="space-y-4">
             {faq.map((item, i) => (
               <div key={i} className="bg-white rounded-[2rem] border border-slate-100 overflow-hidden hover:border-indigo-100 transition-all">
@@ -168,7 +168,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
                   </div>
                 </button>
                 {activeFaq === i && (
-                  <div className="px-8 pb-8 text-slate-500 leading-relaxed font-medium animate-fade-in">
+                  <div className="px-8 pb-5 text-slate-500 leading-relaxed font-medium animate-fade-in">
                     {item.a}
                   </div>
                 )}
@@ -179,14 +179,14 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
       </section>
 
       {/* Final CTA */}
-      <section className="py-24">
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-slate-900 rounded-[4rem] p-12 md:p-24 text-center relative overflow-hidden">
+          <div className="bg-slate-900 rounded-[4rem] p-8 md:p-24 text-center relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(79,70,229,0.1),transparent)]"></div>
-            <h2 className="text-4xl md:text-6xl font-black text-white mb-8 relative z-10 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-8 relative z-10 tracking-tight">
               Готовы заказать <br /> <span className="text-indigo-400">{service.name}?</span>
             </h2>
-            <p className="text-xl text-slate-400 mb-12 max-w-2xl mx-auto relative z-10">
+            <p className="text-xl text-slate-400 mb-6 max-w-2xl mx-auto relative z-10">
               Начните работу с профессионалами сегодня и получите первые результаты уже через несколько дней.
             </p>
             <button 

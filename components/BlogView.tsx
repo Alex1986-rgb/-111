@@ -42,18 +42,18 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
   }, [searchQuery, selectedCategory, selectedTags]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 md:py-16">
-      <div className="text-center mb-12 md:mb-16">
+    <div className="max-w-7xl mx-auto px-4 py-8 md:py-10">
+      <div className="text-center mb-6 md:mb-8">
         <div className="inline-block px-4 py-1 bg-indigo-50 text-indigo-600 rounded-full text-[10px] font-black uppercase tracking-widest mb-4 border border-indigo-100">База знаний TEXTFLOW</div>
-        <h1 className="text-4xl md:text-8xl font-black mb-6 md:mb-8 tracking-tighter text-slate-900 leading-[1] md:leading-[0.9]">
+        <h1 className="text-4xl md:text-6xl font-black mb-6 md:mb-8 tracking-tighter text-slate-900 leading-[1] md:leading-[0.9]">
           Экспертный <br />
           <span className="gradient-text">Блог</span>
         </h1>
         <p className="text-slate-500 max-w-2xl mx-auto text-lg md:text-xl font-medium px-4">Аналитика, тренды и практические советы по контенту для вашего бизнеса.</p>
       </div>
 
-      <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-xl border border-slate-100 mb-12 md:mb-16 animate-in fade-in slide-in-from-top-4">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-10 items-start">
+      <div className="bg-white rounded-[2rem] md:rounded-[3rem] p-6 md:p-8 shadow-xl border border-slate-100 mb-6 md:mb-8 animate-in fade-in slide-in-from-top-4">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 md:gap-6 items-start">
           <div className="lg:col-span-4 space-y-3 md:space-y-4">
             <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2 md:ml-4">Поиск по статьям</label>
             <div className="relative">
@@ -116,7 +116,7 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
       </div>
 
       {filteredArticles.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
           {filteredArticles.map((article) => (
             <article
               key={article.id}
@@ -137,7 +137,7 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
                   </span>
                 </div>
               </div>
-              <div className="p-6 md:p-10 flex flex-col flex-1">
+              <div className="p-6 md:p-6 flex flex-col flex-1">
                 <div className="flex items-center gap-4 md:gap-6 text-[var(--color-apple-grey)] text-xs md:text-sm font-medium tracking-tight mb-4 md:mb-6">
                   <div className="flex items-center gap-1.5 md:gap-2">
                     <Calendar className="w-3.5 md:w-4 h-3.5 md:h-4" />
@@ -161,7 +161,7 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
                   ))}
                 </div>
 
-                <div className="mt-auto pt-6 md:pt-8 border-t border-black/[0.06] flex items-center justify-between">
+                <div className="mt-auto pt-6 md:pt-5 border-t border-black/[0.06] flex items-center justify-between">
                   <div className="flex items-center gap-2 md:gap-3">
                      <img
                         src={article.author.avatar}
@@ -183,7 +183,7 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
           ))}
         </div>
       ) : (
-        <div className="text-center py-24 md:py-40 bg-white rounded-[2rem] md:rounded-[4rem] border border-dashed border-slate-200 mx-4">
+        <div className="text-center py-12 md:py-40 bg-white rounded-[2rem] md:rounded-[4rem] border border-dashed border-slate-200 mx-4">
            <div className="w-16 h-16 md:w-20 md:h-20 bg-slate-50 text-slate-300 rounded-full flex items-center justify-center mx-auto mb-6">
               <Search className="w-8 md:w-10 h-8 md:h-10" />
            </div>
@@ -207,7 +207,7 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
           <p>Наша цель — сделать рынок контента прозрачным и понятным. Мы верим, что качественная информация помогает нашим клиентам принимать правильные бизнес-решения и достигать поставленных целей в органическом поиске.</p>
         `}
         faqs={blogFaqs}
-        className="mt-20"
+        className="mt-6"
       />
     </div>
   );

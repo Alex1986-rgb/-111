@@ -31,12 +31,12 @@ const AdminDashboard: React.FC = () => {
   if (!auth.isAuthenticated) {
     return (
       <div className="min-h-[80vh] flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white p-12 rounded-[3rem] shadow-2xl border border-slate-100 text-center animate-in zoom-in duration-500">
+        <div className="max-w-md w-full bg-white p-8 rounded-[3rem] shadow-2xl border border-slate-100 text-center animate-in zoom-in duration-500">
            <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-[2rem] flex items-center justify-center mx-auto mb-8">
               <Lock className="w-10 h-10" />
            </div>
            <h2 className="text-3xl font-black text-slate-900 mb-2">SaaS Entry</h2>
-           <p className="text-slate-400 font-medium mb-10">Авторизуйтесь для управления системой</p>
+           <p className="text-slate-400 font-medium mb-6">Авторизуйтесь для управления системой</p>
            <form onSubmit={handleLogin} className="space-y-4">
               <input 
                 type="password" 
@@ -56,12 +56,12 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         
         {/* Sidebar */}
         <div className="lg:col-span-3 space-y-6">
            <div className="bg-white p-8 rounded-[2.5rem] shadow-xl border border-slate-100">
-              <div className="flex items-center gap-4 mb-10">
+              <div className="flex items-center gap-4 mb-6">
                  <div className="w-12 h-12 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-lg"><ShieldCheck /></div>
                  <div className="text-sm font-black uppercase tracking-widest">Root Console</div>
               </div>
@@ -83,7 +83,7 @@ const AdminDashboard: React.FC = () => {
               </div>
               <button 
                 onClick={() => setAuthStatus({ isAuthenticated: false, token: null, role: null })}
-                className="w-full mt-12 flex items-center gap-4 px-6 py-4 text-red-400 hover:text-red-600 text-[10px] font-black uppercase tracking-widest transition-colors"
+                className="w-full mt-6 flex items-center gap-4 px-6 py-4 text-red-400 hover:text-red-600 text-[10px] font-black uppercase tracking-widest transition-colors"
               >
                 <LogOut className="w-4 h-4" /> Выход
               </button>
