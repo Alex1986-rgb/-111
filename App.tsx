@@ -10,6 +10,7 @@ import ServicesGrid from './components/ServicesGrid';
 import OrderForm from './components/OrderForm';
 import BlogView from './components/BlogView';
 import ArticlePage from './components/ArticlePage';
+import ArticlesCarousel from './components/ArticlesCarousel';
 import PaymentGateway from './components/PaymentGateway';
 import Footer from './components/Footer';
 import EditorialAssistant from './components/AIHelper';
@@ -397,6 +398,12 @@ const App: React.FC = () => {
           {route.view === 'terms' && <TermsPage />}
           {route.view === 'seo-audit' && <SEOSuperpowerAnalyzer />}
         </main>
+
+        <ArticlesCarousel
+          articles={BLOG_ARTICLES.slice(0, 3)}
+          onArticleClick={(a) => navigate('article', a.slug)}
+          onSeeAll={() => navigate('blog')}
+        />
 
         <EditorialAssistant />
         <MessengerFab />
