@@ -29,29 +29,29 @@ const FAQ: React.FC = () => {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="py-9 max-w-4xl mx-auto px-4">
-      <div className="text-center mb-5">
-        <h2 className="text-3xl md:text-4xl font-black mb-4">Ответы на <span className="text-indigo-600">важные вопросы</span></h2>
-        <p className="text-slate-500">Все, что нужно знать перед стартом работы с лучшей редакцией страны.</p>
+    <section className="py-8 max-w-4xl mx-auto px-4">
+      <div className="text-center mb-4">
+        <h2 className="text-2xl md:text-3xl font-black mb-2">Ответы на <span className="text-indigo-600">важные вопросы</span></h2>
+        <p className="text-slate-500 text-sm">Все, что нужно знать перед стартом работы с лучшей редакцией страны.</p>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-2.5">
         {faqs.map((faq, i) => (
-          <div 
-            key={i} 
-            className={`border-2 rounded-[2rem] transition-all overflow-hidden ${open === i ? 'border-indigo-600 bg-white shadow-xl shadow-indigo-50' : 'border-slate-100 bg-slate-50 hover:border-slate-200'}`}
+          <div
+            key={i}
+            className={`border rounded-2xl transition-all overflow-hidden ${open === i ? 'border-indigo-600 bg-white shadow-lg shadow-indigo-50' : 'border-slate-100 bg-slate-50 hover:border-slate-200'}`}
           >
-            <button 
+            <button
               onClick={() => setOpen(open === i ? null : i)}
-              className="w-full p-6 flex justify-between items-center text-left"
+              className="w-full px-5 py-4 flex justify-between items-center text-left gap-4"
             >
-              <span className="text-base font-black text-slate-900 leading-tight">{faq.q}</span>
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${open === i ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
+              <span className="text-sm md:text-base font-black text-slate-900 leading-tight">{faq.q}</span>
+              <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all ${open === i ? 'bg-indigo-600 text-white' : 'bg-slate-200 text-slate-500'}`}>
                 {open === i ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
               </div>
             </button>
             {open === i && (
-              <div className="px-8 pb-5 text-slate-500 leading-relaxed animate-in slide-in-from-top-2 duration-300">
+              <div className="px-5 pb-4 text-slate-500 text-sm leading-relaxed animate-in slide-in-from-top-2 duration-300">
                 {faq.a}
               </div>
             )}
