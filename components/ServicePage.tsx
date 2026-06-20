@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Service } from '../types';
+import { REVIEWS } from '../constants';
 import {
   CheckCircle2,
   ArrowRight,
@@ -9,7 +10,6 @@ import {
   TrendingUp,
   Target,
   Clock,
-  ChevronLeft,
   ChevronDown,
   ShoppingBag,
   Search,
@@ -25,6 +25,8 @@ import {
   PenLine,
   Rocket,
   Send,
+  Quote,
+  Home,
 } from 'lucide-react';
 
 const iconsMap: Record<string, any> = {
@@ -75,20 +77,72 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
     { icon: Clock, color: "text-amber-600 bg-amber-50", title: "Экономия времени", text: "Берём на себя весь цикл — от исследования до публикации. Вы занимаетесь бизнесом." },
   ];
 
+  const reviews = REVIEWS.slice(0, 3);
+
   const orderNow = () => onOrder(service.id, 2000, service.pricePer1k * 2);
+
+  // ===== Schema.org structured data (SEO canon) =====
+  const baseUrl = 'https://alex1986-rgb.github.io/-111';
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Service',
+        name: service.name,
+        serviceType: service.name,
+        description: service.seoDescription || service.description,
+        provider: { '@type': 'Organization', name: 'TextFlow', url: baseUrl + '/' },
+        areaServed: { '@type': 'Country', name: 'Russia' },
+        offers: {
+          '@type': 'Offer',
+          price: service.pricePer1k,
+          priceCurrency: 'RUB',
+          description: 'Стоимость за 1000 знаков',
+          availability: 'https://schema.org/InStock',
+        },
+        aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '1200', bestRating: '5' },
+      },
+      {
+        '@type': 'FAQPage',
+        mainEntity: faq.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Главная', item: baseUrl + '/' },
+          { '@type': 'ListItem', position: 2, name: 'Услуги', item: baseUrl + '/#услуги' },
+          { '@type': 'ListItem', position: 3, name: service.name },
+        ],
+      },
+    ],
+  };
 
   return (
     <div className="bg-white animate-fade-in text-[var(--color-apple-ink)]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* ===== Hero ===== */}
       <section className="relative pt-28 pb-12 overflow-hidden bg-[var(--color-apple-mist)]">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[120px] -z-10"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <button
-            onClick={onBack}
-            className="inline-flex items-center gap-2 text-[var(--color-apple-grey)] hover:text-indigo-600 font-semibold text-xs tracking-tight mb-5 transition-colors group"
-          >
-            <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Назад к услугам
-          </button>
+          <nav aria-label="Хлебные крошки" className="mb-5">
+            <ol className="flex items-center flex-wrap gap-2 text-xs font-medium text-[var(--color-apple-grey)] tracking-tight">
+              <li>
+                <button onClick={onBack} className="inline-flex items-center gap-1.5 hover:text-indigo-600 transition-colors">
+                  <Home className="w-3.5 h-3.5" /> Главная
+                </button>
+              </li>
+              <li aria-hidden="true" className="text-slate-300">/</li>
+              <li>
+                <button onClick={onBack} className="hover:text-indigo-600 transition-colors">Услуги</button>
+              </li>
+              <li aria-hidden="true" className="text-slate-300">/</li>
+              <li aria-current="page" className="text-[var(--color-apple-ink)] font-semibold">{service.name}</li>
+            </ol>
+          </nav>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div>
@@ -125,9 +179,9 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
 
             <div className="relative">
               <div className="apple-card p-6 md:p-8 relative z-10">
-                <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
                   <CheckCircle2 className="w-5 h-5 text-indigo-600" /> Что входит в услугу
-                </h3>
+                </h2>
                 <div className="space-y-2.5">
                   {features.map((feature, i) => (
                     <div key={i} className="flex items-start gap-3 p-3 bg-[var(--color-apple-mist)] rounded-2xl">
@@ -225,6 +279,36 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
                 </p>
               </>
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Testimonials ===== */}
+      <section className="py-10 bg-white" aria-label="Отзывы клиентов">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-6">
+            <div className="apple-pill-label mb-3"><Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" /> Отзывы</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight">Нам доверяют 1200+ клиентов</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {reviews.map((rev) => (
+              <figure key={rev.id} className="apple-card p-6 flex flex-col">
+                <Quote className="w-7 h-7 text-indigo-200 fill-current mb-3" />
+                <div className="flex gap-0.5 mb-3">
+                  {Array.from({ length: rev.rating }).map((_, i) => (
+                    <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                  ))}
+                </div>
+                <blockquote className="text-sm text-slate-600 font-medium leading-snug mb-5 flex-1">«{rev.text}»</blockquote>
+                <figcaption className="flex items-center gap-3 pt-4 border-t border-black/[0.06]">
+                  <img src={rev.avatar} alt={rev.author} loading="lazy" className="w-9 h-9 rounded-full object-cover" />
+                  <div>
+                    <div className="text-sm font-semibold tracking-tight leading-none">{rev.author}</div>
+                    <div className="text-xs font-medium text-[var(--color-apple-grey)] tracking-tight mt-1">{rev.company}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </div>
       </section>
