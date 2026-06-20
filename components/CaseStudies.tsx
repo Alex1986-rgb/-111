@@ -68,15 +68,15 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {showTitle && (
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-4 gap-4">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-3 gap-4">
               <div className="max-w-xl">
-                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-white border border-slate-200 text-indigo-600 rounded-full text-[9px] font-black uppercase tracking-widest mb-4">
+                <div className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-white border border-slate-200 text-indigo-600 rounded-full text-[9px] font-black uppercase tracking-widest mb-3">
                    <Trophy className="w-3 h-3" /> Кейс-стади
                 </div>
-                <h2 className="text-3xl md:text-4xl font-black mb-4 tracking-tighter text-slate-900 leading-[0.95]">
+                <h2 className="text-2xl md:text-3xl font-black mb-2 tracking-tighter text-slate-900 leading-tight">
                   Наши <span className="text-indigo-600">результаты</span>
                 </h2>
-                <p className="text-slate-500 text-base md:text-base font-medium leading-relaxed">
+                <p className="text-slate-500 text-sm md:text-base font-medium leading-snug">
                   Посмотрите, как мы решаем реальные задачи бизнеса.
                 </p>
               </div>
@@ -98,7 +98,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
             </div>
           )}
 
-          <div className="relative min-h-[500px] md:min-h-[550px]">
+          <div className="relative min-h-[420px] md:min-h-[430px]">
             {CASE_STUDIES.map((item, idx) => {
               const isActive = idx === currentIndex;
               return (
@@ -142,21 +142,21 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                       </button>
                     </div>
 
-                    <div className="lg:w-7/12 p-6 md:p-6 lg:p-16 flex flex-col justify-center bg-white">
+                    <div className="lg:w-7/12 p-6 md:p-6 lg:p-10 flex flex-col justify-center bg-white">
                       <div className={`transition-all duration-500 delay-200 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
-                        <div className="flex items-center gap-3 text-indigo-600 font-black text-[9px] uppercase tracking-[0.3em] mb-4">
+                        <div className="flex items-center gap-3 text-indigo-600 font-black text-[9px] uppercase tracking-[0.3em] mb-3">
                            <span className="w-8 h-0.5 bg-indigo-600 rounded-full"></span>
                            {item.category}
                         </div>
-                        <h3 className="text-2xl md:text-3xl font-black text-slate-900 mb-4 leading-tight tracking-tight">
+                        <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-3 leading-tight tracking-tight">
                           {item.title}
                         </h3>
-                        <p className="text-slate-500 text-sm md:text-base mb-5 leading-relaxed font-medium">
+                        <p className="text-slate-500 text-sm md:text-base mb-4 leading-snug font-medium line-clamp-3">
                           {item.description}
                         </p>
                       </div>
-                      
-                      <div className={`flex items-center gap-4 mb-5 transition-all duration-500 delay-300 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
+
+                      <div className={`flex items-center gap-4 mb-4 transition-all duration-500 delay-300 ${isActive ? 'translate-x-0 opacity-100' : '-translate-x-4 opacity-0'}`}>
                          <button 
                           onClick={() => setSelectedCase(item)}
                           className="bg-slate-900 text-white px-8 py-3.5 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center gap-3 hover:bg-indigo-600 transition-all shadow-lg shadow-slate-200 active:scale-95 group"
@@ -165,9 +165,9 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                          </button>
                       </div>
 
-                      <div className={`pt-5 border-t border-slate-50 flex items-center gap-4 transition-all duration-500 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
-                        <div className="w-14 h-14 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
-                          <Quote className="w-7 h-7 fill-current opacity-20" />
+                      <div className={`pt-4 border-t border-slate-50 flex items-center gap-4 transition-all duration-500 delay-400 ${isActive ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}>
+                        <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 shrink-0">
+                          <Quote className="w-6 h-6 fill-current opacity-20" />
                         </div>
                         <div>
                           <p className="text-sm italic font-bold text-slate-800 mb-1 leading-snug">«{item.quote.text}»</p>
@@ -183,7 +183,7 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
             })}
           </div>
 
-          <div className="mt-5 flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="mt-4 flex flex-col md:flex-row items-center justify-between gap-4">
              <div className="flex gap-2.5">
                 {CASE_STUDIES.map((_, i) => (
                   <button 
