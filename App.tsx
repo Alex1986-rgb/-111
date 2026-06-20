@@ -375,10 +375,12 @@ const App: React.FC = () => {
           {route.view === 'pricing' && <PricingCalculator services={services} onStartOrder={createOrder} showSEO={true} />}
           {route.view === 'cases' && <CaseStudies showSEO={true} />}
           {route.view === 'reviews' && <ReviewsPage setView={navigate} />}
-          {route.view === 'service' && <ServicePage 
-            service={services.find(s => s.id === route.params?.slug) || services[0]} 
-            onBack={() => navigate('home')} 
-            onOrder={createOrder} 
+          {route.view === 'service' && <ServicePage
+            service={services.find(s => s.id === route.params?.slug) || services[0]}
+            services={services}
+            onBack={() => navigate('home')}
+            onOrder={createOrder}
+            onSelectService={(id) => navigate('service', id)}
           />}
           {route.view === 'bulk' && <BulkOrderView onBack={() => navigate('home')} onConfirm={(symbols, items, price) => {
             setPendingOrderData({ serviceId: 'bulk', symbols, price });

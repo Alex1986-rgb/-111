@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Service } from '../types';
 import { REVIEWS } from '../constants';
 import {
@@ -35,13 +35,27 @@ const iconsMap: Record<string, any> = {
 
 interface ServicePageProps {
   service: Service;
+  services?: Service[];
   onBack: () => void;
   onOrder: (serviceId: string, symbols: number, price: number) => void;
+  onSelectService?: (id: string) => void;
 }
 
-const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) => {
+const ServicePage: React.FC<ServicePageProps> = ({ service, services = [], onBack, onOrder, onSelectService }) => {
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
+  const [showStickyBar, setShowStickyBar] = useState(false);
   const Icon = iconsMap[service.icon] || Zap;
+
+  useEffect(() => {
+    const onScroll = () => {
+      const y = window.scrollY;
+      const nearBottom = y + window.innerHeight > document.documentElement.scrollHeight - 320;
+      setShowStickyBar(y > 620 && !nearBottom);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   const features = service.features || [
     "100% уникальность по Text.ru",
@@ -78,6 +92,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
   ];
 
   const reviews = REVIEWS.slice(0, 3);
+  const related = services.filter((s) => s.id !== service.id).slice(0, 3);
 
   const orderNow = () => onOrder(service.id, 2000, service.pricePer1k * 2);
 
@@ -124,6 +139,22 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
   return (
     <div className="bg-white animate-fade-in text-[var(--color-apple-ink)]">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      {/* ===== Sticky order bar ===== */}
+      <div
+        className={`fixed bottom-4 left-1/2 -translate-x-1/2 z-40 transition-all duration-500 ${showStickyBar ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'}`}
+      >
+        <div className="flex items-center gap-3 sm:gap-4 bg-white/90 backdrop-blur-xl border border-black/[0.06] rounded-full shadow-2xl shadow-black/10 pl-5 pr-2 py-2">
+          <div className="hidden sm:flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center"><Icon className="w-4 h-4" /></span>
+            <span className="text-sm font-semibold tracking-tight max-w-[160px] truncate">{service.name}</span>
+          </div>
+          <span className="text-sm font-semibold tracking-tight">от {service.pricePer1k} ₽<span className="text-[var(--color-apple-grey)] font-normal text-xs">/1к</span></span>
+          <button onClick={orderNow} className="apple-btn px-5 py-2.5 text-sm">
+            Заказать <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
       {/* ===== Hero ===== */}
       <section className="relative pt-28 pb-12 overflow-hidden bg-[var(--color-apple-mist)]">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-indigo-500/5 rounded-full blur-[120px] -z-10"></div>
@@ -337,6 +368,40 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, onBack, onOrder }) =
           </div>
         </div>
       </section>
+
+      {/* ===== Related services ===== */}
+      {related.length > 0 && onSelectService && (
+        <section className="py-10 bg-[var(--color-apple-mist)]" aria-label="Похожие услуги">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-2xl mb-6">
+              <div className="apple-pill-label mb-3"><Sparkles className="w-3.5 h-3.5 text-indigo-600" /> Ещё услуги</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight leading-tight">Похожие услуги</h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {related.map((s) => {
+                const RIcon = iconsMap[s.icon] || Zap;
+                return (
+                  <button
+                    key={s.id}
+                    onClick={() => { onSelectService(s.id); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                    className="group apple-card p-6 text-left flex flex-col"
+                  >
+                    <div className="apple-chip w-11 h-11 flex items-center justify-center mb-4 group-hover:bg-indigo-600 group-hover:text-white transition-colors">
+                      <RIcon className="w-5 h-5" />
+                    </div>
+                    <h3 className="text-base font-semibold tracking-tight mb-1.5 group-hover:text-indigo-600 transition-colors">{s.name}</h3>
+                    <p className="text-sm text-[var(--color-apple-grey)] font-normal leading-snug line-clamp-2 mb-4">{s.description}</p>
+                    <div className="mt-auto flex items-center justify-between pt-3 border-t border-black/[0.06]">
+                      <span className="text-sm font-semibold">от {s.pricePer1k} ₽</span>
+                      <span className="w-8 h-8 apple-chip flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-colors"><ArrowRight className="w-4 h-4" /></span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ===== Final CTA ===== */}
       <section className="py-10 bg-white">
