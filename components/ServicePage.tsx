@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Service } from '../types';
 import { REVIEWS } from '../constants';
+import { getServiceFaq, getServiceSeoHtml } from './serviceContent';
 import {
   CheckCircle2,
   ArrowRight,
@@ -27,6 +28,7 @@ import {
   Send,
   Quote,
   Home,
+  Info,
 } from 'lucide-react';
 
 const iconsMap: Record<string, any> = {
@@ -44,6 +46,7 @@ interface ServicePageProps {
 const ServicePage: React.FC<ServicePageProps> = ({ service, services = [], onBack, onOrder, onSelectService }) => {
   const [activeFaq, setActiveFaq] = useState<number | null>(0);
   const [showStickyBar, setShowStickyBar] = useState(false);
+  const [seoExpanded, setSeoExpanded] = useState(false);
   const Icon = iconsMap[service.icon] || Zap;
 
   useEffect(() => {
@@ -65,11 +68,11 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, services = [], onBac
     "Гарантия индексации",
   ];
 
-  const faq = service.faq || [
-    { q: "Как быстро будет готов текст?", a: "Срок выполнения зависит от объема, но в среднем составляет 2-3 рабочих дня для статьи в 5-7 тысяч знаков." },
-    { q: "Можно ли внести правки?", a: "Да, мы предоставляем 2 круга бесплатных правок в рамках изначального ТЗ." },
-    { q: "Вы работаете с НДС?", a: "Да, мы работаем как с физлицами, так и с юрлицами (ИП, ООО) с предоставлением всех закрывающих документов." },
-  ];
+  const faq = getServiceFaq(service);
+  const seoHtml = getServiceSeoHtml(service);
+  const seoParts = seoHtml.split(/(?<=<\/p>)/i).map((s) => s.trim()).filter(Boolean);
+  const seoFirst = seoParts[0] || seoHtml;
+  const seoRest = seoParts.slice(1).join('');
 
   const stats = [
     { value: "1200+", label: "проектов сдано", icon: Rocket },
@@ -291,25 +294,71 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, services = [], onBac
         </div>
       </section>
 
-      {/* ===== Detailed content ===== */}
-      <section className="py-10 bg-[var(--color-apple-mist)]">
+      {/* ===== SEO long-read (collapsible) ===== */}
+      <section className="py-10 bg-[var(--color-apple-mist)]" aria-label="Подробно об услуге">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="apple-pill-label mb-3"><Info className="w-3.5 h-3.5 text-indigo-600" /> Экспертный разбор</div>
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">
-            Почему стоит выбрать «{service.name}» от TextFlow
+            Всё об услуге «{service.name}»: тарифы, сравнения, гарантии
           </h2>
-          <div className="prose prose-slate prose-sm md:prose-base max-w-none text-slate-600 font-medium leading-relaxed">
-            {service.fullContent ? (
-              <div dangerouslySetInnerHTML={{ __html: service.fullContent }} />
-            ) : (
-              <>
-                <p>
-                  Контент — это не просто набор слов, а инструмент продвижения. Услуга <strong>«{service.name}»</strong> создана, чтобы ваш бизнес выделялся среди конкурентов и занимал лидирующие позиции в поисковой выдаче.
-                </p>
-                <p>
-                  Мы не просто пишем тексты — мы создаём смыслы. Каждый проект начинается с глубокого анализа ниши, конкурентов и целевой аудитории. Это позволяет создавать контент, который действительно резонирует с вашими клиентами и приносит измеримый результат.
-                </p>
-              </>
+          <div className="prose prose-slate prose-sm md:prose-base max-w-none text-slate-600 font-medium leading-relaxed prose-headings:font-semibold prose-headings:text-[var(--color-apple-ink)] prose-strong:text-[var(--color-apple-ink)] prose-table:text-sm prose-th:bg-slate-50 prose-td:align-top">
+            <div dangerouslySetInnerHTML={{ __html: seoFirst }} />
+            {seoRest && (
+              <div className={`grid transition-all duration-500 ease-out ${seoExpanded ? 'grid-rows-[1fr] opacity-100 mt-3' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden">
+                  <div dangerouslySetInnerHTML={{ __html: seoRest }} />
+                </div>
+              </div>
             )}
+          </div>
+          {seoRest && (
+            <button
+              onClick={() => setSeoExpanded(!seoExpanded)}
+              aria-expanded={seoExpanded}
+              className="mt-5 inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-indigo-600 hover:opacity-70 transition-opacity"
+            >
+              {seoExpanded ? 'Свернуть' : 'Читать полностью'}
+              <span className="w-8 h-8 rounded-full bg-indigo-50 flex items-center justify-center">
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${seoExpanded ? 'rotate-180' : ''}`} />
+              </span>
+            </button>
+          )}
+        </div>
+      </section>
+
+      {/* ===== Lead capture ===== */}
+      <section className="py-10 bg-white" aria-label="Получить расчёт">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br from-indigo-600 to-indigo-700 p-7 md:p-12 relative overflow-hidden">
+            <div className="absolute -top-16 -right-10 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="text-white">
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-3 leading-tight">Бесплатный расчёт стоимости за 30 минут</h2>
+                <p className="text-indigo-100 text-sm md:text-base leading-snug max-w-md">
+                  Оставьте заявку — менеджер подготовит точную смету и стратегию контента под вашу нишу. Без обязательств.
+                </p>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2 mt-5 text-xs font-medium text-indigo-100">
+                  <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4" /> Ответ за 30 минут</span>
+                  <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4" /> Бесплатно</span>
+                  <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4" /> Без спама</span>
+                </div>
+              </div>
+              <form
+                onSubmit={(e) => { e.preventDefault(); orderNow(); }}
+                className="bg-white rounded-3xl p-2 flex flex-col sm:flex-row gap-2 shadow-2xl"
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="Ваш e-mail"
+                  className="flex-1 bg-transparent px-5 py-3.5 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                  aria-label="E-mail для расчёта"
+                />
+                <button type="submit" className="apple-btn px-6 py-3.5 text-sm whitespace-nowrap">
+                  Получить расчёт <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -344,25 +393,35 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, services = [], onBac
         </div>
       </section>
 
-      {/* ===== FAQ ===== */}
-      <section className="py-10 bg-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-5 text-center">Частые вопросы</h2>
-          <div className="space-y-2.5">
-            {faq.map((item, i) => (
-              <div key={i} className={`border rounded-2xl overflow-hidden transition-all ${activeFaq === i ? 'border-indigo-600 bg-white shadow-lg shadow-indigo-50' : 'border-slate-100 bg-[var(--color-apple-mist)] hover:border-slate-200'}`}>
-                <button
-                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                  className="w-full px-5 py-4 flex justify-between items-center text-left gap-4"
-                >
-                  <span className="text-sm md:text-base font-semibold leading-tight">{item.q}</span>
-                  <ChevronDown className={`w-5 h-5 shrink-0 text-indigo-600 transition-transform ${activeFaq === i ? 'rotate-180' : ''}`} />
-                </button>
-                {activeFaq === i && (
-                  <div className="px-5 pb-4 text-sm text-[var(--color-apple-grey)] leading-relaxed font-normal animate-in slide-in-from-top-2 duration-300">
-                    {item.a}
-                  </div>
-                )}
+      {/* ===== FAQ (10 questions, 2 blocks of 5) ===== */}
+      <section className="py-10 bg-white" aria-label="Частые вопросы">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-6">
+            <div className="apple-pill-label mb-3 mx-auto w-fit"><Info className="w-3.5 h-3.5 text-indigo-600" /> FAQ</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight">Частые вопросы об услуге</h2>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-start">
+            {[faq.slice(0, 5), faq.slice(5, 10)].map((block, b) => (
+              <div key={b} className="space-y-2.5">
+                {block.map((item, j) => {
+                  const i = b * 5 + j;
+                  return (
+                    <div key={i} className={`border rounded-2xl overflow-hidden transition-all ${activeFaq === i ? 'border-indigo-600 bg-white shadow-lg shadow-indigo-50' : 'border-slate-100 bg-[var(--color-apple-mist)] hover:border-slate-200'}`}>
+                      <button
+                        onClick={() => setActiveFaq(activeFaq === i ? null : i)}
+                        className="w-full px-5 py-4 flex justify-between items-center text-left gap-4"
+                      >
+                        <span className="text-sm md:text-base font-semibold leading-tight">{item.q}</span>
+                        <ChevronDown className={`w-5 h-5 shrink-0 text-indigo-600 transition-transform ${activeFaq === i ? 'rotate-180' : ''}`} />
+                      </button>
+                      {activeFaq === i && (
+                        <div className="px-5 pb-4 text-sm text-[var(--color-apple-grey)] leading-relaxed font-normal animate-in slide-in-from-top-2 duration-300">
+                          {item.a}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>
