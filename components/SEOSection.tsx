@@ -12,17 +12,26 @@ interface SEOSectionProps {
   subtitle?: string;
   seoText: string;
   faqs?: FAQItem[];
+  hideFaq?: boolean;
   className?: string;
 }
 
-const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, className = "" }) => {
+const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, faqs = [], hideFaq = false, className = "" }) => {
   const [expanded, setExpanded] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   // Разбиваем HTML на абзацы, сохраняя теги </p>
   const parts = seoText.split(/(?<=<\/p>)/i).map(s => s.trim()).filter(Boolean);
   const firstPara = parts[0] || seoText;
   const restHtml = parts.slice(1).join('');
   const hasMore = restHtml.length > 0;
+
+  const showFaq = !hideFaq && faqs.length > 0;
+  const faqLd = showFaq ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  } : null;
 
   return (
     <section className={`py-8 ${className}`}>
@@ -63,6 +72,32 @@ const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, class
               <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`} />
             </span>
           </button>
+        )}
+
+        {showFaq && (
+          <div className="mt-10" aria-label="Частые вопросы">
+            {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
+            <h3 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-5">Частые вопросы</h3>
+            <div className="space-y-2.5">
+              {faqs.map((item, i) => (
+                <div key={i} className={`border rounded-2xl overflow-hidden transition-all ${openFaq === i ? 'border-indigo-600 bg-white shadow-lg shadow-indigo-50' : 'border-slate-100 bg-slate-50 hover:border-slate-200'}`}>
+                  <button
+                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                    aria-expanded={openFaq === i}
+                    className="w-full px-5 py-4 flex justify-between items-center text-left gap-4"
+                  >
+                    <span className="text-sm md:text-base font-semibold text-slate-900 leading-tight">{item.q}</span>
+                    <ChevronDown className={`w-5 h-5 shrink-0 text-indigo-600 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                  </button>
+                  {openFaq === i && (
+                    <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed font-normal animate-in slide-in-from-top-2 duration-300">
+                      {item.a}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         )}
       </div>
     </section>
