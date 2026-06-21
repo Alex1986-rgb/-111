@@ -70,9 +70,20 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, services = [], onBac
 
   const faq = getServiceFaq(service);
   const seoHtml = getServiceSeoHtml(service);
-  const seoParts = seoHtml.split(/(?<=<\/p>)/i).map((s) => s.trim()).filter(Boolean);
-  const seoFirst = seoParts[0] || seoHtml;
-  const seoRest = seoParts.slice(1).join('');
+  // Видимая часть = интро + первая таблица-сравнение; остальное раскрывается по кнопке
+  let seoFirst: string;
+  let seoRest: string;
+  const firstTableEnd = seoHtml.indexOf('</table>');
+  if (firstTableEnd !== -1) {
+    const closeIdx = seoHtml.indexOf('</div>', firstTableEnd);
+    const cut = closeIdx !== -1 ? closeIdx + '</div>'.length : firstTableEnd + '</table>'.length;
+    seoFirst = seoHtml.slice(0, cut);
+    seoRest = seoHtml.slice(cut);
+  } else {
+    const parts = seoHtml.split(/(?<=<\/p>)/i).map((s) => s.trim()).filter(Boolean);
+    seoFirst = parts[0] || seoHtml;
+    seoRest = parts.slice(1).join('');
+  }
 
   const stats = [
     { value: "1200+", label: "проектов сдано", icon: Rocket },
