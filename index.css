@@ -90,3 +90,59 @@
 .animate-ticker:hover {
   animation-play-state: paused;
 }
+
+/* ===== Rich-text for injected SEO HTML (no typography plugin) ===== */
+.seo-richtext {
+  color: #475569;
+  font-weight: 500;
+  line-height: 1.75;
+}
+.seo-richtext > div > p,
+.seo-richtext p {
+  margin: 0 0 1rem;
+}
+.seo-richtext strong { color: #1d1d1f; font-weight: 700; }
+.seo-richtext h3 {
+  font-size: 1.3rem;
+  line-height: 1.25;
+  font-weight: 600;
+  color: #1d1d1f;
+  letter-spacing: -0.01em;
+  margin: 2rem 0 0.85rem;
+}
+.seo-richtext ul { margin: 0 0 1rem; padding-left: 1.2rem; list-style: disc; }
+.seo-richtext li { margin: 0.3rem 0; }
+
+/* Tables */
+.seo-richtext table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  background: #fff;
+  border: 1px solid #e9edf3;
+  border-radius: 14px;
+  overflow: hidden;
+}
+.seo-richtext thead th {
+  background: #0f172a;
+  color: #fff;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  letter-spacing: -0.01em;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+.seo-richtext thead th:last-child { border-right: 0; }
+.seo-richtext tbody td {
+  padding: 11px 14px;
+  border-top: 1px solid #eef2f7;
+  border-right: 1px solid #f1f5f9;
+  vertical-align: top;
+  color: #475569;
+}
+.seo-richtext tbody td:last-child { border-right: 0; }
+.seo-richtext tbody td:first-child { font-weight: 600; color: #1d1d1f; }
+.seo-richtext tbody tr:nth-child(even) td { background: #f8fafc; }
+.seo-richtext tbody tr:hover td { background: #eef2ff; }

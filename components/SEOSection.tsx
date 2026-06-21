@@ -39,7 +39,7 @@ const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, class
           </p>
         )}
 
-        <div className="prose prose-slate prose-sm md:prose-base max-w-none text-slate-600 font-medium leading-relaxed">
+        <div className="seo-richtext max-w-none">
           <div dangerouslySetInnerHTML={{ __html: firstPara }} />
           {hasMore && (
             <div

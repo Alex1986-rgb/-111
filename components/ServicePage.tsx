@@ -301,7 +301,7 @@ const ServicePage: React.FC<ServicePageProps> = ({ service, services = [], onBac
           <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-4">
             Всё об услуге «{service.name}»: тарифы, сравнения, гарантии
           </h2>
-          <div className="prose prose-slate prose-sm md:prose-base max-w-none text-slate-600 font-medium leading-relaxed prose-headings:font-semibold prose-headings:text-[var(--color-apple-ink)] prose-strong:text-[var(--color-apple-ink)] prose-table:text-sm prose-th:bg-slate-50 prose-td:align-top">
+          <div className="seo-richtext max-w-none">
             <div dangerouslySetInnerHTML={{ __html: seoFirst }} />
             {seoRest && (
               <div className={`grid transition-all duration-500 ease-out ${seoExpanded ? 'grid-rows-[1fr] opacity-100 mt-3' : 'grid-rows-[0fr] opacity-0'}`}>
