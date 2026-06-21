@@ -218,8 +218,19 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
     });
   };
 
+  const breadcrumbLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: 'https://alex1986-rgb.github.io/-111/' },
+      { '@type': 'ListItem', position: 2, name: 'Блог', item: 'https://alex1986-rgb.github.io/-111/#/blog' },
+      { '@type': 'ListItem', position: 3, name: article.title },
+    ],
+  };
+
   return (
     <article className="min-h-[70vh] bg-white pb-20 sm:pb-32">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
       {/* Прогресс-бар чтения */}
       <div className="fixed top-20 left-0 w-full h-1 sm:h-1.5 z-[110] bg-slate-50">
         <div 
@@ -342,6 +353,30 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
                   <p className="text-slate-600 text-sm leading-relaxed max-w-md">Эксперт в области {article.category.toLowerCase()}. Более 10 лет опыта в создании контента, который не только нравится людям, но и приносит прибыль бизнесу.</p>
                </div>
             </div>
+
+            {/* Лид-захват внутри статьи */}
+            <div className="mt-6 rounded-[2rem] sm:rounded-[3rem] bg-gradient-to-br from-indigo-600 to-indigo-700 p-6 sm:p-10 relative overflow-hidden">
+              <div className="absolute -top-12 -right-8 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <h3 className="text-xl sm:text-2xl font-black text-white mb-2 leading-tight">Хотите такой же контент для своего сайта?</h3>
+                <p className="text-indigo-100 text-sm font-medium mb-5 max-w-lg">Оставьте e-mail — пришлём бесплатный SEO-аудит и расчёт стоимости под вашу нишу за 30 минут.</p>
+                <form
+                  onSubmit={(e) => { e.preventDefault(); window.open('https://t.me/textflow_agency', '_blank', 'noopener'); }}
+                  className="bg-white rounded-2xl sm:rounded-full p-2 flex flex-col sm:flex-row gap-2 max-w-xl shadow-2xl"
+                >
+                  <input
+                    type="email"
+                    required
+                    placeholder="Ваш e-mail"
+                    aria-label="E-mail для бесплатного аудита"
+                    className="flex-1 bg-transparent px-5 py-3 text-sm font-medium text-slate-900 placeholder:text-slate-400 focus:outline-none"
+                  />
+                  <button type="submit" className="px-6 py-3 bg-slate-900 text-white rounded-xl sm:rounded-full font-black text-[11px] uppercase tracking-widest hover:bg-slate-800 transition-colors flex items-center justify-center gap-2 whitespace-nowrap">
+                    Получить аудит <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
 
           <div className="lg:w-4/12">
@@ -375,9 +410,14 @@ const ArticlePage: React.FC<ArticlePageProps> = ({ article, onBack, onNavigateTo
                 <div className="absolute top-0 right-0 w-32 sm:w-40 h-32 sm:h-40 bg-indigo-500/20 rounded-full blur-[50px] sm:blur-[60px] -translate-y-12 translate-x-12 group-hover:bg-indigo-500/40 transition-colors"></div>
                 <h4 className="text-lg sm:text-2xl md:text-3xl font-black mb-4 sm:mb-4 leading-tight relative z-10">Статья была <br /><span className="text-indigo-400">полезна?</span></h4>
                 <p className="text-xs sm:text-sm text-slate-400 mb-5 sm:mb-4 leading-relaxed font-medium relative z-10">Закажите экспертный контент у авторов этого материала. Сделаем глубокий аудит вашего сайта бесплатно.</p>
-                <button className="w-full py-5 sm:py-6 bg-indigo-600 text-white rounded-[1.2rem] sm:rounded-[1.5rem] font-black text-[10px] sm:text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-700 hover:scale-[1.02] transition-all shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 active:scale-95">
+                <a
+                  href="https://t.me/textflow_agency"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-5 sm:py-6 bg-indigo-600 text-white rounded-[1.2rem] sm:rounded-[1.5rem] font-black text-[10px] sm:text-[11px] uppercase tracking-[0.2em] hover:bg-indigo-700 hover:scale-[1.02] transition-all shadow-xl shadow-indigo-600/20 flex items-center justify-center gap-3 active:scale-95"
+                >
                   Обсудить проект <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
               </section>
 
               <div className="p-6 sm:p-6 border-2 border-dashed border-slate-100 rounded-[2rem] sm:rounded-[3rem] text-center">
