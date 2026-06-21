@@ -4,6 +4,7 @@ import { REVIEWS } from '../constants';
 import { Star, Quote } from 'lucide-react';
 import { View } from '../types';
 import SEOSection from './SEOSection';
+import LeadCapture from './LeadCapture';
 import { PAGE_CONTENT } from './pageContent';
 
 interface ReviewsPageProps {
@@ -41,6 +42,8 @@ const ReviewsPage: React.FC<ReviewsPageProps> = ({ setView }) => {
           </div>
         ))}
       </div>
+
+      <LeadCapture title="Хотите оказаться среди довольных клиентов?" subtitle="Оставьте e-mail — бесплатно рассчитаем стоимость и проведём аудит вашего контента." className="mt-6" />
 
       <SEOSection
         title="Репутация, построенная на качестве"

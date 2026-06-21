@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { CaseStudy } from '../types';
 import SEOSection from './SEOSection';
+import LeadCapture from './LeadCapture';
 import { PAGE_CONTENT } from './pageContent';
 
 interface CaseStudiesProps {
@@ -262,12 +263,15 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
       </section>
 
       {showSEO && (
-        <SEOSection
-          title="Как контент влияет на бизнес-показатели"
-          subtitle="Наши кейсы — это не просто красивые картинки, а реальные истории роста выручки и трафика."
-          seoText={PAGE_CONTENT.cases.seo}
-          faqs={PAGE_CONTENT.cases.faq}
-        />
+        <>
+          <LeadCapture title="Хотите такой же рост, как в наших кейсах?" subtitle="Оставьте e-mail — бесплатно проведём аудит вашего сайта и предложим стратегию контента под вашу нишу." />
+          <SEOSection
+            title="Как контент влияет на бизнес-показатели"
+            subtitle="Наши кейсы — это не просто красивые картинки, а реальные истории роста выручки и трафика."
+            seoText={PAGE_CONTENT.cases.seo}
+            faqs={PAGE_CONTENT.cases.faq}
+          />
+        </>
       )}
     </>
   );

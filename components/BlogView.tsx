@@ -4,6 +4,7 @@ import { BLOG_ARTICLES } from '../constants';
 import { Article } from '../types';
 import { Calendar, Search, ArrowRight, Clock, Tag, X } from 'lucide-react';
 import SEOSection from './SEOSection';
+import LeadCapture from './LeadCapture';
 import { PAGE_CONTENT } from './pageContent';
 
 interface BlogViewProps {
@@ -192,6 +193,8 @@ const BlogView: React.FC<BlogViewProps> = ({ onArticleClick }) => {
            </button>
         </div>
       )}
+
+      <LeadCapture title="Нет времени писать контент самим?" subtitle="Закажите его у авторов этих статей. Оставьте e-mail — бесплатно проведём аудит и предложим контент-план." className="mt-6" />
 
       <SEOSection
         title="Ваш путеводитель в мире контент-маркетинга"
