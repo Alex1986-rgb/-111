@@ -88,22 +88,29 @@ const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, faqs 
           <div className="mt-10" aria-label="Частые вопросы">
             {faqLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />}
             <h3 className="text-xl md:text-2xl font-black text-slate-900 tracking-tight mb-5">Частые вопросы</h3>
-            <div className="space-y-2.5">
-              {faqs.map((item, i) => (
-                <div key={i} className={`border rounded-2xl overflow-hidden transition-all ${openFaq === i ? 'border-indigo-600 bg-white shadow-lg shadow-indigo-50' : 'border-slate-100 bg-slate-50 hover:border-slate-200'}`}>
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    aria-expanded={openFaq === i}
-                    className="w-full px-5 py-4 flex justify-between items-center text-left gap-4"
-                  >
-                    <span className="text-sm md:text-base font-semibold text-slate-900 leading-tight">{item.q}</span>
-                    <ChevronDown className={`w-5 h-5 shrink-0 text-indigo-600 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
-                  </button>
-                  {openFaq === i && (
-                    <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed font-normal animate-in slide-in-from-top-2 duration-300">
-                      {item.a}
-                    </div>
-                  )}
+            <div className={faqs.length > 5 ? 'grid grid-cols-1 lg:grid-cols-2 gap-2.5 lg:gap-4 items-start' : 'space-y-2.5'}>
+              {(faqs.length > 5 ? [faqs.slice(0, Math.ceil(faqs.length / 2)), faqs.slice(Math.ceil(faqs.length / 2))] : [faqs]).map((block, b, arr) => (
+                <div key={b} className="space-y-2.5">
+                  {block.map((item) => {
+                    const i = b === 0 ? faqs.indexOf(item) : Math.ceil(faqs.length / 2) + block.indexOf(item);
+                    return (
+                      <div key={i} className={`border rounded-2xl overflow-hidden transition-all ${openFaq === i ? 'border-indigo-600 bg-white shadow-lg shadow-indigo-50' : 'border-slate-100 bg-slate-50 hover:border-slate-200'}`}>
+                        <button
+                          onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                          aria-expanded={openFaq === i}
+                          className="w-full px-5 py-4 flex justify-between items-center text-left gap-4"
+                        >
+                          <span className="text-sm md:text-base font-semibold text-slate-900 leading-tight">{item.q}</span>
+                          <ChevronDown className={`w-5 h-5 shrink-0 text-indigo-600 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                        </button>
+                        {openFaq === i && (
+                          <div className="px-5 pb-4 text-sm text-slate-500 leading-relaxed font-normal animate-in slide-in-from-top-2 duration-300">
+                            {item.a}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               ))}
             </div>
