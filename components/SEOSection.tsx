@@ -20,11 +20,21 @@ const SEOSection: React.FC<SEOSectionProps> = ({ title, subtitle, seoText, faqs 
   const [expanded, setExpanded] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Разбиваем HTML на абзацы, сохраняя теги </p>
-  const parts = seoText.split(/(?<=<\/p>)/i).map(s => s.trim()).filter(Boolean);
-  const firstPara = parts[0] || seoText;
-  const restHtml = parts.slice(1).join('');
-  const hasMore = restHtml.length > 0;
+  // Видимая часть: если есть таблица — показываем интро + первую таблицу; иначе первый абзац
+  let firstPara: string;
+  let restHtml: string;
+  const firstTableEnd = seoText.indexOf('</table>');
+  if (firstTableEnd !== -1) {
+    const closeIdx = seoText.indexOf('</div>', firstTableEnd);
+    const cut = closeIdx !== -1 ? closeIdx + '</div>'.length : firstTableEnd + '</table>'.length;
+    firstPara = seoText.slice(0, cut);
+    restHtml = seoText.slice(cut);
+  } else {
+    const parts = seoText.split(/(?<=<\/p>)/i).map(s => s.trim()).filter(Boolean);
+    firstPara = parts[0] || seoText;
+    restHtml = parts.slice(1).join('');
+  }
+  const hasMore = restHtml.trim().length > 0;
 
   const showFaq = !hideFaq && faqs.length > 0;
   const faqLd = showFaq ? {
