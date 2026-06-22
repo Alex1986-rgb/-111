@@ -1,7 +1,10 @@
 
 import React, { useState, useRef } from 'react';
-import { Layers, Upload, FileText, CheckCircle2, Trash2, Plus, ArrowRight, Zap, Info, ShieldCheck, Database, Rocket, PlusCircle, MinusCircle, FileSpreadsheet, Download, FileJson, Code } from 'lucide-react';
+import { Layers, Upload, FileText, CheckCircle2, Trash2, Plus, ArrowRight, Zap, Info, ShieldCheck, Database, Rocket, PlusCircle, FileSpreadsheet, Download, FileJson, Code } from 'lucide-react';
 import { INITIAL_SERVICES } from '../constants';
+import SEOSection from './SEOSection';
+import LeadCapture from './LeadCapture';
+import { PAGE_CONTENT } from './pageContent';
 
 interface BulkItem {
   id: string;
@@ -20,7 +23,6 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
     { id: '1', title: '', keywords: '', length: 2000 }
   ]);
   const [dragActive, setDragActive] = useState(false);
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const bulkService = INITIAL_SERVICES.find(s => s.id === 'bulk')!;
@@ -66,21 +68,6 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
       setItems([...items, ...newItems]);
     }
   };
-
-  const bulkFaqs = [
-    {
-      q: "В каком виде я получу готовые тексты для сайта?",
-      a: "Мы предоставляем контент в любом удобном формате: Excel (таблица), CSV (для импорта), JSON (для разработчиков) или Google Таблицы. Это позволяет загрузить сотни описаний на ваш сайт за считанные минуты."
-    },
-    {
-      q: "Какое максимальное количество текстов можно заказать за раз?",
-      a: "Наша система технически не ограничена. Мы успешно обрабатывали заказы на 500+ описаний товаров для маркетплейсов в неделю. При заказе от 100 текстов предоставляются индивидуальные условия и персональный редактор."
-    },
-    {
-      q: "Как проверяется качество при массовом создании?",
-      a: "Каждый текст проходит трехуровневую проверку: 1. Автоматизированный аудит на соответствие ТЗ и стилистику. 2. Проверка уникальности по алгоритмам Text.ru. 3. Обязательная проверка выпускающим редактором перед отправкой."
-    }
-  ];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 animate-fade-in">
@@ -309,32 +296,14 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
         </aside>
       </div>
 
-      <section className="py-9 border-t border-slate-100">
-         <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-black mb-4 text-center">FAQ по массовым заказам</h2>
-            <div className="space-y-4">
-              {bulkFaqs.map((faq, i) => (
-                <div key={i} className="bg-white border-2 border-slate-50 rounded-[2rem] overflow-hidden hover:border-indigo-100 transition-all">
-                  <button 
-                    onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                    className="w-full p-6 flex justify-between items-center text-left"
-                    aria-expanded={activeFaq === i}
-                  >
-                    <span className="text-base font-black text-slate-900 leading-tight">{faq.q}</span>
-                    <div className="shrink-0 ml-4">
-                       {activeFaq === i ? <MinusCircle className="w-6 h-6 text-indigo-600" /> : <PlusCircle className="w-6 h-6 text-slate-300" />}
-                    </div>
-                  </button>
-                  {activeFaq === i && (
-                    <div className="px-8 pb-5 text-slate-500 leading-relaxed text-sm md:text-base animate-fade-in">
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-         </div>
-      </section>
+      <LeadCapture title="Готовы масштабировать контент?" subtitle="Загрузите список страниц или оставьте e-mail — бесплатно рассчитаем стоимость и подготовим пилотную партию." />
+
+      <SEOSection
+        title="Массовое создание SEO-контента для тысяч страниц"
+        subtitle="Наполняем интернет-магазины, маркетплейсы и порталы уникальным контентом без потери качества."
+        seoText={PAGE_CONTENT.bulk.seo}
+        faqs={PAGE_CONTENT.bulk.faq}
+      />
 
       <section className="mt-6 py-9 bg-slate-50 rounded-[4rem] px-8 md:px-16">
          <h3 className="text-xs font-black uppercase tracking-widest text-slate-400 mb-4 underline">Ключевые преимущества TextFlow Enterprise:</h3>
