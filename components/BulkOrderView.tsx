@@ -241,14 +241,18 @@ const BulkOrderView: React.FC<BulkOrderViewProps> = ({ onBack, onConfirm }) => {
                             <h2 className="text-sm font-black mb-2">Комплексный подход к доставке</h2>
                             <p className="mb-2">Международная доставка грузов морем остается краеугольным камнем...</p>
                             <table className="w-full border-collapse border border-slate-100 mb-2">
-                               <tr className="bg-slate-50">
-                                  <th className="border border-slate-100 p-1">Параметр</th>
-                                  <th className="border border-slate-100 p-1">Значение</th>
-                               </tr>
-                               <tr>
-                                  <td className="border border-slate-100 p-1">Тип</td>
-                                  <td className="border border-slate-100 p-1">Контейнерная</td>
-                               </tr>
+                               <thead>
+                                 <tr className="bg-slate-50">
+                                    <th className="border border-slate-100 p-1">Параметр</th>
+                                    <th className="border border-slate-100 p-1">Значение</th>
+                                 </tr>
+                               </thead>
+                               <tbody>
+                                 <tr>
+                                    <td className="border border-slate-100 p-1">Тип</td>
+                                    <td className="border border-slate-100 p-1">Контейнерная</td>
+                                 </tr>
+                               </tbody>
                             </table>
                          </div>
                       </div>

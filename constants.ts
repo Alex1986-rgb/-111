@@ -308,7 +308,7 @@ export const BLOG_ARTICLES: Article[] = Array.from({ length: 16 }).map((_, i) =>
     title: `${topic.sub}: ${i % 2 === 0 ? 'Полный гид по захвату рынка' : 'Секреты кратного роста'} в 2025 году`,
     slug: `${topic.sub.toLowerCase().replace(/\s+/g, '-')}-${id}`,
     category: topic.cat,
-    tags: [topic.cat, 'SEO', i % 3 === 0 ? 'Стратегия' : i % 3 === 1 ? 'Кейс' : 'Тренды'],
+    tags: [...new Set([topic.cat, 'SEO', i % 3 === 0 ? 'Стратегия' : i % 3 === 1 ? 'Кейс' : 'Тренды'])],
     excerpt: `Разбираем рабочие механики продвижения в нише ${topic.sub}. Как использовать запросы "${topic.keywords}" для кратного роста охватов и конверсии.`,
     date: `${10 + (i % 20)}.06.2024`,
     readingTime: 15 + (i % 10),

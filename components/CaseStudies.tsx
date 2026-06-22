@@ -68,9 +68,15 @@ const CaseStudies: React.FC<CaseStudiesProps> = ({ showTitle = true, showSEO = f
                 <div className="inline-flex items-center gap-2 px-2.5 py-0.5 bg-white border border-slate-200 text-indigo-600 rounded-full text-[9px] font-black uppercase tracking-widest mb-3">
                    <Trophy className="w-3 h-3" /> Кейс-стади
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black mb-2 tracking-tighter text-slate-900 leading-tight">
-                  Наши <span className="text-indigo-600">результаты</span>
-                </h2>
+                {showSEO ? (
+                  <h1 className="text-2xl md:text-3xl font-black mb-2 tracking-tighter text-slate-900 leading-tight">
+                    Кейсы копирайтинга — наши <span className="text-indigo-600">результаты</span>
+                  </h1>
+                ) : (
+                  <h2 className="text-2xl md:text-3xl font-black mb-2 tracking-tighter text-slate-900 leading-tight">
+                    Наши <span className="text-indigo-600">результаты</span>
+                  </h2>
+                )}
                 <p className="text-slate-500 text-sm md:text-base font-medium leading-snug">
                   Посмотрите, как мы решаем реальные задачи бизнеса.
                 </p>

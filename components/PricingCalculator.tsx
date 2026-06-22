@@ -44,9 +44,15 @@ const PricingCalculator: React.FC<PricingCalculatorProps> = ({ services, onStart
             <div className="inline-block px-4 py-1.5 bg-indigo-500/20 text-indigo-400 rounded-full text-[10px] font-black uppercase tracking-widest mb-3 border border-indigo-500/30">
                Smart Pricing Engine
             </div>
-            <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tighter">
-              Рассчитайте выгоду вашего контента
-            </h2>
+            {showSEO ? (
+              <h1 className="text-2xl md:text-3xl font-black mb-3 tracking-tighter">
+                Рассчитайте стоимость копирайтинга — выгоду вашего контента
+              </h1>
+            ) : (
+              <h2 className="text-2xl md:text-3xl font-black mb-3 tracking-tighter">
+                Рассчитайте выгоду вашего контента
+              </h2>
+            )}
 
             <div className="space-y-3 mt-3">
               <div>
