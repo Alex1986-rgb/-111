@@ -95,9 +95,9 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Form Body */}
-        <div className="lg:col-span-8 bg-white rounded-[3rem] shadow-2xl shadow-indigo-100/50 border border-slate-100 overflow-hidden">
-          <div className="p-6 md:p-6">
-            <h1 className="text-3xl md:text-4xl font-black text-slate-900 mb-4 tracking-tighter leading-none">
+        <div className="lg:col-span-8 apple-card overflow-hidden">
+          <div className="p-6 md:p-8">
+            <h1 className="text-2xl md:text-3xl font-semibold text-[var(--color-apple-ink)] mb-3 tracking-tight leading-tight">
               {pendingOrder.isBulk ? 'Массовый заказ' : step === 1 ? 'Контактные данные' : 'Детали проекта'}
             </h1>
             <p className="text-slate-500 font-medium mb-4">
@@ -119,7 +119,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="example@company.ru"
-                        className="w-full bg-slate-50 border-2 border-slate-50 rounded-[1.5rem] py-5 pl-16 pr-8 text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-base"
+                        className="w-full bg-slate-50 border border-black/[0.06] rounded-[1.5rem] py-5 pl-16 pr-8 text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-base"
                       />
                     </div>
                   </div>
@@ -146,7 +146,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                             key={t.id}
                             type="button"
                             onClick={() => setTone(t.id as any)}
-                            className={`flex items-start gap-4 p-5 rounded-[1.5rem] border-2 text-left transition-all ${tone === t.id ? 'border-indigo-600 bg-indigo-50 shadow-lg shadow-indigo-100/50' : 'border-slate-50 bg-slate-50 hover:border-slate-200'}`}
+                            className={`flex items-start gap-4 p-4 rounded-2xl border text-left transition-all ${tone === t.id ? 'border-indigo-600 bg-indigo-50 shadow-sm' : 'border-black/[0.06] bg-[var(--color-apple-mist)] hover:border-slate-300'}`}
                           >
                             <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 ${tone === t.id ? 'bg-indigo-600 text-white' : 'bg-white text-slate-400'}`}>
                                <Icon className="w-5 h-5" />
@@ -171,7 +171,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                           value={audience}
                           onChange={(e) => setAudience(e.target.value)}
                           placeholder="Напр: B2B собственники бизнеса"
-                          className="w-full bg-slate-50 border-2 border-slate-50 rounded-2xl py-4 pl-14 pr-6 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-sm"
+                          className="w-full bg-slate-50 border border-black/[0.06] rounded-2xl py-4 pl-14 pr-6 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-sm"
                          />
                       </div>
                     </div>
@@ -184,7 +184,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                           value={keywords}
                           onChange={(e) => setKeywords(e.target.value)}
                           placeholder="купить, заказать, цена..."
-                          className="w-full bg-slate-50 border-2 border-slate-50 rounded-2xl py-4 pl-14 pr-6 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-sm"
+                          className="w-full bg-slate-50 border border-black/[0.06] rounded-2xl py-4 pl-14 pr-6 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-bold text-sm"
                          />
                       </div>
                     </div>
@@ -205,7 +205,7 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
                         value={description}
                         onChange={(e) => setDescription(e.target.value)}
                         placeholder="О чем должен быть текст? Какие основные тезисы нужно раскрыть?"
-                        className="w-full bg-slate-50 border-2 border-slate-50 rounded-[2rem] py-6 pl-16 pr-8 text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-medium resize-none"
+                        className="w-full bg-slate-50 border border-black/[0.06] rounded-[2rem] py-6 pl-16 pr-8 text-slate-900 focus:outline-none focus:border-indigo-600 focus:bg-white transition-all font-medium resize-none"
                        ></textarea>
                     </div>
                   </div>
@@ -214,18 +214,18 @@ const OrderForm: React.FC<OrderFormProps> = ({ pendingOrder, onFinalize, onCance
 
               <div className="flex gap-4 pt-6">
                 {step === 2 && (
-                  <button 
+                  <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="px-8 py-5 bg-slate-100 text-slate-600 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-200 transition-all active:scale-95"
+                    className="px-7 py-4 bg-[var(--color-apple-mist)] text-[var(--color-apple-ink)] rounded-full font-semibold text-sm tracking-tight hover:bg-slate-200 transition-all active:scale-95"
                   >
                     Назад
                   </button>
                 )}
-                <button 
+                <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 bg-indigo-600 text-white py-5 rounded-[1.5rem] font-black text-base flex items-center justify-center gap-3 hover:bg-indigo-700 transition-all shadow-xl shadow-indigo-100 active:scale-[0.98] disabled:bg-slate-300 group"
+                  className="apple-btn flex-1 py-4 text-base disabled:opacity-50 disabled:pointer-events-none group"
                 >
                   {isSubmitting ? (
                     <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
